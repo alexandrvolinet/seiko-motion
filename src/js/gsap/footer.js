@@ -14,7 +14,6 @@ export function animateFooter() {
   const email = footer.querySelector(".footer__email");
 
   const elements = [credentials, socials, email];
-
   const paths = footer.querySelectorAll(".footer__logo .st0");
 
   gsap.set(paths, {
@@ -29,40 +28,42 @@ export function animateFooter() {
     opacity: 0
   });
 
-  const tl = gsap.timeline({
-    scrollTrigger: {
-      trigger: footer,
-      start: "top 85%",
-      toggleActions: "play none none none"
+  ScrollTrigger.create({
+    trigger: footer,
+    start: "top 85%",
+    once: true,
+    onEnter: () => {
+
+      const logoTl = gsap.timeline();
+
+      logoTl
+        .to(logo, {
+          y: 0,
+          opacity: 1,
+          duration: 0.8,
+          ease: "power3.out"
+        })
+        .to(paths, {
+          drawSVG: "100%",
+          duration: 0.8,
+          stagger: 0.05,
+          ease: "power2.out"
+        })
+        .to(paths, {
+          fill: "#fff",
+          duration: 0.4,
+          stagger: 0.05,
+          ease: "power1.out"
+        }, "-=0.4");
+
+      gsap.to(elements, {
+        y: 0,
+        opacity: 1,
+        duration: 0.9,
+        stagger: 0.3,
+        ease: "power2.out",
+        delay: 0.3
+      });
     }
   });
-
-  tl.to(logo, {
-    y: 0,
-    opacity: 1,
-    duration: 0.8,
-    ease: "power3.out"
-  })
-
-  .to(paths, {
-    drawSVG: "100%",
-    duration: 0.8,
-    stagger: 0.05,
-    ease: "power2.out"
-  })
-
-  .to(paths, {
-    fill: "#fff",
-    duration: 0.4,
-    stagger: 0.05,
-    ease: "power1.out"
-  }, "-=0.4")
-
-  .to(elements, {
-    y: 0,
-    opacity: 1,
-    duration: 0.9,
-    stagger: 0.15,
-    ease: "power2.out"
-  }, "-=0.2");
 }
