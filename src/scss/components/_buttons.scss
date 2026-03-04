@@ -1,0 +1,27 @@
+
+
+.btn {
+  font-family: var(--font-secondary);
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 100%;
+  color: var(--color-font);
+  border: none;
+  border-radius: 100px;
+  padding: 26px 65px;
+  background: var(--gradient-primary);
+  cursor: pointer;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 40px rgba(142, 97, 214, .35);
+  }
+
+
+}
+
+.btn--sm {
+  font-size: 16px;
+  padding: 18px 34px;
+  width: fit-content;
+}

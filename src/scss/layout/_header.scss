@@ -1,0 +1,204 @@
+@use '../abstracts/mixins';
+
+.header {
+  width: 100%;
+  position: relative;
+  z-index: 20;
+  overflow: hidden;
+
+  &__inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 75px;
+  }
+
+  /* LEFT */
+
+  &__left {
+    display: flex;
+    align-items: center;
+  }
+
+  &__logo {
+    margin-right: 61px;
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+
+    svg {
+      display: block;
+    }
+
+    @include mixins.respond(tablet) {
+      margin-right: 0;
+    }
+  }
+
+  &__nav {
+    display: flex;
+    gap: 86px;
+
+    a {
+      font-family: var(--font-secondary);
+      font-weight: 500;
+      font-size: 16px;
+      line-height: 1.43;
+      color: var(--color-font-p);
+      text-decoration: none;
+      transition: opacity 0.2s ease;
+      overflow: hidden;
+
+      &:hover {
+        opacity: 0.7;
+      }
+    }
+
+    @include mixins.respond(tablet) {
+      display: none;
+    }
+  }
+
+  /* RIGHT */
+
+  &__right {
+    display: flex;
+    align-items: center;
+    gap: 36px;
+  }
+
+  &__link {
+    font-family: var(--font-secondary);
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1.43;
+    color: var(--color-font-p);
+    text-decoration: none;
+    transition: opacity 0.2s ease;
+
+    &:hover {
+      opacity: 0.7;
+    }
+
+    @include mixins.respond(tablet) {
+      display: none;
+    }
+  }
+
+  .btn {
+    @include mixins.respond(tablet) {
+      display: none;
+    }
+  }
+
+  /* BURGER */
+
+  .burger {
+    display: none;
+    width: 24px;
+    height: 18px;
+    position: relative;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+
+    span {
+      position: absolute;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background-color: #fff;
+      transition: transform 0.3s ease, opacity 0.3s ease;
+
+      &:nth-child(1) {
+        top: 0;
+      }
+
+      &:nth-child(2) {
+        top: 8px;
+      }
+
+      &:nth-child(3) {
+        bottom: 0;
+      }
+    }
+
+    &.is-active {
+      span:nth-child(1) {
+        transform: rotate(45deg);
+        top: 8px;
+      }
+
+      span:nth-child(2) {
+        opacity: 0;
+      }
+
+      span:nth-child(3) {
+        transform: rotate(-45deg);
+        bottom: 8px;
+      }
+    }
+
+    @include mixins.respond(tablet) {
+      display: block;
+    }
+  }
+
+  /* MOBILE MENU */
+
+  .mobile-menu {
+    position: fixed;
+    inset: 0;
+    background: #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    z-index: 10;
+
+    &__close {
+      position: absolute;
+      top: 24px;
+      right: 24px;
+      width: 24px;
+      height: 24px;
+      background: none;
+      border: none;
+      cursor: pointer;
+
+      &::before,
+      &::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background: #fff;
+      }
+
+      &::before {
+        transform: rotate(45deg);
+      }
+
+      &::after {
+        transform: rotate(-45deg);
+      }
+    }
+
+    &__nav {
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+      text-align: center;
+    }
+
+    &.is-open {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+}

@@ -1,0 +1,168 @@
+@use '../abstracts/mixins';
+
+.footer {
+    margin-bottom: 90px;
+    background-color: var(--color-bg);
+
+    &__content {
+        display: flex;
+        flex-direction: row;
+
+        @include mixins.respond(tablet) {
+            flex-direction: column;
+            align-items: center;
+        }
+    }
+
+    &__logo {
+        margin-right: 113px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        object-fit: contain;
+
+        svg {
+            width: 90px;
+        }
+
+        @include mixins.respond(tablet) {
+            margin: 0 0 40px 0;
+        }
+    }
+
+    &__logo-text {
+        writing-mode: vertical-rl;
+        transform: rotate(180deg);
+        display: flex;
+        flex-direction: column;
+        // align-items: center;
+        font-family: var(--font-footer);
+        color: var(--color-font);
+    }
+
+    &__logo-heading {
+        font-size: large;
+        font-size: 43px;
+        transform: scaleX(1.3)
+    }
+
+    &__logo-slogan {
+        font-size: 18px;
+    }
+
+    &__contacts {
+        display: flex;
+        flex-direction: row;
+        gap: 26px;
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 188%;
+        color: var(--color-font-p);
+    }
+
+    &__touch {
+        span {
+            font-weight: 600;
+            font-size: 20px;
+            line-height: 147%;
+            color: var(--color-font);
+            display: inline-block;
+            margin-bottom: 54px;
+
+            @include mixins.respond(tablet) {
+                margin-bottom: 20px;
+            }
+
+        }
+    }
+
+    &__socials {
+        display: flex;
+        flex-direction: column;
+
+        p {
+            font-family: var(--font-footer);
+            font-weight: 500;
+            font-size: 20px;
+            line-height: 150%;
+            max-width: 300px;
+            color: rgba(255, 255, 255, 0.63);
+        }
+
+        .social {
+            display: flex;
+            flex-direction: row;
+            gap: 21px;
+            margin-bottom: 55px;
+
+            @include mixins.respond(tablet) {
+                margin-bottom: 18px;
+            }
+
+            .circle {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 54px;
+                height: 54px;
+                border-radius: 50%;
+                background: linear-gradient(180deg, #a837ff 0%, #652199 100%);
+            }
+        }
+    }
+
+    &__email {
+        display: flex;
+        flex-direction: column;
+        max-width: 350px;
+
+        span {
+            font-weight: 600;
+            font-size: 20px;
+            line-height: 147%;
+            text-wrap: balance;
+            color: var(--color-font);
+            margin-bottom: 24px;
+        }
+
+        input {
+            border: 1px solid rgba(255, 255, 255, 0.29);
+            border-radius: 100px;
+            padding: 16px 32px;
+            background: rgba(255, 255, 255, 0.05);
+            font-weight: 500;
+            font-size: 16px;
+            line-height: 188%;
+            color: var(--color-font-p);
+        }
+
+        button {
+            margin-top: 41px;
+        }
+    }
+
+    &__contacts-cta {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        width: 100%;
+
+        @include mixins.respond(tablet) {
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+    }
+
+
+    .contacts {
+        display: flex;
+        flex-direction: column;
+        gap: 37px;
+
+        @include mixins.respond(tablet) {
+            gap: 7px;
+            margin-bottom: 44px;
+        }
+    }
+}

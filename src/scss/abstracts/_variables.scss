@@ -1,0 +1,20 @@
+:root {
+  /* colors */
+  --color-bg: #000000;
+  --color-bg-dark: rgba(255, 255, 255, 0.05);
+  --color-bg-grey: rgba(255, 255, 255, 0.04);
+  --color-bg-light: rgba(255, 255, 255, 0.1);
+  --color-font: #ffffff;
+  --color-font-p: rgba(255, 255, 255, 0.63);
+
+  /* gradients */
+  --gradient-primary: linear-gradient(180deg, #8E61D6, #652199);
+
+  /* typography */
+  --font-primary: 'Azonix', sans-serif;
+  --font-secondary: 'Montserrat', sans-serif;
+  --font-footer: 'Syne', sans-serif;
+
+  /* layout */
+  --container-max-width: 1600px;
+}

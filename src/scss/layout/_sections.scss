@@ -1,0 +1,26 @@
+@use '../abstracts/mixins';
+
+.section {
+
+  &__process {
+    padding: 83px 0 166px!important;
+
+    @include mixins.respond(tablet) {
+      padding: 43px 0 86px!important;
+    }
+
+    @include mixins.respond(mobile) {
+      padding: 20px 0 40px!important;
+    }
+  }
+
+  padding: 83px 0;
+
+  @include mixins.respond(tablet) {
+    padding: 43px 0;
+  }
+
+  @include mixins.respond(mobile) {
+    padding: 20px 0;
+  }
+}

@@ -1,0 +1,112 @@
+@use '../abstracts/mixins';
+
+.faq {
+    &__grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        column-gap: 36px;
+        align-items: start;
+    }
+
+    &__column {
+        display: flex;
+        flex-direction: column;
+        gap: 44px;
+    }
+
+    &__aside {
+        height: 100%;
+        border-radius: 30px;
+        background-image: url(../../assets/images/faq.png);
+        background-size: cover;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: end;
+        padding: 49px;
+        gap: 10px;
+    }
+
+    &__item {
+        display: flex;
+        flex-direction: column;
+        border-radius: 30px;
+        padding: 44px 51px;
+        background: var(--color-bg-dark);
+        position: relative;
+
+        font-family: var(--font-secondary);
+        font-weight: 500;
+        font-size: 20px;
+        line-height: 150%;
+        color: var(--color-font-p);
+
+        button {
+            text-align: left;
+            font-family: var(--font-secondary);
+            background: transparent;
+            font-weight: 600;
+            font-size: 20px;
+            line-height: 170%;
+            color: var(--color-font);
+            outline: none;
+            cursor: pointer;
+            border: none;
+
+        }
+
+        ::after {
+            z-index: 1;
+        }
+
+        ::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 30px;
+            padding: 1px;
+
+            background: linear-gradient(180deg,
+                    #A837FF 0%,
+                    #08030B 100%);
+
+            -webkit-mask:
+                linear-gradient(#fff 0 0) content-box,
+                linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            z-index: 2;
+            pointer-events: none;
+        }
+    }
+
+    &__answer {
+        max-height: 0;
+        overflow: hidden;
+        opacity: 0;
+        transition:
+            max-height 0.35s ease,
+    }
+
+    &__item.is-open {
+        .faq__answer {
+            max-height: 300px;
+            opacity: 1;
+            margin-top: 7px;
+        }
+    }
+
+    &__content {
+        display: flex;
+        flex-direction: column;
+
+        p {
+            margin: 57px 0;
+            text-align: center;
+            font-weight: 500;
+            font-size: 20px;
+            line-height: 150%;
+            color: var(--color-font-p);
+        }
+    }
+}

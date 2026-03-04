@@ -1,0 +1,16 @@
+@use '../abstracts/mixins';
+
+.container {
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  padding: 0 32px;
+
+
+  @include mixins.respond(tablet) {
+    padding: 0 28px;
+  }
+
+  @include mixins.respond(mobile) {
+    padding: 0 24px;
+  }
+}

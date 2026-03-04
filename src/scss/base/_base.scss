@@ -1,0 +1,91 @@
+@use '../abstracts/mixins';
+
+body {
+  background: var(--color-bg);
+  font-family: var(--font-secondary);
+  color: var(--color-font-p);
+  overflow-x: hidden;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  font-weight: inherit;
+  font-size: inherit;
+}
+
+a,
+u {
+  text-decoration: none;
+}
+
+/* ================================
+   TITLES
+================================ */
+
+.title {
+  font-family: var(--font-primary);
+  font-weight: 400;
+  font-size: 64px;
+  line-height: 1.64;
+  color: var(--color-font);
+  text-align: center;
+
+  @include mixins.respond(tablet) {
+    font-size: 44px;
+    line-height: 1.64;
+  }
+
+  @include mixins.respond(mobile) {
+    font-size: 22px;
+    line-height: 1.64;
+  }
+}
+
+.title--lh-133 {
+  line-height: 1.33;
+}
+
+.title--lh-144 {
+  line-height: 1.44;
+}
+
+.title--lh-164 {
+  line-height: 1.64;
+}
+
+.title--lh-169 {
+  line-height: 1.69;
+}
+
+.title--lh-181 {
+  line-height: 1.81;
+  text-transform: uppercase;
+}
+
+/* ================================
+   SUBTITLES / PARAGRAPHS
+================================ */
+
+.text-subtitle {
+  font-family: var(--font-secondary);
+  font-weight: 500;
+  font-size: 22px;
+  line-height: 1.36;
+  color: var(--color-font-p);
+  text-align: center;
+
+  @include mixins.respond(tablet) {
+    font-size: 18px;
+  }
+
+  @include mixins.respond(mobile) {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1.43;
+  }
+}

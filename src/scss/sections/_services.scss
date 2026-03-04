@@ -1,0 +1,82 @@
+@use '../abstracts/mixins';
+
+.services {
+    .title {
+        margin-bottom: 73px;
+    }
+
+    &__cards {
+        display: flex;
+        flex-direction: row;
+        gap: 70px;
+        align-items: stretch;
+        justify-content: center;
+
+        .card {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            border-radius: 30px;
+            padding: 50px 37px;
+            background: var(--color-bg-grey);
+            backdrop-filter: blur(60px);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+
+            .circle {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 80px;
+                height: 80px;
+                border-radius: 50%;
+                background: linear-gradient(180deg, #a837ff 0%, #652199 100%);
+                margin-bottom: 52px;
+            }
+
+            span {
+                font-weight: 600;
+                font-size: 24px;
+                line-height: 125%;
+                color: var(--color-font);
+            }
+
+            p {
+                font-weight: 500;
+                font-size: 20px;
+                line-height: 150%;
+                text-wrap: balance;
+                margin: 36px 0;
+            }
+
+            a {
+                font-weight: 500;
+                font-size: 16px;
+                line-height: 188%;
+            }
+
+            ::before {
+                content: '';
+                position: absolute;
+                inset: 0;
+                border-radius: 30px;
+                padding: 1.5px;
+
+                background: linear-gradient(180deg,
+                        #A837FF 0%,
+                        #08030B 100%);
+
+                -webkit-mask:
+                    linear-gradient(#fff 0 0) content-box,
+                    linear-gradient(#fff 0 0);
+                -webkit-mask-composite: xor;
+                mask-composite: exclude;
+
+                pointer-events: none;
+            }
+        }
+    }
+}
