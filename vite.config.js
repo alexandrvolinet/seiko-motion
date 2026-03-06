@@ -1,7 +1,7 @@
 import { defineConfig } from 'vite';
 
 export default defineConfig({
-  base: '/seiko-motion/',
+  base: '/',
   build: {
     outDir: 'dist',
     assetsDir: 'assets',

@@ -8,8 +8,9 @@ const motion = {
   duration: 0.9,
   stagger: 0.15,
   ease: "power2.out",
-  start: "top 80%"
+  start: "top 70%"
 };
+
 export function animateHeader() {
   const header = document.querySelector(".header");
   if (!header) return;

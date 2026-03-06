@@ -3,6 +3,8 @@ import { animateHeader } from "./gsap/page.js";
 import { revealSections } from "./gsap/page.js";
 import { heroCTA } from "./gsap/hero.js";
 import { arc } from "./gsap/hero.js";
+import { animateStats } from "./gsap/stats.js";
+import { showcaseUp } from "./gsap/showcase.js";
 import { animateFooter } from "./gsap/footer.js";
 import { animateProcessMedia } from "./gsap/process.js";
 
@@ -112,10 +114,12 @@ window.addEventListener("load", () => {
   document.body.classList.add("page-loaded"); 
 
   animateHeader();
+  revealSections();
   heroCTA();
   arc();
+  showcaseUp();
 
-  revealSections();
+  animateStats();
   animateProcessMedia();
   animateFooter();
 });

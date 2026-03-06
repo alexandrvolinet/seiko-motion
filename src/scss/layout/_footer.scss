@@ -23,6 +23,7 @@
 
         svg {
             width: 90px;
+            margin-left: 10px;
         }
 
         @include mixins.respond(tablet) {
