@@ -19,6 +19,28 @@
     pointer-events: none;
     z-index: -1;
 
+    @media (max-width: 1500px) {
+      bottom: -330px;
+    }
+
+    @media (max-width: 1200px) {
+      bottom: -250px;
+    }
+
+    @media (max-width: 900px) {
+      bottom: -200px;
+    }
+
+    @media (max-width: 650px) {
+      bottom: -150px;
+    }
+
+    @media (max-width: 550px) {
+      bottom: -120px;
+    }
+        @media (max-width: 400px) {
+      bottom: -100px;
+    }
   }
 
   .home__content {
