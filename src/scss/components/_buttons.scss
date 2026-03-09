@@ -1,3 +1,5 @@
+@use '../abstracts/mixins';
+
 .btn {
   font-family: var(--font-secondary);
   font-weight: 600;
@@ -21,4 +23,8 @@
   font-size: 16px;
   padding: 18px 34px;
   width: fit-content;
+
+  @include mixins.respond(tablet) {
+    width: auto;
+  }
 }

@@ -8,7 +8,8 @@
         display: flex;
         flex-direction: row;
 
-        @include mixins.respond(tablet) {
+
+        @include mixins.respond(laptop) {
             flex-direction: column;
             align-items: center;
         }
@@ -26,9 +27,13 @@
             margin-left: 10px;
         }
 
-        @include mixins.respond(tablet) {
+        @include mixins.respond(laptop) {
             margin: 0 0 40px 0;
+            flex-direction: column-reverse;
+            text-align: center;
         }
+
+
     }
 
     &__logo-text {
@@ -39,6 +44,11 @@
         // align-items: center;
         font-family: var(--font-footer);
         color: var(--color-font);
+
+        @include mixins.respond(laptop) {
+            transform:none;
+            writing-mode:initial;
+        }
     }
 
     &__logo-heading {
@@ -115,7 +125,7 @@
     &__email {
         display: flex;
         flex-direction: column;
-        max-width: 350px;
+        max-width: 300px;
 
         @media (max-width: 768px) {
             max-width: 100%;
