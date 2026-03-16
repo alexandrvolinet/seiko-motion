@@ -7,55 +7,57 @@ export function animateStats() {
   const section = document.querySelector("#stats");
   if (!section) return;
 
-  const first = section.querySelector(".stats__card--first");
-  const second = section.querySelector(".stats__card--second");
-  const third = section.querySelector(".stats__card--third");
+  const ctx = gsap.context(() => {
+    const first = section.querySelector(".stats__card--first");
+    const second = section.querySelector(".stats__card--second");
+    const third = section.querySelector(".stats__card--third");
 
-  const counters = section.querySelectorAll(".stats__card span:first-child");
+    const counters = section.querySelectorAll(".stats__card span:first-child");
 
-  counters.forEach((el) => {
-    const text = el.textContent.trim();
-    const value = parseInt(text.replace(/\D/g, ""));
-    const suffix = text.replace(/[0-9]/g, "");
-    el.dataset.target = value;
-    el.dataset.suffix = suffix;
-    el.textContent = "0" + suffix;
-  });
+    counters.forEach((el) => {
+      const text = el.textContent.trim();
+      const value = parseInt(text.replace(/\D/g, ""));
+      const suffix = text.replace(/[0-9]/g, "");
+      el.dataset.target = value;
+      el.dataset.suffix = suffix;
+      el.textContent = "0" + suffix;
+    });
 
-  gsap.set(first, { x: 120 });
-  gsap.set(third, { x: -120 });
+    gsap.set(first, { x: 120 });
+    gsap.set(third, { x: -120 });
 
-  gsap.set(second, {
-    scale: 0,
-    opacity: 0,
-  });
+    gsap.set(second, {
+      scale: 0,
+      opacity: 0,
+    });
 
-  const tl = gsap.timeline({
-    scrollTrigger: {
-      trigger: section,
-      start: "top 30%",
-      toggleActions: "play none none none",
-    },
-  });
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: section,
+        start: "top 60%",
+        toggleActions: "play none none none"
+      }
+    });
 
-  tl.to([first, third], {
-    x: 0,
-    duration: 0.9,
-    ease: "power3.out",
-  })
+    tl.to([first, third], {
+      x: 0,
+      duration: 0.9,
+      ease: "power3.out"
+    })
 
-    .to(
-      second,
-      {
-        scale: 1,
-        opacity: 1,
-        duration: 0.8,
-        ease: "back.out(1.6)",
-      },
-      "-=0.4",
-    )
+    .to(second, {
+      scale: 1,
+      opacity: 1,
+      duration: 0.8,
+      ease: "power1.inOut"
+    }, "-=0.4")
 
     .add(() => startCounters(counters));
+
+    return tl;
+  }, section);
+
+  return () => ctx.revert();
 }
 
 function startCounters(elements) {
@@ -71,7 +73,7 @@ function startCounters(elements) {
       ease: "power1.out",
       onUpdate() {
         el.textContent = Math.floor(counter.val) + suffix;
-      },
+      }
     });
   });
 }

@@ -35,13 +35,11 @@ u {
   font-family: var(--font-primary);
   font-weight: 400;
   font-size: 64px;
-  line-height: 1.64;
   color: var(--color-font);
   text-align: center;
 
   @include mixins.respond(tablet) {
     font-size: 44px;
-    line-height: 1.64;
   }
 
   @include mixins.respond(mobile) {

@@ -5,8 +5,11 @@ import { heroCTA } from "./gsap/hero.js";
 import { arc } from "./gsap/hero.js";
 import { animateStats } from "./gsap/stats.js";
 import { showcaseUp } from "./gsap/showcase.js";
+import { animateServices } from "./gsap/services.js";
+import { animateDesign } from "./gsap/design.js";
 import { animateFooter } from "./gsap/footer.js";
 import { animateProcessMedia } from "./gsap/process.js";
+import { animateBackgroundDots} from "./gsap/page.js";
 
 
 // burger menu
@@ -109,16 +112,19 @@ faqItems.forEach((item) => {
 // video end
 
 // loader
+
 window.addEventListener("load", () => {
   document.querySelector(".loader").classList.add("loader--hidden");
   document.body.classList.add("page-loaded"); 
 
   animateHeader();
   revealSections();
+  animateBackgroundDots();
   heroCTA();
   arc();
+  animateDesign();
+  animateServices();
   showcaseUp();
-
   animateStats();
   animateProcessMedia();
   animateFooter();

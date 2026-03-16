@@ -12,6 +12,14 @@
         margin-bottom: 97px;
     }
 
+    &__subtitle {
+        font-size: 50px;
+
+        @include mixins.respond(tablet) {
+            font-size: 34px;
+        }
+    }
+
     &__cards {
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
@@ -129,17 +137,17 @@
 
         &:last-child {
 
-        .card__background {
+            .card__background {
 
-            @media (max-width: 768px) {
-                background: transparent;
-                backdrop-filter: none;
+                @media (max-width: 768px) {
+                    background: transparent;
+                    backdrop-filter: none;
+                }
+
             }
 
         }
 
-    }
-        
     }
 
     @media (max-width: 1600px) {

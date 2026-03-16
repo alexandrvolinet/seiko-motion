@@ -33,6 +33,7 @@
         text-align: center;
         position: relative;
         overflow: hidden;
+        z-index: 4;
 
         .circle {
             display: flex;
@@ -41,12 +42,9 @@
             width: 80px;
             height: 80px;
             border-radius: 50%;
-            background: linear-gradient(
-                180deg,
-                #a837ff 0%,
-                #652199 100%
-            );
-
+            background: linear-gradient(180deg,
+                    #a837ff 0%,
+                    #652199 100%);
             margin-bottom: 52px;
         }
 
@@ -77,11 +75,9 @@
             inset: 0;
             border-radius: 30px;
             padding: 1.5px;
-            background: linear-gradient(
-                180deg,
-                #A837FF 0%,
-                #08030B 100%
-            );
+            background: linear-gradient(180deg,
+                    #A837FF 0%,
+                    #08030B 100%);
 
             -webkit-mask:
                 linear-gradient(#fff 0 0) content-box,
@@ -92,23 +88,110 @@
         }
     }
 
-    .card--one { grid-area: one; }
-    .card--two { grid-area: two; }
-    .card--three { grid-area: three; }
-    .card--four { grid-area: four; }
+    .card--one {
+        grid-area: one;
+    }
+
+    .card--two {
+        grid-area: two;
+    }
+
+    .card--three {
+        grid-area: three;
+    }
+
+    .card--four {
+        grid-area: four;
+    }
 
     &__center {
 
         grid-area: center;
+
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
+
+        gap: 6px;
+
         font-size: 42px;
         font-weight: 600;
+
         color: var(--color-font);
         text-align: center;
+
         pointer-events: none;
+
+        position: relative;
+
+        width: 260px;
+        height: 260px;
+
+        align-self: center;
+        justify-self: center;
+
+        span {
+            position: relative;
+            z-index: 3;
+            line-height: 1.1;
+        }
+
+        &::after {
+            content: "";
+            position: absolute;
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            background: radial-gradient(circle,
+                    rgba(168, 55, 255, 0.18) 0%,
+                    rgba(168, 55, 255, 0.08) 35%,
+                    rgba(168, 55, 255, 0.02) 55%,
+                    transparent 70%);
+            filter: blur(20px);
+            z-index: 1;
+        }
+    }
+
+    &__ripples {
+
+        position: absolute;
+        inset: 0;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        span {
+
+            position: absolute;
+
+            width: 120px;
+            height: 120px;
+
+            border-radius: 50%;
+
+            border: 1px solid rgba(168, 55, 255, 0.35);
+
+            box-shadow:
+                0 0 40px rgba(168, 55, 255, 0.15),
+                inset 0 0 20px rgba(168, 55, 255, 0.08);
+
+            transform: scale(0.3) translateZ(0);
+            will-change: transform, opacity;
+
+            opacity: 0;
+
+            animation: ripple-expand 6s cubic-bezier(.25, .46, .45, .94) infinite;
+        }
+
+        span:nth-child(2) {
+            animation-delay: 2s;
+        }
+
+        span:nth-child(3) {
+            animation-delay: 4s;
+        }
     }
 
     @include mixins.respond(tablet) {
@@ -116,6 +199,7 @@
         &__cards {
 
             grid-template-columns: 1fr;
+
             grid-template-areas:
                 "one"
                 "two"
@@ -128,8 +212,28 @@
 
         &__center {
             font-size: 32px;
-            padding: 30px 0;
             margin: 70px 0;
         }
+    }
+}
+
+@keyframes ripple-expand {
+
+    0% {
+        transform: scale(0.3);
+        opacity: 0;
+    }
+
+    15% {
+        opacity: 0.45;
+    }
+
+    60% {
+        opacity: 0.25;
+    }
+
+    100% {
+        transform: scale(6.8);
+        opacity: 0;
     }
 }
