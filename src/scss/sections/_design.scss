@@ -1,181 +1,168 @@
-@use '../abstracts/mixins';
+@use "../abstracts/mixins";
 
 .design {
+  &__text-block {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+  }
 
-    &__text-block {
-        display: flex;
-        gap: 20px;
-        align-items: flex-start;
+  .title {
+    margin-bottom: 97px;
+  }
+
+  &__subtitle {
+    font-size: 50px;
+
+    @include mixins.respond(tablet) {
+      font-size: 34px;
+    }
+  }
+
+  &__cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-areas: "left rocket right";
+    gap: 46px;
+    align-items: stretch;
+  }
+
+  .card:first-child {
+    grid-area: left;
+  }
+
+  .card__gradient {
+    grid-area: rocket;
+    background: linear-gradient(90deg, #652199 0%, #000 94.65%);
+    border-radius: 30px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+  }
+
+  .card:last-child {
+    grid-area: right;
+  }
+
+  .card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    .one {
+      margin-right: 26px;
     }
 
-    .title {
-        margin-bottom: 97px;
+    .two {
+      margin-right: 45px;
     }
 
-    &__subtitle {
-        font-size: 50px;
+    .three {
+      margin: 0 22px;
+    }
 
-        @include mixins.respond(tablet) {
-            font-size: 34px;
+    .paddingStyleOne {
+      padding: 21px 44px;
+    }
+
+    .paddingStyleTwo {
+      padding: 38px 32px;
+
+      @media (max-width: 768px) {
+        padding: 0;
+      }
+
+      span {
+        margin-bottom: 59px;
+      }
+    }
+
+    &__background {
+      display: flex;
+      flex-direction: column;
+      border-radius: 30px;
+      backdrop-filter: blur(80px);
+      background: var(--color-bg-dark);
+
+      .spanTitle {
+        font-weight: 400;
+        font-size: 32px;
+        line-height: 131%;
+
+        @media (max-width: 768px) {
+          font-weight: 400;
+          font-size: 16px;
         }
+      }
+
+      .end {
+        text-align: end;
+      }
+    }
+
+    span {
+      font-family: var(--font-primary);
+      font-weight: 400;
+      font-size: 20px;
+      line-height: 150%;
+      color: var(--color-font);
+    }
+
+    p {
+      font-weight: 500;
+      font-size: 20px;
+      line-height: 150%;
+      color: var(--color-font-p);
+      text-wrap: balance;
+
+      @media (max-width: 768px) {
+        font-weight: 500;
+        font-size: 14px;
+      }
+    }
+
+    &:last-child {
+      .card__background {
+        @media (max-width: 768px) {
+          background: transparent;
+          backdrop-filter: none;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 1600px) {
+    .title {
+      margin-bottom: 40px;
     }
 
     &__cards {
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr;
-        grid-template-areas: "left rocket right";
-        gap: 46px;
-        align-items: stretch;
-    }
+      grid-template-columns: 1fr;
+      grid-template-areas:
+        "left"
+        "right"
+        "rocket";
 
-    .card:first-child {
-        grid-area: left;
+      gap: 24px;
     }
 
     .card__gradient {
-        grid-area: rocket;
-        background: linear-gradient(90deg, #652199 0%, #000 94.65%);
-        border-radius: 30px;
-
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        padding: 40px;
-
-        img {
-            max-width: 100%;
-            height: auto;
-        }
+      padding: 40px 20px;
     }
 
-    .card:last-child {
-        grid-area: right;
+    .design__text-block {
+      gap: 16px;
     }
 
-    .card {
-
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-
-        .one {
-            margin-right: 26px;
-        }
-
-        .two {
-            margin-right: 45px;
-        }
-
-        .three {
-            margin: 0 22px;
-        }
-
-        .paddingStyleOne {
-            padding: 21px 44px;
-        }
-
-        .paddingStyleTwo {
-            padding: 38px 32px;
-
-            @media (max-width: 768px) {
-                padding: 0;
-            }
-
-
-            span {
-                margin-bottom: 59px;
-            }
-        }
-
-        &__background {
-            display: flex;
-            flex-direction: column;
-            border-radius: 30px;
-            backdrop-filter: blur(80px);
-            background: var(--color-bg-dark);
-
-            .spanTitle {
-                font-weight: 400;
-                font-size: 32px;
-                line-height: 131%;
-
-                @media (max-width: 768px) {
-                    font-weight: 400;
-                    font-size: 16px;
-                }
-            }
-
-            .end {
-                text-align: end;
-            }
-
-
-        }
-
-
-
-        span {
-            font-family: var(--font-primary);
-            font-weight: 400;
-            font-size: 20px;
-            line-height: 150%;
-            color: var(--color-font);
-        }
-
-        p {
-            font-weight: 500;
-            font-size: 20px;
-            line-height: 150%;
-            color: var(--color-font-p);
-            text-wrap: balance;
-
-            @media (max-width: 768px) {
-                font-weight: 500;
-                font-size: 14px;
-            }
-        }
-
-        &:last-child {
-
-            .card__background {
-
-                @media (max-width: 768px) {
-                    background: transparent;
-                    backdrop-filter: none;
-                }
-
-            }
-
-        }
-
+    .card__background {
+      margin-top: 24px;
     }
-
-    @media (max-width: 1600px) {
-
-        .title {
-            margin-bottom: 40px;
-        }
-
-        &__cards {
-            grid-template-columns: 1fr;
-            grid-template-areas:
-                "left"
-                "right"
-                "rocket";
-
-            gap: 24px;
-        }
-
-        .card__gradient {
-            padding: 40px 20px;
-        }
-
-        .design__text-block {
-            gap: 16px;
-        }
-
-        .card__background {
-            margin-top: 24px;
-        }
-    }
+  }
 }

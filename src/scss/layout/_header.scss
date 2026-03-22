@@ -1,4 +1,4 @@
-@use '../abstracts/mixins';
+@use "../abstracts/mixins";
 
 .header {
   width: 100%;
@@ -12,8 +12,6 @@
     align-items: center;
     min-height: 75px;
   }
-
-  /* LEFT */
 
   &__left {
     display: flex;
@@ -59,8 +57,6 @@
     }
   }
 
-  /* RIGHT */
-
   &__right {
     display: flex;
     align-items: center;
@@ -90,8 +86,6 @@
       display: none;
     }
   }
-
-  /* BURGER */
 
   .burger {
     display: none;
@@ -145,8 +139,6 @@
     }
   }
 
-  /* MOBILE MENU */
-
   .mobile-menu {
     position: fixed;
     inset: 0;
@@ -171,7 +163,7 @@
 
       &::before,
       &::after {
-        content: '';
+        content: "";
         position: absolute;
         top: 50%;
         left: 0;

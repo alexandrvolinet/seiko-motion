@@ -1,15 +1,15 @@
 import { gsap } from "gsap";
 
 const CONFIG = {
-    dotCount: 50,          // Количество точек
-    minSize: 2,           // Минимальный размер
-    maxSize: 5,           // Максимальный размер
-    minOpacity: 0.3,      // Минимальная opacity
-    maxOpacity: 1,        // Максимальная opacity
-    minDuration: 2,       // Минимальная длительность анимации
-    maxDuration: 5,       // Максимальная длительность анимации
-    minDelay: 0,          // Минимальная задержка
-    maxDelay: 3           // Максимальная задержка
+    dotCount: 50,         
+    minSize: 2,           
+    maxSize: 5,           
+    minOpacity: 0.3,      
+    maxOpacity: 1,        
+    minDuration: 2,       
+    maxDuration: 5,       
+    minDelay: 0,          
+    maxDelay: 3           
 };
 
 function random(min, max) {

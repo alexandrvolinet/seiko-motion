@@ -1,112 +1,126 @@
 @use '../abstracts/mixins';
 
 .faq {
-    &__grid {
+
+    &__layout {
         display: grid;
-        grid-template-columns: 1fr 1fr 1fr;
-        column-gap: 36px;
-        align-items: start;
+        grid-template-columns: 1fr 0.5fr;
+        gap: 60px;
+        align-items: stretch;
+
+        @include mixins.respond(tablet) {
+            grid-template-columns: 1fr;
+        }
     }
 
-    &__column {
-        display: flex;
-        flex-direction: column;
-        gap: 44px;
+    .title {
+        margin-bottom: 60px;
     }
 
-    &__aside {
-        height: 100%;
-        border-radius: 30px;
-        background-image: url(../../assets/images/faq.png);
-        background-size: cover;
+    .text-subtitle {
+        font-size: 28px;
+        text-wrap: balance;
+
+        @include mixins.respond(mobile) {
+            font-size: 18px;
+        }
+    }
+
+    &__list {
         display: flex;
         flex-direction: column;
-        align-items: center;
-        justify-content: end;
-        padding: 49px;
-        gap: 10px;
+        gap: 16px;
+        margin-top: 40px;
     }
 
     &__item {
+        border-radius: 20px;
+        padding: 22px 26px;
+        background: linear-gradient(180deg, #0F0A14, #09060D);
+        transition: 0.3s;
+
+
+    }
+
+    &__question {
+        width: 100%;
         display: flex;
-        flex-direction: column;
-        border-radius: 30px;
-        padding: 44px 51px;
-        background: var(--color-bg-dark);
-        position: relative;
+        justify-content: space-between;
+        align-items: center;
 
-        font-family: var(--font-secondary);
-        font-weight: 500;
-        font-size: 20px;
-        line-height: 150%;
-        color: var(--color-font-p);
+        background: none;
+        border: none;
+        cursor: pointer;
 
-        button {
-            text-align: left;
-            font-family: var(--font-secondary);
-            background: transparent;
-            font-weight: 600;
+        font-weight: 600;
+        font-size: 18px;
+        color: var(--color-font);
+
+        &::after {
+            content: '+';
             font-size: 20px;
-            line-height: 170%;
-            color: var(--color-font);
-            outline: none;
-            cursor: pointer;
-            border: none;
-
+            transition: 0.3s;
         }
+    }
 
-        ::after {
-            z-index: 1;
-        }
-
-        ::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            border-radius: 30px;
-            padding: 1px;
-
-            background: linear-gradient(180deg,
-                    #A837FF 0%,
-                    #08030B 100%);
-
-            -webkit-mask:
-                linear-gradient(#fff 0 0) content-box,
-                linear-gradient(#fff 0 0);
-            -webkit-mask-composite: xor;
-            mask-composite: exclude;
-            z-index: 2;
-            pointer-events: none;
-        }
+    &__item.is-open &__question::after {
+        content: '−';
     }
 
     &__answer {
         max-height: 0;
         overflow: hidden;
         opacity: 0;
-        transition:
-            max-height 0.35s ease,
+        transition: all 0.3s ease;
+
+        font-size: 15px;
+        color: var(--color-font-p);
     }
 
-    &__item.is-open {
-        .faq__answer {
-            max-height: 300px;
-            opacity: 1;
-            margin-top: 7px;
+    &__item.is-open &__answer {
+        margin-top: 10px;
+        max-height: 200px;
+        opacity: 1;
+    }
+
+    &__right {
+        height: 587px;
+
+        @media (max-width: 1460px) {
+            height: 625px;
+
         }
     }
 
-    &__content {
+    &__visual {
+        height: 100%;
+        border-radius: 30px;
+        padding: 30px;
+
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+
+        background-image: url('../../assets/images/faq.png');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+
+        position: relative;
+        overflow: hidden;
+    }
+
+    &__visual-content {
+        position: relative;
+        z-index: 2;
+
         display: flex;
         flex-direction: column;
+        align-items: center;
+        gap: 12px;
 
-        p {
-            margin: 57px 0;
-            text-align: center;
-            font-weight: 500;
-            font-size: 20px;
-            line-height: 150%;
-            color: var(--color-font-p);
+        img:last-child {
+            width: 140px;
         }
     }
 }

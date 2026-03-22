@@ -1,154 +1,148 @@
-@use '../abstracts/mixins';
+@use "../abstracts/mixins";
 
 .footer {
-    margin-bottom: 90px;
-    background-color: var(--color-bg);
+  margin-bottom: 90px;
+  background-color: var(--color-bg);
 
-    &__content {
-        display: flex;
-        flex-direction: row;
+  &__content {
+    display: flex;
+    flex-direction: row;
 
+    @include mixins.respond(laptop) {
+      flex-direction: column;
+      align-items: center;
+    }
+  }
 
-        @include mixins.respond(laptop) {
-            flex-direction: column;
-            align-items: center;
-        }
+  &__logo {
+    margin-right: 113px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    object-fit: contain;
+    flex-direction: column;
+    gap: 20px;
+
+    @include mixins.respond(laptop) {
+      margin: 0 0 40px 0;
+    }
+  }
+
+  &__contacts {
+    display: flex;
+    flex-direction: row;
+    gap: 26px;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 188%;
+    color: var(--color-font-p);
+  }
+
+  &__touch {
+    span {
+      font-weight: 600;
+      font-size: 20px;
+      line-height: 147%;
+      color: var(--color-font);
+      display: inline-block;
+      margin-bottom: 54px;
+
+      @include mixins.respond(tablet) {
+        margin-bottom: 20px;
+      }
+    }
+  }
+
+  &__socials {
+    display: flex;
+    flex-direction: column;
+
+    p {
+      font-family: var(--font-footer);
+      font-weight: 500;
+      font-size: 20px;
+      line-height: 150%;
+      max-width: 300px;
+      color: rgba(255, 255, 255, 0.63);
     }
 
-    &__logo {
-        margin-right: 113px;
+    .social {
+      display: flex;
+      flex-direction: row;
+      gap: 21px;
+      margin-bottom: 55px;
+
+      @include mixins.respond(tablet) {
+        margin-bottom: 18px;
+      }
+
+      .circle {
         display: flex;
-        align-items: center;
         justify-content: center;
-        object-fit: contain;
-        flex-direction: column;
-        gap: 20px;
+        align-items: center;
+        width: 54px;
+        height: 54px;
+        border-radius: 50%;
+        background: linear-gradient(180deg, #a837ff 0%, #652199 100%);
+      }
+    }
+  }
 
-        @include mixins.respond(laptop) {
-            margin: 0 0 40px 0;
-        }
+  &__email {
+    display: flex;
+    flex-direction: column;
+    max-width: 300px;
 
+    @media (max-width: 768px) {
+      max-width: 100%;
     }
 
-
-
-    &__contacts {
-        display: flex;
-        flex-direction: row;
-        gap: 26px;
-        font-weight: 500;
-        font-size: 16px;
-        line-height: 188%;
-        color: var(--color-font-p);
+    span {
+      font-weight: 600;
+      font-size: 20px;
+      line-height: 147%;
+      text-wrap: balance;
+      color: var(--color-font);
+      margin-bottom: 24px;
     }
 
-    &__touch {
-        span {
-            font-weight: 600;
-            font-size: 20px;
-            line-height: 147%;
-            color: var(--color-font);
-            display: inline-block;
-            margin-bottom: 54px;
-
-            @include mixins.respond(tablet) {
-                margin-bottom: 20px;
-            }
-
-        }
+    input {
+      border: 1px solid rgba(255, 255, 255, 0.29);
+      border-radius: 100px;
+      padding: 16px 32px;
+      background: rgba(255, 255, 255, 0.05);
+      font-weight: 500;
+      font-size: 16px;
+      line-height: 188%;
+      color: var(--color-font-p);
     }
 
-    &__socials {
-        display: flex;
-        flex-direction: column;
-
-        p {
-            font-family: var(--font-footer);
-            font-weight: 500;
-            font-size: 20px;
-            line-height: 150%;
-            max-width: 300px;
-            color: rgba(255, 255, 255, 0.63);
-        }
-
-        .social {
-            display: flex;
-            flex-direction: row;
-            gap: 21px;
-            margin-bottom: 55px;
-
-            @include mixins.respond(tablet) {
-                margin-bottom: 18px;
-            }
-
-            .circle {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                width: 54px;
-                height: 54px;
-                border-radius: 50%;
-                background: linear-gradient(180deg, #a837ff 0%, #652199 100%);
-            }
-        }
+    button {
+      margin-top: 41px;
     }
+  }
 
-    &__email {
-        display: flex;
-        flex-direction: column;
-        max-width: 300px;
+  &__contacts-cta {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
 
-        @media (max-width: 768px) {
-            max-width: 100%;
-        }
-
-        span {
-            font-weight: 600;
-            font-size: 20px;
-            line-height: 147%;
-            text-wrap: balance;
-            color: var(--color-font);
-            margin-bottom: 24px;
-        }
-
-        input {
-            border: 1px solid rgba(255, 255, 255, 0.29);
-            border-radius: 100px;
-            padding: 16px 32px;
-            background: rgba(255, 255, 255, 0.05);
-            font-weight: 500;
-            font-size: 16px;
-            line-height: 188%;
-            color: var(--color-font-p);
-        }
-
-        button {
-            margin-top: 41px;
-        }
+    @include mixins.respond(tablet) {
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
     }
+  }
 
-    &__contacts-cta {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        width: 100%;
+  .contacts {
+    display: flex;
+    flex-direction: column;
+    gap: 37px;
 
-        @include mixins.respond(tablet) {
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
+    @include mixins.respond(tablet) {
+      gap: 7px;
+      margin-bottom: 44px;
     }
-
-
-    .contacts {
-        display: flex;
-        flex-direction: column;
-        gap: 37px;
-
-        @include mixins.respond(tablet) {
-            gap: 7px;
-            margin-bottom: 44px;
-        }
-    }
+  }
 }

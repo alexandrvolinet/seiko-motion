@@ -1,239 +1,226 @@
-@use '../abstracts/mixins';
+@use "../abstracts/mixins";
 
 .services {
+  .title {
+    margin-bottom: 73px;
+  }
 
-    .title {
-        margin-bottom: 73px;
+  &__cards {
+    display: grid;
+    grid-template-columns: 1fr 200px 1fr;
+    grid-template-rows: auto auto;
+    grid-template-areas:
+      "one center two"
+      "three center four";
+
+    column-gap: 10%;
+    row-gap: 20px;
+    align-items: stretch;
+  }
+
+  .card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 30px;
+    padding: 50px 37px;
+    background: var(--color-bg-grey);
+    backdrop-filter: blur(60px);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    z-index: 4;
+
+    .circle {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: linear-gradient(180deg, #a837ff 0%, #652199 100%);
+      margin-bottom: 52px;
     }
 
+    span {
+      font-weight: 600;
+      font-size: 24px;
+      line-height: 125%;
+      color: var(--color-font);
+    }
+
+    p {
+      font-weight: 500;
+      font-size: 20px;
+      line-height: 150%;
+      text-wrap: balance;
+      margin: 36px 0;
+    }
+
+    a {
+      font-weight: 500;
+      font-size: 16px;
+      line-height: 188%;
+    }
+
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: 30px;
+      padding: 1.5px;
+      background: linear-gradient(180deg, #a837ff 0%, #08030b 100%);
+
+      -webkit-mask: linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
+    }
+  }
+
+  .card--one {
+    grid-area: one;
+  }
+
+  .card--two {
+    grid-area: two;
+  }
+
+  .card--three {
+    grid-area: three;
+  }
+
+  .card--four {
+    grid-area: four;
+  }
+
+  &__center {
+    grid-area: center;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    gap: 6px;
+
+    font-size: 42px;
+    font-weight: 600;
+
+    color: var(--color-font);
+    text-align: center;
+
+    pointer-events: none;
+
+    position: relative;
+
+    width: 260px;
+    height: 260px;
+
+    align-self: center;
+    justify-self: center;
+
+    span {
+      position: relative;
+      z-index: 3;
+      line-height: 1.1;
+    }
+
+    &::after {
+      content: "";
+      position: absolute;
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      background: radial-gradient(
+        circle,
+        rgba(168, 55, 255, 0.18) 0%,
+        rgba(168, 55, 255, 0.08) 35%,
+        rgba(168, 55, 255, 0.02) 55%,
+        transparent 70%
+      );
+      filter: blur(20px);
+      z-index: 1;
+    }
+  }
+
+  &__ripples {
+    position: absolute;
+    inset: 0;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    span {
+      position: absolute;
+
+      width: 120px;
+      height: 120px;
+
+      border-radius: 50%;
+
+      border: 1px solid rgba(168, 55, 255, 0.35);
+
+      box-shadow: 0 0 40px rgba(168, 55, 255, 0.15),
+        inset 0 0 20px rgba(168, 55, 255, 0.08);
+
+      transform: scale(0.3) translateZ(0);
+      will-change: transform, opacity;
+
+      opacity: 0;
+
+      animation: ripple-expand 6s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite;
+    }
+
+    span:nth-child(2) {
+      animation-delay: 2s;
+    }
+
+    span:nth-child(3) {
+      animation-delay: 4s;
+    }
+  }
+
+  @include mixins.respond(tablet) {
     &__cards {
+      grid-template-columns: 1fr;
 
-        display: grid;
-        grid-template-columns: 1fr 200px 1fr;
-        grid-template-rows: auto auto;
-        grid-template-areas:
-            "one center two"
-            "three center four";
+      grid-template-areas:
+        "one"
+        "two"
+        "center"
+        "three"
+        "four";
 
-        column-gap: 10%;
-        row-gap: 20px;
-        align-items: stretch;
-    }
-
-    .card {
-
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        align-items: center;
-        border-radius: 30px;
-        padding: 50px 37px;
-        background: var(--color-bg-grey);
-        backdrop-filter: blur(60px);
-        text-align: center;
-        position: relative;
-        overflow: hidden;
-        z-index: 4;
-
-        .circle {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            background: linear-gradient(180deg,
-                    #a837ff 0%,
-                    #652199 100%);
-            margin-bottom: 52px;
-        }
-
-        span {
-            font-weight: 600;
-            font-size: 24px;
-            line-height: 125%;
-            color: var(--color-font);
-        }
-
-        p {
-            font-weight: 500;
-            font-size: 20px;
-            line-height: 150%;
-            text-wrap: balance;
-            margin: 36px 0;
-        }
-
-        a {
-            font-weight: 500;
-            font-size: 16px;
-            line-height: 188%;
-        }
-
-        &::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            border-radius: 30px;
-            padding: 1.5px;
-            background: linear-gradient(180deg,
-                    #A837FF 0%,
-                    #08030B 100%);
-
-            -webkit-mask:
-                linear-gradient(#fff 0 0) content-box,
-                linear-gradient(#fff 0 0);
-            -webkit-mask-composite: xor;
-            mask-composite: exclude;
-            pointer-events: none;
-        }
-    }
-
-    .card--one {
-        grid-area: one;
-    }
-
-    .card--two {
-        grid-area: two;
-    }
-
-    .card--three {
-        grid-area: three;
-    }
-
-    .card--four {
-        grid-area: four;
+      row-gap: 24px;
     }
 
     &__center {
-
-        grid-area: center;
-
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-
-        gap: 6px;
-
-        font-size: 42px;
-        font-weight: 600;
-
-        color: var(--color-font);
-        text-align: center;
-
-        pointer-events: none;
-
-        position: relative;
-
-        width: 260px;
-        height: 260px;
-
-        align-self: center;
-        justify-self: center;
-
-        span {
-            position: relative;
-            z-index: 3;
-            line-height: 1.1;
-        }
-
-        &::after {
-            content: "";
-            position: absolute;
-            width: 160px;
-            height: 160px;
-            border-radius: 50%;
-            background: radial-gradient(circle,
-                    rgba(168, 55, 255, 0.18) 0%,
-                    rgba(168, 55, 255, 0.08) 35%,
-                    rgba(168, 55, 255, 0.02) 55%,
-                    transparent 70%);
-            filter: blur(20px);
-            z-index: 1;
-        }
+      font-size: 32px;
+      margin: 70px 0;
     }
-
-    &__ripples {
-
-        position: absolute;
-        inset: 0;
-
-        display: flex;
-        justify-content: center;
-        align-items: center;
-
-        span {
-
-            position: absolute;
-
-            width: 120px;
-            height: 120px;
-
-            border-radius: 50%;
-
-            border: 1px solid rgba(168, 55, 255, 0.35);
-
-            box-shadow:
-                0 0 40px rgba(168, 55, 255, 0.15),
-                inset 0 0 20px rgba(168, 55, 255, 0.08);
-
-            transform: scale(0.3) translateZ(0);
-            will-change: transform, opacity;
-
-            opacity: 0;
-
-            animation: ripple-expand 6s cubic-bezier(.25, .46, .45, .94) infinite;
-        }
-
-        span:nth-child(2) {
-            animation-delay: 2s;
-        }
-
-        span:nth-child(3) {
-            animation-delay: 4s;
-        }
-    }
-
-    @include mixins.respond(tablet) {
-
-        &__cards {
-
-            grid-template-columns: 1fr;
-
-            grid-template-areas:
-                "one"
-                "two"
-                "center"
-                "three"
-                "four";
-
-            row-gap: 24px;
-        }
-
-        &__center {
-            font-size: 32px;
-            margin: 70px 0;
-        }
-    }
+  }
 }
 
 @keyframes ripple-expand {
+  0% {
+    transform: scale(0.3);
+    opacity: 0;
+  }
 
-    0% {
-        transform: scale(0.3);
-        opacity: 0;
-    }
+  15% {
+    opacity: 0.45;
+  }
 
-    15% {
-        opacity: 0.45;
-    }
+  60% {
+    opacity: 0.25;
+  }
 
-    60% {
-        opacity: 0.25;
-    }
-
-    100% {
-        transform: scale(6.8);
-        opacity: 0;
-    }
+  100% {
+    transform: scale(6.8);
+    opacity: 0;
+  }
 }

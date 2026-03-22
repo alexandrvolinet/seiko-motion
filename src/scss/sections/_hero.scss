@@ -1,11 +1,10 @@
-@use '../abstracts/mixins';
+@use "../abstracts/mixins";
 
 .home {
   display: flex;
   align-items: center;
   position: relative;
   overflow-x: clip;
-
 
   .arc {
     position: absolute;
@@ -38,7 +37,7 @@
     @media (max-width: 550px) {
       bottom: -120px;
     }
-        @media (max-width: 400px) {
+    @media (max-width: 400px) {
       bottom: -100px;
     }
   }
