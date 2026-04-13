@@ -83,15 +83,17 @@
             </a>
 
             <nav class="header__nav">
-              <a href="#">Home</a>
-              <a href="#">About</a>
-              <a href="#">Portfolio</a>
+              <a href="#hero">Home</a>
+              <a href="#about">About</a>
+              <a href="#portfolio">Portfolio</a>
             </nav>
           </div>
 
           <div class="header__right">
-            <a href="#" class="header__link">Services</a>
-            <button class="btn btn--sm">Contact us</button>
+            <a href="#services" class="header__link">Services</a>
+            <a href="#contact"
+              ><button class="btn btn--sm">Contact us</button></a
+            >
 
             <button class="burger" aria-label="Open menu">
               <span></span>
@@ -134,7 +136,7 @@
     </div>
 
     <main>
-      <section id="hero" class="home section">
+      <section id="hero" class="home">
         <svg
           class="arc"
           viewBox="0 0 1920 575"
@@ -236,7 +238,7 @@
         </div>
       </section>
 
-      <section id="design" class="design section">
+      <section id="about" class="design section">
         <div class="container">
           <div class="design__content">
             <h2 class="title">
@@ -259,7 +261,11 @@
                 </div>
               </div>
               <div class="card__gradient">
-                <img src="src/assets/images/rocket.png" alt="rocket" />
+                <img
+                  src="src/assets/images/rocket.png"
+                  alt="rocket"
+                  loading="lazy"
+                />
               </div>
               <div class="card">
                 <div class="design__text-block">
@@ -274,7 +280,11 @@
                 >
                   <span>Purpose-Driven Design</span>
                   <div class="design__text-block">
-                    <img src="src/assets/images/miniLogo.svg" alt="miniLogo" />
+                    <img
+                      src="src/assets/images/miniLogo.svg"
+                      alt="miniLogo"
+                      loading="lazy"
+                    />
                     <span class="three">03</span>
                     <p>
                       Our vision is to redefine how brands communicate visually
@@ -301,6 +311,7 @@
                   <img
                     src="src/assets/images/services/servicesRocket.svg"
                     alt=""
+                    loading="lazy"
                   />
                 </div>
                 <span>Motion Design</span>
@@ -315,8 +326,9 @@
               <div class="card card--two">
                 <div class="circle">
                   <img
-                    src="src/assets/images/services/servicesPlanet.svg"
+                    src="src/assets/images/services/servicesRocket.svg"
                     alt=""
+                    loading="lazy"
                   />
                 </div>
                 <span>Visual Identity & Branding</span>
@@ -342,8 +354,9 @@
               <div class="card card--three">
                 <div class="circle">
                   <img
-                    src="src/assets/images/services/servicesCloud.svg"
+                    src="src/assets/images/services/servicesPlanet.svg"
                     alt=""
+                    loading="lazy"
                   />
                 </div>
                 <span>Social & Ad Motion</span>
@@ -359,6 +372,7 @@
                   <img
                     src="src/assets/images/services/servicesRocket.svg"
                     alt=""
+                    loading="lazy"
                   />
                 </div>
                 <span>Brand Strategy</span>
@@ -373,7 +387,7 @@
         </div>
       </section>
 
-      <section id="showcase" class="showcase section">
+      <section id="portfolio" class="showcase section">
         <div class="container">
           <div class="showcase_content">
             <div class="showcase__header">
@@ -450,7 +464,11 @@
                   <span> 200+ </span> <br />
                   <span>motion projects delivered</span>
                 </div>
-                <img src="src/assets/images/stats.png" alt="flower" />
+                <img
+                  src="src/assets/images/stats.png"
+                  alt="flower"
+                  loading="lazy"
+                />
               </div>
               <div class="stats__card stats__card--third">
                 <div class="centered">
@@ -472,77 +490,78 @@
     <h2 class="title">Got questions? We’ve got answers.</h2>
 
     <div class="faq__layout">
-
-      <!-- LEFT -->
       <div class="faq__left">
         <p class="text-subtitle">
-          We turn stories into visuals that move people — and the results
-          prove it.
+          We turn stories into visuals that move people — and the results prove it.
         </p>
 
         <div class="faq__list">
-          <div class="faq__item is-open">
-            <button class="faq__question">
+
+          <details class="faq__item" open>
+            <summary class="faq__question">
               What does your studio specialize in?
-            </button>
+            </summary>
             <div class="faq__answer">
               We focus on motion design, brand animation...
             </div>
-          </div>
+          </details>
 
-          <div class="faq__item">
-            <button class="faq__question">
+          <details class="faq__item">
+            <summary class="faq__question">
               What file formats do you deliver?
-            </button>
+            </summary>
             <div class="faq__answer">
               MP4, MOV, GIF, Lottie, ProRes...
             </div>
-          </div>
+          </details>
 
-          <div class="faq__item">
-            <button class="faq__question">Do you offer revisions?</button>
-            <div class="faq__answer">Yes, 2–3 rounds included...</div>
-          </div>
+          <details class="faq__item">
+            <summary class="faq__question">
+              Do you offer revisions?
+            </summary>
+            <div class="faq__answer">
+              Yes, 2–3 rounds included...
+            </div>
+          </details>
 
-          <div class="faq__item">
-            <button class="faq__question">
+          <details class="faq__item">
+            <summary class="faq__question">
               Can you handle sound design?
-            </button>
+            </summary>
             <div class="faq__answer">
               Full audio production included...
             </div>
-          </div>
+          </details>
 
-          <div class="faq__item">
-            <button class="faq__question">
+          <details class="faq__item">
+            <summary class="faq__question">
               What's your typical turnaround time?
-            </button>
+            </summary>
             <div class="faq__answer">
               Standard projects take 2–4 weeks.
             </div>
-          </div>
+          </details>
 
-          <div class="faq__item">
-            <button class="faq__question">
+          <details class="faq__item">
+            <summary class="faq__question">
               Do you work with startups?
-            </button>
+            </summary>
             <div class="faq__answer">
               Absolutely! Flexible packages for all sizes.
             </div>
-          </div>
+          </details>
+
         </div>
       </div>
 
-      <!-- RIGHT -->
       <div class="faq__right">
         <div class="faq__visual">
           <div class="faq__visual-content">
-            <img src="src/assets/images/faq/faqSlogan.svg" alt="">
-            <img src="src/assets/images/faq/faqLogo.svg" alt="">
+            <img src="src/assets/images/faq/faqSlogan.svg" alt="" loading="lazy" />
+            <img src="src/assets/images/faq/faqLogo.svg" alt="" loading="lazy" />
           </div>
         </div>
       </div>
-
     </div>
   </div>
 </section>
@@ -560,6 +579,7 @@
                 <video
                   class="process__video-el"
                   src="src/assets/videos/process.mp4"
+                  preload="none"
                   poster="src/assets/images/process.png"
                   muted
                   loop
@@ -578,14 +598,19 @@
       </section>
     </main>
 
-    <footer class="footer">
+    <footer id="contact" class="footer">
       <div class="container">
         <div class="footer__content">
           <div class="footer__logo">
-            <img src="/src/assets/images/footer/logo.svg" alt="footer logo" />
+            <img
+              src="/src/assets/images/footer/logo.svg"
+              alt="footer logo"
+              loading="lazy"
+            />
             <img
               src="/src/assets/images/footer/text.svg"
               alt="footer logo text"
+              loading="lazy"
             />
           </div>
 
@@ -598,6 +623,7 @@
                     <img
                       src="src/assets/icons/footerCity.svg"
                       alt="location icon"
+                      loading="lazy"
                     />
                     <p>City, Country</p>
                   </div>
@@ -605,6 +631,7 @@
                     <img
                       src="src/assets/icons/footerMsg.svg"
                       alt="message icon"
+                      loading="lazy"
                     />
                     <p>hello@yourstudio.com</p>
                   </div>
@@ -612,6 +639,7 @@
                     <img
                       src="src/assets/icons/footerPhone.svg"
                       alt="phone icon"
+                      loading="lazy"
                     />
                     <p>+1 (234) 567-890</p>
                   </div>
@@ -627,22 +655,29 @@
                   <img
                     src="src/assets/icons/footerDribbble.svg"
                     alt="dribbble icon"
+                    loading="lazy"
                   />
                 </div>
                 <div class="circle">
                   <img
                     src="src/assets/icons/footerBehance.svg"
                     alt="behance icon"
+                    loading="lazy"
                   />
                 </div>
                 <div class="circle">
                   <img
                     src="src/assets/icons/footerInstagram.svg"
                     alt="instagram icon"
+                    loading="lazy"
                   />
                 </div>
                 <div class="circle">
-                  <img src="src/assets/icons/footerX.svg" alt="X icon" />
+                  <img
+                    src="src/assets/icons/footerX.svg"
+                    alt="X icon"
+                    loading="lazy"
+                  />
                 </div>
               </div>
               <p>Animating the future, one frame at a time</p>

@@ -1,6 +1,5 @@
 import "../scss/main.scss";
-import { animateHeader } from "./gsap/page.js";
-import { revealSections } from "./gsap/page.js";
+import { animateHeader, revealSections, animateBackgroundDots } from "./gsap/page.js";
 import { heroCTA } from "./gsap/hero.js";
 import { arc } from "./gsap/hero.js";
 import { animateStats } from "./gsap/stats.js";
@@ -9,7 +8,7 @@ import { animateServices } from "./gsap/services.js";
 import { animateDesign } from "./gsap/design.js";
 import { animateFooter } from "./gsap/footer.js";
 import { animateProcessMedia } from "./gsap/process.js";
-import { animateBackgroundDots} from "./gsap/page.js";
+import { animateFaq, initFaqAccordion  } from "./gsap/faq.js";
 
 
 // burger menu
@@ -43,23 +42,7 @@ function closeMenu() {
 }
 // burger menu end
 
-// faq section
-const faqItems = document.querySelectorAll(".faq__item");
 
-faqItems.forEach((item) => {
-  const question = item.querySelector(".faq__question");
-
-  question.addEventListener("click", () => {
-    const isOpen = item.classList.contains("is-open");
-
-    faqItems.forEach((i) => i.classList.remove("is-open"));
-
-    if (!isOpen) {
-      item.classList.add("is-open");
-    }
-  });
-});
-// faq section end
 
 // video
 // const video = document.querySelector(".process__video-el");
@@ -116,7 +99,7 @@ faqItems.forEach((item) => {
 window.addEventListener("load", () => {
   document.querySelector(".loader").classList.add("loader--hidden");
   document.body.classList.add("page-loaded"); 
-
+  
   animateHeader();
   revealSections();
   animateBackgroundDots();
@@ -124,6 +107,8 @@ window.addEventListener("load", () => {
   arc();
   animateDesign();
   animateServices();
+  animateFaq();
+  initFaqAccordion();
   showcaseUp();
   animateStats();
   animateProcessMedia();

@@ -28,7 +28,7 @@
     align-items: center;
     border-radius: 30px;
     padding: 62px 27px;
-    background: var(--color-bg-dark);
+    background: var(--color-bg-light);
     color: var(--color-font);
     position: relative;
 
@@ -52,6 +52,7 @@
 
   &__badge {
     position: absolute;
+    text-wrap: nowrap;
     background: var(--color-bg-dark);
     backdrop-filter: blur(20px);
     top: 0;
@@ -61,11 +62,9 @@
     padding: 37px 24px;
     text-align: center;
     font-weight: 600;
-    line-height: 53%;
     font-family: var(--font-secondary);
-    font-size: 80px;
+    font-size: 70px;
     color: var(--color-font);
-
     z-index: 3;
 
     span:last-child {
@@ -73,7 +72,7 @@
       font-size: 26px;
       line-height: 150%;
       margin-top: 26px;
-      text-wrap: nowrap;
+      display: block;
     }
 
     &::before {
@@ -102,7 +101,6 @@
 
 .centered {
   display: flex;
-  align-items: center;
   flex-direction: column;
   align-items: center;
   gap: 18px;
@@ -113,5 +111,61 @@
   span:last-child {
     font-weight: 500;
     font-size: 16px;
+  }
+}
+
+@include mixins.respond(tablet) {
+
+  .stats {
+
+    &__content {
+      p {
+        margin: 20px 0 50px;
+        font-size: 16px;
+      }
+    }
+
+    &__grid {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    &__card {
+      padding: 32px 20px;
+      border-radius: 24px;
+    }
+
+    &__card--second {
+      order: -1;
+      padding: 70px 20px 30px;
+
+      img {
+        width: 100%;
+        max-width: 260px;
+        display: block;
+        margin: 0 auto;
+      }
+    }
+
+    &__badge {
+      padding: 18px 16px;
+      border-radius: 20px;
+      font-size: 40px;
+
+      span:last-child {
+        font-size: 14px;
+        margin-top: 10px;
+      }
+    }
+
+    .centered {
+      gap: 10px;
+      font-size: 48px;
+
+      span:last-child {
+        font-size: 14px;
+      }
+    }
   }
 }

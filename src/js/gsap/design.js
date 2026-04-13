@@ -14,41 +14,43 @@ export function animateDesign() {
     const rightCard = section.querySelector(".card:last-child");
     const bottomBlock = section.querySelector(".card__background--transparent");
 
-    gsap.set(leftCard, { x: -80, opacity: 0 });
-    gsap.set(gradient, { clipPath: "inset(0 100% 0 0)" });
-    gsap.set(rocket, { scale: 0, transformOrigin: "center center" });
-    gsap.set(rightCard, { x: 80, opacity: 0 });
+    gsap.set(leftCard, { y: 60, opacity: 0 });
+    gsap.set(gradient, { y: 60, opacity: 0 });
+    gsap.set(rocket, { scale: 0.85, opacity: 0, transformOrigin: "center center" });
+    gsap.set(rightCard, { y: 60, opacity: 0 });
     gsap.set(bottomBlock, { y: 60, opacity: 0, scale: 0.95 });
 
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: section,
-        start: "top 90%",
+        start: "top 85%",
         toggleActions: "play none none none"
       }
     });
 
     tl.to(leftCard, {
-      x: 0,
+      y: 0,
       opacity: 1,
       duration: 0.8,
       ease: "power3.out"
     })
 
     .to(gradient, {
-      clipPath: "inset(0 0% 0 0)",
-      duration: 1,
-      ease: "power2.inOut"
+      y: 0,
+      opacity: 1,
+      duration: 0.8,
+      ease: "power3.out"
     }, "-=0.4")
 
     .to(rocket, {
       scale: 1,
+      opacity: 1,
       duration: 0.8,
       ease: "back.out(1.2)"
-    }, "-=0.8")
+    }, "-=0.6")
 
     .to(rightCard, {
-      x: 0,
+      y: 0,
       opacity: 1,
       duration: 0.8,
       ease: "power3.out"

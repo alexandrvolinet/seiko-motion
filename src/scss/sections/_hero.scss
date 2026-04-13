@@ -5,13 +5,14 @@
   align-items: center;
   position: relative;
   overflow-x: clip;
+  height: 80vh;
 
   .arc {
     position: absolute;
     left: 50%;
     bottom: -400px;
     transform: translateX(-50%);
-    width: 110%;
+    width: 130%;
     max-width: 1920px;
     max-height: 600px;
 
