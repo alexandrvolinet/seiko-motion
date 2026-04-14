@@ -44,15 +44,20 @@ export function animateFaq() {
 
 export function initFaqAccordion() {
   const items = document.querySelectorAll(".faq__item");
+  if (!items.length) return;
+
+  const closeOtherFaqItems = (currentItem) => {
+    items.forEach((item) => {
+      if (item !== currentItem) {
+        item.open = false;
+      }
+    });
+  };
 
   items.forEach((item) => {
     item.addEventListener("toggle", () => {
       if (item.open) {
-        items.forEach((other) => {
-          if (other !== item) {
-            other.open = false;
-          }
-        });
+        closeOtherFaqItems(item);
       }
     });
   });
