@@ -1,53 +1,33 @@
 import { gsap } from "gsap";
 
-
-export function animateHeader() {
-  const header = document.querySelector(".header");
-  if (!header) return;
+export function heroTitle() {
+  const hero = document.querySelector(".home__content");
+  if (!hero) return;
 
   const ctx = gsap.context(() => {
-    const logo = header.querySelector(".header__logo");
-    const contactBtn = header.querySelector(".btn--sm");
-    const navLinks = header.querySelectorAll(".header__nav a");
-    const services = header.querySelector(".header__link");
+    const title = hero.querySelector(".title");
+    const subtitle = hero.querySelector(".text-subtitle");
 
-    if (!logo || !contactBtn) return;
+    const elements = subtitle ? [title, subtitle] : [title];
+    if (!title) return;
 
-    gsap.set([navLinks], { x: -40, opacity: 0 });
-    gsap.set(services, { x: 40, opacity: 0 });
-
-    const tl = gsap.timeline({
-      defaults: { ease: "power2.out" }
+    gsap.set(elements, {
+      y: 60,
+      opacity: 0,
+      willChange: "transform, opacity"
     });
 
-    tl.from([logo, contactBtn], {
-      y: 80,
-      opacity: 0,
-      duration: 0.9,
-      stagger: 0.1
-    })
-      .to(
-        navLinks,
-        {
-          x: 0,
-          opacity: 1,
-          duration: 0.6,
-          stagger: 0.08
-        },
-        "-=0.4"
-      )
-      .to(
-        services,
-        {
-          x: 0,
-          opacity: 1,
-          duration: 0.6
-        },
-        "<"
-      );
+    gsap.to(elements, {
+      y: 0,
+      opacity: 1,
+      duration: 1,
+      stagger: 0.2,
+      ease: "power3.out",
+      delay: 0.3
+    });
 
-    return tl;
-  }, header);
+    return elements;
+  }, hero);
 
   return () => ctx.revert();
 }
@@ -67,7 +47,7 @@ export function heroCTA() {
     });
 
     const tl = gsap.timeline({
-      delay: 0.4,
+      delay: 0.8,
     });
 
     tl.to(btn, {

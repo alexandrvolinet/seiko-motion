@@ -1,6 +1,7 @@
 import "../scss/main.scss";
-import { animateHeader, revealSections, animateBackgroundDots } from "./gsap/page.js";
-import { heroCTA } from "./gsap/hero.js";
+import { revealSections, animateBackgroundDots } from "./gsap/page.js";
+import { animateHeader, pinHeader } from "./gsap/header.js";
+import { heroTitle, heroCTA } from "./gsap/hero.js";
 import { arc } from "./gsap/hero.js";
 import { animateStats } from "./gsap/stats.js";
 import { showcaseUp } from "./gsap/showcase.js";
@@ -8,41 +9,7 @@ import { animateServices } from "./gsap/services.js";
 import { animateDesign } from "./gsap/design.js";
 import { animateFooter } from "./gsap/footer.js";
 import { animateProcessMedia } from "./gsap/process.js";
-import { animateFaq, initFaqAccordion  } from "./gsap/faq.js";
-
-
-// burger menu
-const burger = document.querySelector(".burger");
-const mobileMenu = document.querySelector(".mobile-menu");
-const menuLinks = mobileMenu.querySelectorAll("a");
-const closeBtn = document.querySelector(".mobile-menu__close");
-
-burger.addEventListener("click", () => {
-  burger.classList.toggle("is-active");
-  mobileMenu.classList.toggle("is-open");
-  document.body.classList.toggle("menu-open");
-});
-
-menuLinks.forEach((link) => {
-  link.addEventListener("click", closeMenu);
-});
-
-closeBtn.addEventListener("click", closeMenu);
-
-mobileMenu.addEventListener("click", (e) => {
-  if (e.target === mobileMenu) {
-    closeMenu();
-  }
-});
-
-function closeMenu() {
-  burger.classList.remove("is-active");
-  mobileMenu.classList.remove("is-open");
-  document.body.classList.remove("menu-open");
-}
-// burger menu end
-
-
+import { animateFaq, initFaqAccordion } from "./gsap/faq.js";
 
 // video
 // const video = document.querySelector(".process__video-el");
@@ -101,6 +68,8 @@ window.addEventListener("load", () => {
   document.body.classList.add("page-loaded"); 
   
   animateHeader();
+  heroTitle();
+  pinHeader();
   revealSections();
   animateBackgroundDots();
   heroCTA();

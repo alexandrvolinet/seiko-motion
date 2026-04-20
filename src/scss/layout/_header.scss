@@ -2,15 +2,25 @@
 
 .header {
   width: 100%;
-  position: relative;
+  position: fixed;
+  top: 0;
+  left: 0;
   z-index: 20;
-  overflow: hidden;
+  overflow: visible;
+  transition: background 0.3s ease, backdrop-filter 0.3s ease, box-shadow 0.3s ease;
+
+  &.is-pinned {
+    background: rgba(20, 20, 20, 0.5);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    box-shadow: 0 4px 30px rgba(168, 55, 255, 0.2);
+  }
 
   &__inner {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    min-height: 75px;
+    height: 75px;
   }
 
   &__left {
@@ -41,7 +51,6 @@
       font-family: var(--font-secondary);
       font-weight: 500;
       font-size: 16px;
-      line-height: 1.43;
       color: var(--color-font-p);
       text-decoration: none;
       transition: opacity 0.2s ease;
@@ -67,7 +76,6 @@
     font-family: var(--font-secondary);
     font-weight: 400;
     font-size: 14px;
-    line-height: 1.43;
     color: var(--color-font-p);
     text-decoration: none;
     transition: opacity 0.2s ease;
@@ -121,7 +129,7 @@
     &.is-active {
       span:nth-child(1) {
         transform: rotate(45deg);
-        top: 8px;
+        top: 10px;
       }
 
       span:nth-child(2) {
@@ -130,7 +138,7 @@
 
       span:nth-child(3) {
         transform: rotate(-45deg);
-        bottom: 8px;
+        bottom: 6px;
       }
     }
 
@@ -139,27 +147,33 @@
     }
   }
 
+  body.menu-open .burger {
+    display: none;
+  }
+
   .mobile-menu {
+    height: 100vh;
     position: fixed;
     inset: 0;
-    background: #000;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     opacity: 0;
     visibility: hidden;
     transition: opacity 0.3s ease, visibility 0.3s ease;
-    z-index: 10;
+
 
     &__close {
       position: absolute;
       top: 24px;
       right: 24px;
-      width: 24px;
-      height: 24px;
+      width: 32px;
+      height: 32px;
       background: none;
       border: none;
       cursor: pointer;
+      z-index: 1;
 
       &::before,
       &::after {
@@ -181,11 +195,29 @@
       }
     }
 
+    &.is-open &__close {
+      display: block;
+    }
+
     &__nav {
       display: flex;
       flex-direction: column;
-      gap: 32px;
-      text-align: center;
+      height: 100vh;
+      width: 100vw;
+
+      a {
+        flex: 1;
+        margin: -1px 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: var(--font-primary);
+        font-size: 42px;
+        font-weight: 600;
+        background: var(--color-bg-light);
+        color: var(--color-font);
+        letter-spacing: 2px;
+      }
     }
 
     &.is-open {
