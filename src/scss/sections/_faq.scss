@@ -55,15 +55,7 @@
       display: none;
     }
 
-    &::after {
-      content: '+';
-      font-size: 20px;
-      transition: transform 0.3s ease;
-    }
-  }
 
-  &__item[open] &__question::after {
-    transform: rotate(45deg);
   }
 
   &__answer {
@@ -81,15 +73,16 @@
   }
 
   &__item[open] &__answer {
+        margin-top: 10px;
     grid-template-rows: 1fr;
     opacity: 1;
   }
 
   &__right {
-    height: 587px;
+    height: 577px;
 
     @media (max-width: 1460px) {
-      height: 625px;
+      height: 615px;
     }
   }
 

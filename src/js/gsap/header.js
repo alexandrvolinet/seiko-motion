@@ -1,17 +1,20 @@
 import { gsap } from "gsap";
 
-
 export function pinHeader() {
   const header = document.querySelector(".header");
   if (!header) return;
 
-  window.addEventListener("scroll", () => {
-    if (window.scrollY > 50) {
-      header.classList.add("is-pinned");
-    } else {
-      header.classList.remove("is-pinned");
-    }
-  }, { passive: true });
+  window.addEventListener(
+    "scroll",
+    () => {
+      if (window.scrollY > 50) {
+        header.classList.add("is-pinned");
+      } else {
+        header.classList.remove("is-pinned");
+      }
+    },
+    { passive: true },
+  );
 }
 
 export function animateHeader() {
@@ -30,14 +33,14 @@ export function animateHeader() {
     gsap.set(services, { x: 40, opacity: 0 });
 
     const tl = gsap.timeline({
-      defaults: { ease: "power2.out" }
+      defaults: { ease: "power2.out" },
     });
 
     tl.from([logo, contactBtn], {
       y: 80,
       opacity: 0,
       duration: 0.9,
-      stagger: 0.1
+      stagger: 0.1,
     })
       .to(
         navLinks,
@@ -45,18 +48,18 @@ export function animateHeader() {
           x: 0,
           opacity: 1,
           duration: 0.6,
-          stagger: 0.08
+          stagger: 0.08,
         },
-        "-=0.4"
+        "-=0.4",
       )
       .to(
         services,
         {
           x: 0,
           opacity: 1,
-          duration: 0.6
+          duration: 0.6,
         },
-        "<"
+        "<",
       );
 
     return tl;
@@ -77,9 +80,10 @@ function openMenu() {
   mobileMenu.classList.add("is-open");
   document.body.classList.add("menu-open");
 
-  gsap.fromTo(menuLinks, 
+  gsap.fromTo(
+    menuLinks,
     { x: -100, opacity: 0 },
-    { x: 0, opacity: 1, duration: 0.5, stagger: 0.15, ease: "power2.out" }
+    { x: 0, opacity: 1, duration: 0.5, stagger: 0.15, ease: "power2.out" },
   );
 }
 
@@ -95,7 +99,7 @@ function closeMenu() {
       mobileMenu.classList.remove("is-open");
       document.body.classList.remove("menu-open");
       gsap.set(menuLinks, { x: -100, opacity: 0 });
-    }
+    },
   });
 }
 
