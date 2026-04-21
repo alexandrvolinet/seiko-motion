@@ -49,57 +49,67 @@ export function initFaqAccordion() {
   const closeOtherFaqItems = (currentItem) => {
     items.forEach((item) => {
       if (item !== currentItem && item.classList.contains("is-open")) {
-        animateAnswer(item, "out");
-        item.classList.remove("is-open");
-        item.removeAttribute("open");
+        animateAnswer(item, "out", () => {
+          item.classList.remove("is-open");
+          item.removeAttribute("open");
+        });
       }
     });
   };
 
-  const animateAnswer = (item, direction) => {
+  const animateAnswer = (item, direction, onComplete) => {
     const answer = item.querySelector(".faq__answer");
     if (!answer) return;
 
-    const content = answer.querySelector("p, ul, ol") || answer;
-    const originalHeight = answer.scrollHeight;
-
     if (direction === "in") {
+      const originalHeight = answer.scrollHeight;
       answer.style.height = "0px";
       answer.style.overflow = "hidden";
       answer.style.opacity = "0";
       gsap.to(answer, {
         height: originalHeight,
         opacity: 1,
+        marginTop: 10,
         duration: 0.5,
         ease: "expo.out",
         onComplete: () => {
           answer.style.height = "";
           answer.style.overflow = "";
+          if (onComplete) onComplete();
         }
       });
     } else {
-      answer.style.height = originalHeight;
+      const originalHeight = answer.scrollHeight;
+      answer.style.height = originalHeight + "px";
       answer.style.overflow = "hidden";
       gsap.to(answer, {
         height: 0,
         opacity: 0,
-        duration: 0.35,
-        ease: "expo.in"
+        marginTop: 0,
+        duration: 0.5,
+        ease: "expo.out",
+        onComplete: () => {
+          if (onComplete) onComplete();
+        }
       });
     }
   };
 
   items.forEach((item) => {
-    const answer = item.querySelector(".faq__answer");
+    item.addEventListener("click", (e) => {
+      e.preventDefault();
+      const isOpen = item.classList.contains("is-open");
 
-    item.addEventListener("toggle", () => {
-      if (item.open) {
+      if (isOpen) {
+        animateAnswer(item, "out", () => {
+          item.classList.remove("is-open");
+          item.removeAttribute("open");
+        });
+      } else {
         closeOtherFaqItems(item);
         item.classList.add("is-open");
+        item.setAttribute("open", "");
         animateAnswer(item, "in");
-      } else {
-        item.classList.remove("is-open");
-        animateAnswer(item, "out");
       }
     });
 

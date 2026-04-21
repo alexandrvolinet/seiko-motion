@@ -37,6 +37,7 @@
     border-radius: 20px;
     padding: 22px 26px;
     background: linear-gradient(180deg, #0F0A14, #09060D);
+    cursor: pointer;
   }
 
   &__question {
@@ -59,23 +60,16 @@
   }
 
   &__answer {
-    display: grid;
-    grid-template-rows: 0fr;
-    transition: grid-template-rows 0.4s ease;
+    overflow: hidden;
     opacity: 0;
-    
-    > * {
-      overflow: hidden;
-    }
+    margin-top: 0;
 
     font-size: 15px;
     color: var(--color-font-p);
   }
 
   &__item[open] &__answer {
-        margin-top: 10px;
-    grid-template-rows: 1fr;
-    opacity: 1;
+    margin-top: 10px;
   }
 
   &__right {
