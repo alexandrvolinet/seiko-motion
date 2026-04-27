@@ -1,3 +1,4 @@
+/* Legacy services
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -55,3 +56,4 @@ export function animateServices() {
 
   return () => ctx.revert();
 }
+*/
