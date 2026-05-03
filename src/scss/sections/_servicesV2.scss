@@ -19,38 +19,42 @@
   }
 
 
-      &__label {
-      position: absolute;
-      left: 50%;
-      bottom: -60px;
-      transform: translateX(-50%);
-      text-align: center;
+  &__label {
+    position: absolute;
+    left: 50%;
+    bottom: -60px;
+    transform: translateX(-50%);
+    text-align: center;
 
-      font-weight: 600;
-      font-size: 20px;
-      color: var(--color-font);
+    font-weight: 600;
+    font-size: 20px;
+    color: var(--color-font);
 
-      white-space: nowrap;
-      z-index: 30;
-    }
+    white-space: nowrap;
+    z-index: 30;
+  }
 
 
   &__timeline {
     position: relative;
+    isolation: isolate;
   }
 
   &__cards {
+    position: relative;
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: 38px;
     list-style: none;
     margin: 0;
     padding: 0;
+    z-index: 10;
   }
 
   &__item {
     position: relative;
     padding-bottom: var(--services-v2-line-offset);
+    z-index: 20;
 
     &::after {
       content: "";
@@ -62,8 +66,10 @@
       border-radius: 50%;
       padding: var(--services-v2-marker-padding);
       box-sizing: border-box;
-      transform: translateX(-50%);
-      z-index: 2;
+      opacity: var(--services-v2-marker-opacity, 1);
+      transform: translateX(-50%) scale(var(--services-v2-marker-scale, 1));
+      transform-origin: center;
+      z-index: 50;
 
       background:
         radial-gradient(circle, #a837ff 0 100%) content-box,
@@ -98,9 +104,12 @@
       background: linear-gradient(180deg, #a837ff 0%, #08030b 100%);
       -webkit-mask: linear-gradient(#fff 0 0) content-box,
         linear-gradient(#fff 0 0);
+      mask: linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
       -webkit-mask-composite: xor;
       mask-composite: exclude;
       pointer-events: none;
+      z-index: 4;
     }
 
     .circle {
@@ -170,16 +179,17 @@
     height: var(--services-v2-progress-size);
     border-radius: 999px;
     background: #333;
-    box-shadow: 0 2px 9px #333;
-    overflow: hidden;
+    z-index: 1;
   }
 
   &__progress-value {
     display: block;
+    width: 100%;
     height: 100%;
     border-radius: inherit;
     background: #a837ff;
     box-shadow: 0 8px 9px 0 #420e61;
+    transform-origin: left center;
   }
 
   @include mixins.respond(laptop) {
@@ -206,7 +216,7 @@
         right: calc((var(--services-v2-marker-size) - var(--services-v2-progress-size)) / -2);
         bottom: auto;
         left: auto;
-        transform: translateY(-50%);
+        transform: translateY(-50%) scale(var(--services-v2-marker-scale, 1));
       }
     }
 
@@ -229,6 +239,7 @@
 
     &__progress-value {
       width: 100%;
+      transform-origin: center top;
     }
   }
 
