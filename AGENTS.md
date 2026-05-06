@@ -171,9 +171,9 @@ src/scss/
 
 ```
 src/assets/
-├── fonts/           # Font files (Azonix, Syne)
+├── fonts/           # Font files (Azonix)
 ├── icons/           # SVG icons
-├── images/          # Raster images (PNG, JPG)
+├── images/          # Raster images (webp, JPG)
 └── videos/          # Video files
 ```
 

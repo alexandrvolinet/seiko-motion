@@ -44,7 +44,7 @@
 
     &--third {
       justify-content: flex-end;
-      background-image: url("../../assets/images/showcaseRight.png");
+      background-image: url("../../assets/images/showcase/showcaseRight.webp");
       background-size: cover;
       background-position: center;
       border-radius: 30px;
@@ -61,7 +61,7 @@
   &__media {
     height: 50%;
     border-radius: 30px 30px 0 0;
-    background: url("../../assets/images/showcaseLeft.png") center / cover;
+    background: url("../../assets/images/showcase/showcaseLeft.webp") center / cover;
     position: relative;
 
     @include mixins.respond(tablet) {

@@ -1,4 +1,3 @@
-@use 'abstracts/layout';
 @use 'abstracts/mixins';
 @use 'abstracts/variables';
 
@@ -7,9 +6,7 @@
 @use 'base/reset';
 
 @use 'components/loader';
-@use 'components/badges';
 @use 'components/buttons';
-@use 'components/cards';
 @use 'components/backgroundDots';
 
 @use 'layout/container';
@@ -21,7 +18,6 @@
 @use 'sections/faq';
 @use 'sections/hero';
 @use 'sections/process';
-// @use 'sections/services';
 @use 'sections/servicesV2';
 @use 'sections/showcase';
 @use 'sections/stats';
