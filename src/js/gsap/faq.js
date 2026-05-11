@@ -93,6 +93,8 @@ export function initFaqAccordion() {
   };
 
   items.forEach((item) => {
+    const answer = item.querySelector(".faq__answer");
+
     item.addEventListener("click", (e) => {
       e.preventDefault();
       const isOpen = item.classList.contains("is-open");
@@ -112,6 +114,13 @@ export function initFaqAccordion() {
 
     if (item.hasAttribute("open")) {
       item.classList.add("is-open");
+
+      if (answer) {
+        answer.style.height = "";
+        answer.style.overflow = "";
+        answer.style.opacity = "1";
+        answer.style.marginTop = "10px";
+      }
     }
   });
 }
