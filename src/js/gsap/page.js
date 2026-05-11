@@ -49,21 +49,19 @@ export function revealSections() {
 }
 
 const CONFIG = {
-  dotCount: 80,
-  minSize: 5,
-  maxSize: 7,
-  minDuration: 1,
-  maxDuration: 5,
-  minDelay: 0,
-  maxDelay: 5,
-  minOpacity: 0.2,
-  maxOpacity: 0.9,
-
-  depth: {
-    far: 0.02,
-    mid: 0.05,
-    near: 0.1,
-  }
+  dotCount: 32,
+  minSize: 3,
+  maxSize: 5,
+  minDuration: 5,
+  maxDuration: 12,
+  minOpacity: 0.35,
+  maxOpacity: 0.95,
+  minDistance: 1,
+  maxDistance: 100,
+  respawnMinDelay: 0.25,
+  respawnMaxDelay: 1.4,
+  glowBlurMin: 0,
+  glowBlurMax: 2
 };
 
 function random(min, max) {
@@ -71,84 +69,79 @@ function random(min, max) {
 }
 
 export function animateBackgroundDots() {
-  const container = document.createElement("div");
-  container.className = "space-bg";
-  document.body.appendChild(container);
+  const container = document.querySelector(".space-bg") || document.createElement("div");
 
-  const stars = [];
+  if (!container.parentNode) {
+    container.className = "space-bg";
+    document.body.appendChild(container);
+  }
 
-  for (let i = 0; i < CONFIG.dotCount; i++) {
+  container.replaceChildren();
+
+  const spawnDot = () => {
     const dot = document.createElement("div");
     dot.className = "star";
 
     const size = random(CONFIG.minSize, CONFIG.maxSize);
-    const x = random(0, 100);
-    const y = random(0, 100);
+    const startX = random(0, window.innerWidth);
+    const startY = random(0, window.innerHeight);
+    const angle = random(0, Math.PI * 2);
+    const distance = random(CONFIG.minDistance, CONFIG.maxDistance);
+    const duration = random(CONFIG.minDuration, CONFIG.maxDuration);
+    const opacity = random(CONFIG.minOpacity, CONFIG.maxOpacity);
+    const blur = random(CONFIG.glowBlurMin, CONFIG.glowBlurMax);
+    const driftX = Math.cos(angle) * distance;
+    const driftY = Math.sin(angle) * distance;
 
-    let depth;
-    const rand = Math.random();
-
-    if (rand < 0.33) depth = CONFIG.depth.far;
-    else if (rand < 0.66) depth = CONFIG.depth.mid;
-    else depth = CONFIG.depth.near;
-
-    dot.style.cssText = `
-      left: ${x}%;
-      top: ${y}%;
-      width: ${size}px;
-      height: ${size}px;
-    `;
+    dot.style.left = `${startX}px`;
+    dot.style.top = `${startY}px`;
+    dot.style.width = `${size}px`;
+    dot.style.height = `${size}px`;
+    dot.style.setProperty("--star-opacity", opacity.toFixed(2));
+    dot.style.setProperty("--star-blur", `${blur.toFixed(0)}px`);
 
     container.appendChild(dot);
 
-    stars.push({
-      el: dot,
-      depth,
-      offset: 0
-    });
-  }
-
-  stars.forEach(({ el }) => {
-    const duration = random(CONFIG.minDuration, CONFIG.maxDuration);
-    const delay = random(CONFIG.minDelay, CONFIG.maxDelay);
-    const opacity = random(CONFIG.minOpacity, CONFIG.maxOpacity);
-
-    gsap.fromTo(
-      el,
-      { opacity: 0 },
-      {
-        opacity,
-        duration,
-        delay,
-        repeat: -1,
-        yoyo: true,
-        ease: "sine.inOut"
+    gsap.timeline({
+      onComplete: () => {
+        dot.remove();
+        gsap.delayedCall(
+          random(CONFIG.respawnMinDelay, CONFIG.respawnMaxDelay),
+          spawnDot
+        );
       }
-    );
-  });
-
-  let lastScroll = window.scrollY;
-  let ticking = false;
-
-  function update() {
-    const currentScroll = window.scrollY;
-    const delta = currentScroll - lastScroll;
-
-    stars.forEach((s) => {
-      s.offset -= delta * s.depth;
-      s.el.style.transform = `translate3d(0, ${s.offset}px, 0)`;
+    })
+    .fromTo(
+      dot,
+      {
+        x: 0,
+        y: 0,
+        opacity: 0,
+        scale: 0.65
+      },
+      {
+        x: driftX * 0.35,
+        y: driftY * 0.35,
+        opacity,
+        scale: 1,
+        duration: duration * 0.35,
+        ease: "sine.out"
+      }
+    )
+    .to(dot, {
+      x: driftX,
+      y: driftY,
+      opacity: 0,
+      scale: random(0.85, 1.2),
+      duration: duration * 0.65,
+      ease: "sine.in"
     });
+  };
 
-    lastScroll = currentScroll;
-    ticking = false;
+  for (let i = 0; i < CONFIG.dotCount; i++) {
+    gsap.delayedCall(
+      random(0, CONFIG.maxDuration * 0.4),
+      spawnDot
+    );
   }
-
-  function onScroll() {
-    if (!ticking) {
-      requestAnimationFrame(update);
-      ticking = true;
-    }
-  }
-
-  window.addEventListener("scroll", onScroll, { passive: true });
 }

@@ -9,7 +9,13 @@ body {
   font-family: var(--font-secondary);
   color: var(--color-font-p);
   overflow-x: hidden;
-  
+}
+
+body > main,
+body > footer,
+body > .loader {
+  position: relative;
+  z-index: 1;
 }
 
 h1,

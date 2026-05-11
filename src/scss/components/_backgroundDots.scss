@@ -3,55 +3,26 @@
   inset: 0;
   overflow: hidden;
   pointer-events: none;
-  z-index: -1;
+  z-index: 0;
   width: 100vw;
   height: 100vh;
-}
-
-.space-layer {
-  position: absolute;
-  inset: 0;
-  overflow: hidden;
 }
 
 .star {
   position: absolute;
   border-radius: 50%;
-
+  opacity: 0;
   transform: translate3d(0, 0, 0);
+  will-change: transform, opacity;
+  filter: blur(var(--star-blur, 1px));
 
   background: radial-gradient(
     circle,
-    rgba(168, 55, 255, 1) 0%,
-    rgba(168, 55, 255, 0.8) 30%,
-    rgba(168, 55, 255, 0.3) 55%,
-    rgba(168, 55, 255, 0) 75%
+    rgba(101, 33, 153, 1) 0%,
+    rgba(101, 33, 153, 0.92) 35%,
+    rgba(101, 33, 153, 0.28) 68%,
   );
-}
-
-.space-layer--far .star {
-  filter: blur(6px);
-}
-
-.space-layer--mid .star {
-  filter: blur(4px);
-}
-
-.space-layer--near .star {
   box-shadow: 
-    0 0 40px rgba(168, 55, 255, 1),
-    0 0 100px rgba(168, 55, 255, 0.8),
-    0 0 180px rgba(168, 55, 255, 0.5),
-    0 0 250px rgba(168, 55, 255, 0.3);
-}
-
-@keyframes star-flicker {
-  0%,
-  100% {
-    opacity: var(--opacity);
-  }
-
-  50% {
-    opacity: calc(var(--opacity) * 0.5);
-  }
+    0 0 8px rgba(101, 33, 153, 0.42),
+    0 0 18px rgba(101, 33, 153, 0.16);
 }
