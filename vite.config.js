@@ -7,9 +7,9 @@ export default defineConfig({
     rollupOptions: {
       output: {
         manualChunks: {
-          gsap: ['gsap'],
-        }
-      }
-    }
+          gsap: ["gsap"],
+        },
+      },
+    },
   },
 });

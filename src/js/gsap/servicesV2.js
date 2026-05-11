@@ -30,13 +30,18 @@ export function animateServicesV2() {
         );
         const labels = items.map((item) => item.querySelector(".services-v2__label"));
 
+        gsap.set(items, {
+          "--services-v2-marker-opacity": 0
+        });
+
         gsap.set(progressValue, {
           scaleX: isVertical ? 1 : 0,
           scaleY: isVertical ? 0 : 1,
           transformOrigin: progressOrigin,
           willChange: "transform"
         });
-
+ 
+        
         gsap.set(connectors, {
           opacity: 0,
           y: 20,
@@ -78,7 +83,6 @@ export function animateServicesV2() {
 
         items.forEach((item, index) => {
           const markerStart = 0.16 + index * 0.24;
-          const markerPop = markerStart + 0.08;
           const connectorStart = markerStart + 0.05;
           const labelStart = markerStart + 0.08;
           const cardStart = markerStart + 0.12;
@@ -87,20 +91,10 @@ export function animateServicesV2() {
             item,
             {
               "--services-v2-marker-opacity": 1,
-              "--services-v2-marker-scale": 1.2,
               duration: 0.14,
-              ease: "back.out(2)"
-            },
-            markerStart
-          )
-            .to(
-              item,
-              {
-                "--services-v2-marker-scale": 1,
-                duration: 0.12,
                 ease: "power2.out"
               },
-              markerPop
+              markerStart
             )
             .to(
               connectors[index],

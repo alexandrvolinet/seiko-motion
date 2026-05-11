@@ -1,7 +1,4 @@
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-gsap.registerPlugin(ScrollTrigger);
+import { gsap } from "./config.js";
 
 export function animateFaq() {
   const section = document.querySelector(".faq");
@@ -17,7 +14,7 @@ export function animateFaq() {
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: section,
-        start: "top 80%",
+        start: "top 50%",
         toggleActions: "play none none none"
       }
     });

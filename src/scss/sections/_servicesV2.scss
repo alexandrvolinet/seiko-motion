@@ -4,6 +4,7 @@
   &__content {
     --services-v2-line-offset: 180px;
     --services-v2-connector-width: 23px;
+    --services-v2-connector-height: 29%;
     --services-v2-progress-size: 4px;
     --services-v2-marker-padding: 15px;
     --services-v2-marker-inner-size: 10px;
@@ -67,8 +68,7 @@
       padding: var(--services-v2-marker-padding);
       box-sizing: border-box;
       opacity: var(--services-v2-marker-opacity, 1);
-      transform: translateX(-50%) scale(var(--services-v2-marker-scale, 1));
-      transform-origin: center;
+      transform: translateX(-50%);
       z-index: 50;
 
       background:
@@ -121,6 +121,11 @@
       border-radius: 50%;
       background: linear-gradient(180deg, #a837ff 0%, #652199 100%);
       margin-bottom: 40px;
+
+      img {
+        max-width: 100%;
+        height: auto;
+      }
     }
 
     span {
@@ -148,7 +153,7 @@
   &__connector {
     position: absolute;
     left: 50%;
-    height: 29%;
+    height: var(--services-v2-connector-height);
     bottom: 0;
     display: flex;
     justify-content: center;
@@ -216,7 +221,7 @@
         right: calc((var(--services-v2-marker-size) - var(--services-v2-progress-size)) / -2);
         bottom: auto;
         left: auto;
-        transform: translateY(-50%) scale(var(--services-v2-marker-scale, 1));
+        transform: translateY(-50%);
       }
     }
 
@@ -252,6 +257,56 @@
 
     &__header {
       margin-bottom: 32px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    &__content {
+      --services-v2-line-offset: 59px;
+      --services-v2-connector-width: 12px;
+      --services-v2-connector-height: 15%;
+      --services-v2-marker-padding: 6px;
+      --services-v2-marker-inner-size: 5px;
+    }
+
+    &__item {
+      padding-right: var(--services-v2-line-offset);
+    }
+
+    &__connector {
+      display: none;
+    }
+
+    &__label {
+      display: none;
+    }
+
+    .card {
+      height: auto;
+      padding: 18px 20px;
+
+      .circle {
+        width: 60px;
+        height: 60px;
+        margin-bottom: 24px;
+
+        img {
+          max-width: 32px;
+          max-height: 32px;
+        }
+      }
+
+      span {
+        font-size: 16px;
+      }
+
+      p {
+        font-size: 14px;
+      }
+
+      a {
+        font-size: 14px;
+      }
     }
   }
 }
