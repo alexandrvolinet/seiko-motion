@@ -303,12 +303,15 @@
                   class="card__background paddingStyleTwo card__background--transparent"
                 >
                   <span>Purpose-Driven Design</span>
-                  <div class="design__text-block">
-                    <img
-                      src="src/assets/images/miniLogo.svg"
-                      alt="miniLogo"
-                      loading="lazy"
-                    />
+                  <div class="design__text-block design__text-block--logo">
+                    <div class="design__mini-logo-wrap">
+                      <img
+                        class="design__mini-logo"
+                        src="src/assets/images/miniLogo.svg"
+                        alt="miniLogo"
+                        loading="lazy"
+                      />
+                    </div>
                     <span class="three">03</span>
                     <p>
                       Our vision is to redefine how brands communicate visually
@@ -662,7 +665,8 @@
                 ></video>
                 <button
                   class="process__control is-paused"
-                  aria-label="Video control"
+                  aria-label="Play video"
+                  aria-pressed="false"
                 >
                   <span class="icon icon--play"></span>
                   <span class="icon icon--pause"></span>

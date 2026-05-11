@@ -7,6 +7,23 @@
     align-items: flex-start;
   }
 
+  &__text-block--logo {
+    align-items: stretch;
+  }
+
+  &__mini-logo-wrap {
+    display: flex;
+    flex: 0 0 auto;
+    align-self: stretch;
+  }
+
+  &__mini-logo {
+    width: auto;
+    height: 100%;
+    flex-shrink: 0;
+    object-fit: contain;
+  }
+
   .title {
     margin-bottom: 97px;
   }
@@ -166,6 +183,8 @@
 
     .design__text-block {
       gap: 16px;
+          
+
     }
 
     .card__background {

@@ -1,42 +1,34 @@
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-gsap.registerPlugin(ScrollTrigger);
+import { gsap } from "./config.js";
+import { createResponsiveReveal } from "./responsiveReveal.js";
 
 export function animateFooter() {
   const footer = document.querySelector(".footer");
-  if (!footer) r
+  if (!footer) return;
+
+  const elements = [
+    footer.querySelector(".footer__logo"),
+    footer.querySelector(".footer__credentials"),
+    footer.querySelector(".footer__socials"),
+    footer.querySelector(".footer__email")
+  ].filter(Boolean);
+
+  if (!elements.length) return;
+
+  const cleanups = [];
   const ctx = gsap.context(() => {
-    const logo = footer.querySelector(".footer__logo");
-    const credentials = footer.querySelector(".footer__credentials");
-    const socials = footer.querySelector(".footer__socials");
-    const email = footer.querySelector(".footer__email");
-
-    const elements = [logo, credentials, socials, email];
-
-    gsap.set(elements, {
-      y: 60,
-      opacity: 0
-    });
-
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: footer,
-        start: "top 80%",
-        toggleActions: "play none none none"
-      }
-    });
-
-    tl.to(elements, {
-      y: 0,
-      opacity: 1,
-      duration: 0.9,
-      stagger: 0.2,
-      ease: "power2.out"
-    });
-
-    return tl;
+    cleanups.push(
+      createResponsiveReveal({
+        scope: footer,
+        items: elements,
+        stackQuery: "(max-width: 1280px)",
+        desktopStart: "top 80%",
+        stackedStart: "top 85%"
+      })
+    );
   }, footer);
 
-  return () => ctx.revert();
+  return () => {
+    cleanups.forEach((cleanup) => cleanup?.());
+    ctx.revert();
+  };
 }

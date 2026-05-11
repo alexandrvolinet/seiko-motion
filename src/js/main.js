@@ -123,6 +123,7 @@ async function startDeferredExperience() {
   showcaseModule.showcaseUp();
   statsModule.animateStats();
   processModule.animateProcessMedia();
+  processModule.initProcessVideo();
   footerModule.animateFooter();
 }
 

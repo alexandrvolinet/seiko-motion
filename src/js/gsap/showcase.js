@@ -1,36 +1,30 @@
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-gsap.registerPlugin(ScrollTrigger);
+import { gsap } from "./config.js";
+import { createResponsiveReveal } from "./responsiveReveal.js";
 
 export function showcaseUp() {
   const groups = document.querySelectorAll(".showcase");
   if (!groups.length) return;
 
+  const cleanups = [];
   const ctx = gsap.context(() => {
-    groups.forEach(group => {
+    groups.forEach((group) => {
       const items = group.querySelectorAll(".showcaseUp");
       if (!items.length) return;
 
-      gsap.set(items, {
-        y: 60,
-        opacity: 0
-      });
-
-      gsap.to(items, {
-        y: 0,
-        opacity: 1,
-        duration: 0.9,
-        stagger: 0.2,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: group,
-          start: "top 60%",
-          toggleActions: "play none none none"
-        }
-      });
+      cleanups.push(
+        createResponsiveReveal({
+          scope: group,
+          items,
+          stackQuery: "(max-width: 991px)",
+          desktopStart: "top 60%",
+          stackedStart: "top 80%"
+        })
+      );
     });
-  });
+  }, document.body);
 
-  return () => ctx.revert();
+  return () => {
+    cleanups.forEach((cleanup) => cleanup?.());
+    ctx.revert();
+  };
 }
