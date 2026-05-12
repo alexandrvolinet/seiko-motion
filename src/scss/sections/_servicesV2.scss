@@ -226,11 +226,16 @@
     }
 
     &__connector {
+      display: none;
       top: 50%;
       right: 0;
       bottom: auto;
       left: auto;
       transform: translateY(-50%) rotate(90deg);
+    }
+
+    &__label {
+      display: none;
     }
 
     &__progress {
@@ -271,14 +276,6 @@
 
     &__item {
       padding-right: var(--services-v2-line-offset);
-    }
-
-    &__connector {
-      display: none;
-    }
-
-    &__label {
-      display: none;
     }
 
     .card {

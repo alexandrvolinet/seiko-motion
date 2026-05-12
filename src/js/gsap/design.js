@@ -1,189 +1,170 @@
 import { gsap } from "./config.js";
 
-function killTimeline(timeline) {
-  timeline?.scrollTrigger?.kill();
-  timeline?.kill();
+function playDesignVideo(video) {
+  if (!video || !video.paused) return;
+
+  video.play().catch(() => {});
+}
+
+function killAnimation(animation) {
+  animation?.scrollTrigger?.kill();
+  animation?.kill();
 }
 
 export function animateDesign() {
   const section = document.querySelector(".design");
   if (!section) return;
 
-  const leftCard = section.querySelector(".card:first-child");
-  const gradient = section.querySelector(".card__gradient");
-  const rocket = section.querySelector(".card__gradient img");
-  const rightCard = section.querySelector(".card:last-child");
-  const bottomBlock = section.querySelector(".card__background--transparent");
+  const items = Array.from(section.querySelectorAll(".design__item"));
+  const visual = section.querySelector(".design__visual");
+  const videoStage = section.querySelector(".design__video-stage");
+  const videoShell = section.querySelector(".design__video-shell");
+  const video = section.querySelector(".design__video");
 
-  if (!leftCard || !gradient || !rocket || !rightCard || !bottomBlock) return;
+  if (!items.length || !visual || !videoStage || !videoShell || !video) return;
 
   const mm = gsap.matchMedia();
+  const cleanups = [];
+
   const ctx = gsap.context(() => {
-    mm.add({ all: "all", stacked: "(max-width: 1600px)" }, (mediaContext) => {
+    const floatTween = gsap.to(videoShell, {
+      yPercent: -2.4,
+      rotateZ: -0.8,
+      duration: 4.8,
+      repeat: -1,
+      yoyo: true,
+      ease: "sine.inOut"
+    });
+
+    cleanups.push(() => killAnimation(floatTween));
+
+    mm.add({ all: "all", stacked: "(max-width: 991px)" }, (mediaContext) => {
       const isStacked = mediaContext.conditions.stacked;
 
+      gsap.set(items, {
+        y: 36,
+        opacity: 0,
+        willChange: "transform, opacity"
+      });
+
+      gsap.set(videoStage, {
+        x: 0,
+        y: 72,
+        scale: 0.84,
+        opacity: 0,
+        rotateX: 0,
+        rotateY: 0,
+        willChange: "transform, opacity"
+      });
+
       if (isStacked) {
-        gsap.set([leftCard, gradient, rightCard], {
-          y: 60,
-          opacity: 0,
-          willChange: "transform, opacity"
-        });
-
-        gsap.set(rocket, {
-          scale: 0.85,
-          opacity: 0,
-          transformOrigin: "center center",
-          willChange: "transform, opacity"
-        });
-
-        gsap.set(bottomBlock, {
-          y: 40,
-          opacity: 0,
-          scale: 0.95,
-          willChange: "transform, opacity"
-        });
-
         const animations = [
-          gsap.timeline({
-            scrollTrigger: {
-              trigger: leftCard,
-              start: "top 82%",
-              toggleActions: "play none none none"
-            }
-          }).to(leftCard, {
+          ...items.map((item) =>
+            gsap.to(item, {
+              y: 0,
+              opacity: 1,
+              duration: 0.72,
+              ease: "power3.out",
+              scrollTrigger: {
+                trigger: item,
+                start: "top 84%",
+                toggleActions: "play none none none"
+              }
+            })
+          ),
+          gsap.to(videoStage, {
             y: 0,
+            scale: 1,
             opacity: 1,
-            duration: 0.8,
-            ease: "power3.out"
-          }),
-          gsap.timeline({
+            duration: 1.1,
+            ease: "power3.out",
             scrollTrigger: {
-              trigger: rightCard,
-              start: "top 82%",
-              toggleActions: "play none none none"
+              trigger: visual,
+              start: "top 80%",
+              toggleActions: "play none none none",
+              onEnter: () => playDesignVideo(video)
             }
           })
-            .to(rightCard, {
-              y: 0,
-              opacity: 1,
-              duration: 0.8,
-              ease: "power3.out"
-            })
-            .to(
-              bottomBlock,
-              {
-                y: 0,
-                opacity: 1,
-                scale: 1,
-                duration: 0.7,
-                ease: "power3.out"
-              },
-              "-=0.3"
-            ),
-          gsap.timeline({
-            scrollTrigger: {
-              trigger: gradient,
-              start: "top 82%",
-              toggleActions: "play none none none"
-            }
-          })
-            .to(gradient, {
-              y: 0,
-              opacity: 1,
-              duration: 0.8,
-              ease: "power3.out"
-            })
-            .to(
-              rocket,
-              {
-                scale: 1,
-                opacity: 1,
-                duration: 0.8,
-                ease: "back.out(1.2)"
-              },
-              "-=0.5"
-            )
         ];
 
         return () => {
-          animations.forEach(killTimeline);
+          animations.forEach(killAnimation);
         };
       }
-
-      gsap.set(leftCard, { y: 60, opacity: 0 });
-      gsap.set(gradient, { y: 60, opacity: 0 });
-      gsap.set(rocket, {
-        scale: 0.85,
-        opacity: 0,
-        transformOrigin: "center center"
-      });
-      gsap.set(rightCard, { y: 60, opacity: 0 });
-      gsap.set(bottomBlock, { y: 60, opacity: 0, scale: 0.95 });
 
       const timeline = gsap.timeline({
         scrollTrigger: {
           trigger: section,
-          start: "top 85%",
-          toggleActions: "play none none none"
+          start: "top 42%",
+          toggleActions: "play none none none",
+          onEnter: () => playDesignVideo(video)
         }
       });
 
       timeline
-        .to(leftCard, {
-          y: 0,
-          opacity: 1,
-          duration: 0.8,
-          ease: "power3.out"
-        })
         .to(
-          gradient,
+          videoStage,
           {
             y: 0,
-            opacity: 1,
-            duration: 0.8,
-            ease: "power3.out"
-          },
-          "-=0.4"
-        )
-        .to(
-          rocket,
-          {
             scale: 1,
             opacity: 1,
-            duration: 0.8,
-            ease: "back.out(1.2)"
+            duration: 1.1,
+            ease: "power3.out"
           },
-          "-=0.6"
+          0
         )
         .to(
-          rightCard,
+          items,
           {
             y: 0,
             opacity: 1,
-            duration: 0.8,
+            duration: 0.72,
+            stagger: 0.14,
             ease: "power3.out"
           },
-          "-=0.4"
-        )
-        .to(
-          bottomBlock,
-          {
-            y: 0,
-            opacity: 1,
-            scale: 1,
-            duration: 0.7,
-            ease: "power3.out"
-          },
-          "-=0.3"
+          0.16
         );
 
+      const handleMove = (event) => {
+        const bounds = visual.getBoundingClientRect();
+        const x = (event.clientX - bounds.left) / bounds.width - 0.5;
+        const y = (event.clientY - bounds.top) / bounds.height - 0.5;
+
+        gsap.to(videoStage, {
+          x: x * 18,
+          y: y * 12,
+          rotateY: x * 12,
+          rotateX: y * -10,
+          duration: 0.65,
+          ease: "power2.out",
+          overwrite: "auto"
+        });
+      };
+
+      const handleLeave = () => {
+        gsap.to(videoStage, {
+          x: 0,
+          y: 0,
+          rotateX: 0,
+          rotateY: 0,
+          duration: 0.8,
+          ease: "power3.out"
+        });
+      };
+
+      visual.addEventListener("mousemove", handleMove);
+      visual.addEventListener("mouseleave", handleLeave);
+
       return () => {
-        killTimeline(timeline);
+        killAnimation(timeline);
+        visual.removeEventListener("mousemove", handleMove);
+        visual.removeEventListener("mouseleave", handleLeave);
       };
     });
   }, section);
 
   return () => {
+    cleanups.forEach((cleanup) => cleanup?.());
     mm.revert();
     ctx.revert();
   };
