@@ -49,15 +49,15 @@ export function revealSections() {
 }
 
 const CONFIG = {
-  dotCount: 32,
+  dotCount: 38,
   minSize: 3,
   maxSize: 5,
   minDuration: 5,
   maxDuration: 12,
   minOpacity: 0.35,
   maxOpacity: 0.95,
-  minDistance: 1,
-  maxDistance: 100,
+  minDistance: 150,
+  maxDistance: 400,
   respawnMinDelay: 0.25,
   respawnMaxDelay: 1.4,
   glowBlurMin: 0,
