@@ -49,19 +49,19 @@ export function revealSections() {
 }
 
 const CONFIG = {
-  dotCount: 38,
-  minSize: 3,
-  maxSize: 5,
+  dotCount: 18,
+  minSize: 2,
+  maxSize: 4,
   minDuration: 5,
   maxDuration: 12,
-  minOpacity: 0.35,
+  minOpacity: 0.69,
   maxOpacity: 0.95,
-  minDistance: 150,
-  maxDistance: 400,
+  minDistance: 50,
+  maxDistance: 100,
   respawnMinDelay: 0.25,
   respawnMaxDelay: 1.4,
   glowBlurMin: 0,
-  glowBlurMax: 2
+  glowBlurMax: 1
 };
 
 function random(min, max) {
@@ -145,3 +145,4 @@ export function animateBackgroundDots() {
     );
   }
 }
+

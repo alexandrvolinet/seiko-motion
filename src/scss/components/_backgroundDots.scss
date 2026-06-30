@@ -12,17 +12,37 @@
   position: absolute;
   border-radius: 50%;
   opacity: 0;
+
   transform: translate3d(0, 0, 0);
   will-change: transform, opacity;
-  filter: blur(var(--star-blur, 1px));
 
   background: radial-gradient(
     circle,
-    rgba(101, 33, 153, 1) 0%,
-    rgba(101, 33, 153, 0.92) 35%,
-    rgba(101, 33, 153, 0.28) 68%,
+    rgba(255,255,255,1) 0%,
+    rgba(220,170,255,1) 25%,
+    rgba(140,40,255,0.9) 55%,
+    rgba(140,40,255,0) 100%
   );
-  box-shadow: 
-    0 0 8px rgba(101, 33, 153, 0.42),
-    0 0 18px rgba(101, 33, 153, 0.16);
+
+  overflow: visible;
+}
+
+.star::before {
+  content: "";
+
+  position: absolute;
+  inset: -18px;
+
+  border-radius: 50%;
+
+  background: radial-gradient(
+    circle,
+    rgba(170, 60, 255, 0.45) 0%,
+    rgba(120, 20, 255, 0.18) 40%,
+    rgba(120, 20, 255, 0) 100%
+  );
+
+  filter: blur(12px);
+
+  z-index: -1;
 }

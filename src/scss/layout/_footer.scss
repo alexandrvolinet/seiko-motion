@@ -2,7 +2,6 @@
 
 .footer {
   margin-bottom: 90px;
-  background-color: var(--color-bg);
 
   &__content {
     display: flex;
@@ -68,7 +67,7 @@
     .social {
       display: flex;
       flex-direction: row;
-      gap: 21px;
+      justify-content: space-between;
       margin-bottom: 55px;
 
       @include mixins.respond(tablet) {
@@ -82,7 +81,6 @@
         width: 54px;
         height: 54px;
         border-radius: 50%;
-        background: linear-gradient(180deg, #a837ff 0%, #652199 100%);
       }
     }
   }
@@ -102,12 +100,16 @@
       line-height: 147%;
       text-wrap: balance;
       color: var(--color-font);
-      margin: 24px 0;
+      margin: 0 0 24px 0;
+
+          @media (max-width: 991px) {
+      margin:24px 0;
+    }
     }
 
     input {
       border: 1px solid rgba(255, 255, 255, 0.29);
-      border-radius: 100px;
+      border-radius: 15px;
       padding: 16px 32px;
       background: rgba(255, 255, 255, 0.05);
       font-weight: 500;
