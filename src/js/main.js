@@ -127,8 +127,25 @@ async function startDeferredExperience() {
   footerModule.animateFooter();
 }
 
+function initBurgerMenu() {
+  const burger = document.querySelector(".burger");
+  const close = document.querySelector(".mobile-menu__close");
+  const menu = document.querySelector(".mobile-menu");
+  if (!burger || !menu) return;
+
+  const open = () => document.body.classList.add("menu-open");
+  const closeMenu = () => document.body.classList.remove("menu-open");
+
+  burger.addEventListener("click", open);
+  close?.addEventListener("click", closeMenu);
+  menu.addEventListener("click", (e) => {
+    if (e.target === menu) closeMenu();
+  });
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   pinHeader();
+  initBurgerMenu();
   criticalReadyPromise = startCriticalExperience();
 });
 

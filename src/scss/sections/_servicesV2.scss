@@ -95,22 +95,7 @@
     z-index: 4;
     height: 525px;
 
-    &::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      border-radius: 30px;
-      padding: 1.5px;
-      background: linear-gradient(180deg, #a837ff 0%, #08030b 100%);
-      -webkit-mask: linear-gradient(#fff 0 0) content-box,
-        linear-gradient(#fff 0 0);
-      mask: linear-gradient(#fff 0 0) content-box,
-        linear-gradient(#fff 0 0);
-      -webkit-mask-composite: xor;
-      mask-composite: exclude;
-      pointer-events: none;
-      z-index: 4;
-    }
+    @include mixins.gradient-border(30px, 1.5px, 4);
 
     .circle {
       display: flex;
@@ -119,7 +104,6 @@
       width: 80px;
       height: 80px;
       border-radius: 50%;
-      background: linear-gradient(180deg, #a837ff 0%, #652199 100%);
       margin-bottom: 40px;
 
       img {

@@ -11,7 +11,7 @@ const motion = {
 };
 
 export function revealSections() {
-  const sections = document.querySelectorAll(".section");
+  const sections = document.querySelectorAll(".section:not(#design)");
   if (!sections.length) return;
 
   sections.forEach((section) => {

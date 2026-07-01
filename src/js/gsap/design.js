@@ -2,8 +2,12 @@ import * as THREE from "three";
 import { gsap } from "./config.js";
 
 export function animateDesign() {
-  initCosmicPlanet("canvas-container");
-  animateReveal();
+  const cleanups = [];
+  const planetCleanup = initCosmicPlanet("canvas-container");
+  if (planetCleanup) cleanups.push(planetCleanup);
+  const revealCleanup = animateReveal();
+  if (revealCleanup) cleanups.push(revealCleanup);
+  return () => cleanups.forEach((fn) => fn());
 }
 
 export function initCosmicPlanet(containerId) {

@@ -152,24 +152,7 @@
         font-size: 32px;
       }
 
-      &::before {
-        content: "";
-        position: absolute;
-        inset: 0;
-        border-radius: inherit;
-        padding: 1.5px;
-
-        background: linear-gradient(180deg, #a837ff 0%, #08030b 100%);
-
-        -webkit-mask: linear-gradient(#fff 0 0) content-box,
-          linear-gradient(#fff 0 0);
-
-        -webkit-mask-composite: xor;
-        mask-composite: exclude;
-
-        pointer-events: none;
-        z-index: 0;
-      }
+      @include mixins.gradient-border(inherit, 1.5px, 0);
     }
   }
 
