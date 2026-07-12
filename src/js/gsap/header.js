@@ -70,50 +70,58 @@ export function animateHeader() {
 
 // burger menu
 
-const burger = document.querySelector(".burger");
-const mobileMenu = document.querySelector(".mobile-menu");
-const menuLinks = mobileMenu.querySelectorAll("a");
-const closeBtn = document.querySelector(".mobile-menu__close");
+export function initMobileMenu() {
+  const burger = document.querySelector(".burger");
+  const mobileMenu = document.querySelector(".mobile-menu");
+  const closeBtn = document.querySelector(".mobile-menu__close");
 
-function openMenu() {
-  burger.classList.add("is-active");
-  mobileMenu.classList.add("is-open");
-  document.body.classList.add("menu-open");
+  if (!burger || !mobileMenu || !closeBtn) return;
 
-  gsap.fromTo(
-    menuLinks,
-    { x: -100, opacity: 0 },
-    { x: 0, opacity: 1, duration: 0.5, stagger: 0.15, ease: "power2.out" },
-  );
-}
+  const menuLinks = mobileMenu.querySelectorAll("a");
 
-function closeMenu() {
-  gsap.to(menuLinks, {
-    x: 100,
-    opacity: 0,
-    duration: 0.3,
-    stagger: 0.1,
-    ease: "power2.in",
-    onComplete: () => {
-      burger.classList.remove("is-active");
-      mobileMenu.classList.remove("is-open");
-      document.body.classList.remove("menu-open");
-      gsap.set(menuLinks, { x: -100, opacity: 0 });
-    },
+  const resetMenu = () => {
+    burger.classList.remove("is-active");
+    mobileMenu.classList.remove("is-open");
+    document.body.classList.remove("menu-open");
+    mobileMenu.hidden = true;
+    gsap.set(menuLinks, { x: -100, opacity: 0 });
+  };
+
+  const openMenu = () => {
+    mobileMenu.hidden = false;
+    burger.classList.add("is-active");
+    mobileMenu.classList.add("is-open");
+    document.body.classList.add("menu-open");
+
+    gsap.fromTo(
+      menuLinks,
+      { x: -100, opacity: 0 },
+      { x: 0, opacity: 1, duration: 0.5, stagger: 0.15, ease: "power2.out" },
+    );
+  };
+
+  const closeMenu = () => {
+    gsap.to(menuLinks, {
+      x: 100,
+      opacity: 0,
+      duration: 0.3,
+      stagger: 0.1,
+      ease: "power2.in",
+      onComplete: resetMenu,
+    });
+  };
+
+  resetMenu();
+
+  burger.addEventListener("click", openMenu);
+  menuLinks.forEach((link) => {
+    link.addEventListener("click", closeMenu);
+  });
+  closeBtn.addEventListener("click", closeMenu);
+  mobileMenu.addEventListener("click", (e) => {
+    if (e.target === mobileMenu) {
+      closeMenu();
+    }
   });
 }
-
-burger.addEventListener("click", openMenu);
-
-menuLinks.forEach((link) => {
-  link.addEventListener("click", closeMenu);
-});
-
-closeBtn.addEventListener("click", closeMenu);
-
-mobileMenu.addEventListener("click", (e) => {
-  if (e.target === mobileMenu) {
-    closeMenu();
-  }
-});
 // burger menu end

@@ -73,11 +73,17 @@
   }
 
   &__right {
-    height: 577px;
+    height: 863px;
 
-    @media (max-width: 1460px) {
-      height: 615px;
+    @media (max-width: 1273px) {
+      height: 881px;
     }
+
+    @include mixins.respond(tablet) {
+      height: 400px;
+    }
+
+
   }
 
   &__visual {

@@ -147,10 +147,6 @@
     }
   }
 
-  body.menu-open .burger {
-    display: none;
-  }
-
   .mobile-menu {
     height: 100vh;
     position: fixed;
@@ -225,4 +221,12 @@
       visibility: visible;
     }
   }
+}
+
+body.menu-open .header .burger {
+  display: none;
+}
+
+.header .mobile-menu[hidden] {
+  display: none !important;
 }

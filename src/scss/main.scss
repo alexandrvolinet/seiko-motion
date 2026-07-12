@@ -7,6 +7,7 @@
 
 @use 'components/loader';
 @use 'components/buttons';
+@use 'components/contactModal';
 @use 'components/backgroundDots';
 
 @use 'layout/container';
@@ -14,6 +15,7 @@
 @use 'layout/header';
 @use 'layout/sections';
 
+@use 'sections/contactUs';
 @use 'sections/design';
 @use 'sections/faq';
 @use 'sections/hero';

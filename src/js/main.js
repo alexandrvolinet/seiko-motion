@@ -1,7 +1,9 @@
 import "../scss/main.scss";
-import { animateHeader, pinHeader } from "./gsap/header.js";
+import { animateHeader, initMobileMenu, pinHeader } from "./gsap/header.js";
 import { heroTitle, heroCTA } from "./gsap/hero.js";
 import { arc } from "./gsap/hero.js";
+import { initContactModal } from "./gsap/contactModal.js";
+import { initShowcaseExpand } from "./gsap/showcase.js";
 
 let isCriticalStarted = false;
 let isDeferredStarted = false;
@@ -122,30 +124,17 @@ async function startDeferredExperience() {
   servicesModule.animateServicesV2();
   showcaseModule.showcaseUp();
   statsModule.animateStats();
+  processModule.animateProcessTimeline();
   processModule.animateProcessMedia();
   processModule.initProcessVideo();
   footerModule.animateFooter();
 }
 
-function initBurgerMenu() {
-  const burger = document.querySelector(".burger");
-  const close = document.querySelector(".mobile-menu__close");
-  const menu = document.querySelector(".mobile-menu");
-  if (!burger || !menu) return;
-
-  const open = () => document.body.classList.add("menu-open");
-  const closeMenu = () => document.body.classList.remove("menu-open");
-
-  burger.addEventListener("click", open);
-  close?.addEventListener("click", closeMenu);
-  menu.addEventListener("click", (e) => {
-    if (e.target === menu) closeMenu();
-  });
-}
-
 document.addEventListener("DOMContentLoaded", () => {
   pinHeader();
-  initBurgerMenu();
+  initMobileMenu();
+  initContactModal();
+  initShowcaseExpand();
   criticalReadyPromise = startCriticalExperience();
 });
 

@@ -157,3 +157,57 @@ export function animateProcessMedia() {
 
   return () => ctx.revert();
 } 
+
+export function animateProcessTimeline() {
+  const section = document.querySelector(".process");
+  if (!section) return;
+
+  const ctx = gsap.context(() => {
+    const cards = section.querySelectorAll(".process__step-card");
+    const nodes = section.querySelectorAll(".process__step-node");
+
+    if (!cards.length) return;
+
+    gsap.set(cards, {
+      y: 50,
+      opacity: 0,
+      willChange: "transform, opacity",
+    });
+
+    gsap.set(nodes, {
+      scale: 0.6,
+      opacity: 0,
+      willChange: "transform, opacity",
+    });
+
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: section,
+        start: "top 68%",
+        toggleActions: "play none none none",
+      },
+    });
+
+    tl.to(cards, {
+      y: 0,
+      opacity: 1,
+      duration: 0.75,
+      ease: "power2.out",
+      stagger: 0.12,
+    }).to(
+      nodes,
+      {
+        scale: 1,
+        opacity: 1,
+        duration: 0.45,
+        ease: "back.out(1.8)",
+        stagger: 0.12,
+      },
+      "<0.1",
+    );
+
+    return tl;
+  }, section);
+
+  return () => ctx.revert();
+}

@@ -150,10 +150,44 @@
       &::after {
         content: "›";
         font-size: 32px;
+        transition: transform 0.35s ease;
       }
 
       @include mixins.gradient-border(inherit, 1.5px, 0);
     }
+  }
+
+  &__expandable {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__expand {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.35s ease;
+
+    p {
+      overflow: hidden;
+      font-weight: 500;
+      font-size: 18px;
+      line-height: 1.6;
+      color: var(--color-font-p);
+      padding: 16px 63px 0;
+
+      @include mixins.respond(tablet) {
+        padding: 12px 24px 0;
+        font-size: 15px;
+      }
+    }
+
+    &.is-open {
+      grid-template-rows: 1fr;
+    }
+  }
+
+  .showcase__expandable:has(.showcase__expand.is-open) .showcase__card--button::after {
+    transform: rotate(90deg);
   }
 
   &__title {

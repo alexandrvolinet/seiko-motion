@@ -1,5 +1,8 @@
 .design {
-
+  .title span {
+    font-size: 0.95em;
+    display: block;
+  }
 
   &__content {
     display: grid;
@@ -12,6 +15,7 @@
       grid-template-columns: repeat(12, minmax(0, 1fr));
       gap: 4rem;
       margin-top: -3rem;
+      margin-bottom: -10rem;
     }
   }
 
@@ -42,29 +46,18 @@
 
     &-index {
       color: var(--color-font);
+      font-family: var(--font-primary);
       font-size: 0.85rem;
       margin-top: 3px;
+
     }
 
     &-text {
       font-size: 0.85rem;
       line-height: 1.6;
-
-      &--strong {
-        font-weight: 600;
-        letter-spacing: 0.05em;
-        text-transform: uppercase;
-        color: #ffffff;
-      }
     }
 
-    &--highlight {
-      background: rgba(255, 255, 255, 0.03);
-      padding: 1.25rem;
-      border-radius: 12px;
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      backdrop-filter: blur(8px);
-    }
+
   }
 
   &__right {

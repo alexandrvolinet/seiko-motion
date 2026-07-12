@@ -5,14 +5,124 @@
     display: flex;
     flex-direction: column;
 
-    p {
-      margin: 57px 0;
+    > .text-subtitle {
+      margin: 57px 0 0;
       text-align: center;
       font-family: var(--font-secondary);
       font-weight: 500;
       font-size: 20px;
       color: var(--color-font-p);
     }
+  }
+
+  &__timeline {
+    position: relative;
+    margin-top: 64px;
+    margin-bottom: 86px;
+    padding: 24px 0 12px;
+    isolation: isolate;
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      width: 2px;
+      transform: translateX(-50%);
+      background: linear-gradient(
+        180deg,
+        rgba(168, 55, 255, 0) 0%,
+        rgba(168, 55, 255, 0.95) 18%,
+        rgba(168, 55, 255, 0.95) 82%,
+        rgba(168, 55, 255, 0) 100%
+      );
+      opacity: 0.35;
+    }
+  }
+
+  &__steps {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  &__step {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 120px minmax(0, 1fr);
+    align-items: center;
+    position: relative;
+
+    &-node {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background:
+        radial-gradient(circle, #ffffff 0 14%, #a837ff 15% 100%) content-box,
+        rgba(255, 255, 255, 0.05);
+      box-shadow: 0 0 0 8px rgba(168, 55, 255, 0.08);
+      padding: 3px;
+      box-sizing: border-box;
+      z-index: 3;
+    }
+
+    &-card {
+      position: relative;
+      max-width: 620px;
+      padding: 30px 32px;
+      border-radius: 28px;
+      background: var(--color-bg-grey);
+      backdrop-filter: blur(50px);
+      text-align: left;
+      overflow: hidden;
+    }
+
+    &--left {
+      .process__step-card {
+        grid-column: 1;
+        justify-self: end;
+
+        &::before {
+          right: -58px;
+        }
+      }
+    }
+
+    &--right {
+      .process__step-card {
+        grid-column: 3;
+        justify-self: start;
+
+        &::before {
+          left: -58px;
+          transform: translateY(-50%) scaleX(-1);
+        }
+      }
+    }
+  }
+
+
+  &__step-title {
+    margin-bottom: 14px;
+    font-family: var(--font-primary);
+    font-size: 24px;
+    color: var(--color-font);
+  }
+
+  &__step-text {
+    margin: 0;
+    font-family: var(--font-secondary);
+    font-size: 17px;
+    line-height: 1.8;
+    color: var(--color-font-p);
+    text-wrap: balance;
   }
 
   &__media {
@@ -26,6 +136,7 @@
     border-radius: 24px;
     overflow: hidden;
     background: #000;
+    box-shadow: 0 18px 60px rgba(0, 0, 0, 0.35);
   }
 
   &__video-el {
@@ -119,22 +230,6 @@
     }
   }
 
-  &__play {
-    position: absolute;
-    inset: 0;
-    margin: auto;
-    width: 72px;
-    height: 72px;
-    border-radius: 50%;
-    border: none;
-    cursor: pointer;
-    background: rgba(255, 255, 255, 0.15);
-    backdrop-filter: blur(10px);
-    color: #fff;
-    font-size: 24px;
-    animation: pulse 1.8s infinite;
-  }
-
   @keyframes pulse {
     0% {
       box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.19);
@@ -146,6 +241,98 @@
 
     100% {
       box-shadow: 0 0 0 0 rgba(168, 55, 255, 0);
+    }
+  }
+
+  @include mixins.respond(laptop) {
+    &__timeline {
+      margin-bottom: 68px;
+
+      &::before {
+        left: 26px;
+        transform: none;
+      }
+    }
+
+    &__step {
+      grid-template-columns: 54px minmax(0, 1fr);
+      align-items: center;
+      padding-left: 0;
+
+      &-node {
+        grid-column: 1;
+        position: static;
+        justify-self: center;
+        align-self: center;
+        margin-top: 0;
+      }
+
+      &-card {
+        grid-column: 2 !important;
+        justify-self: stretch !important;
+        max-width: none;
+        width: 100%;
+
+        &::before {
+          display: none;
+        }
+      }
+    }
+
+    &__timeline::before {
+      display: none;
+    }
+  }
+
+  @include mixins.respond(mobile) {
+    &__content > .text-subtitle {
+      margin-top: 36px;
+      font-size: 16px;
+    }
+
+    &__timeline {
+      margin-top: 40px;
+      margin-bottom: 54px;
+
+      &::before {
+        left: 20px;
+      }
+    }
+
+    &__steps {
+      gap: 18px;
+    }
+
+    &__step {
+      grid-template-columns: 44px minmax(0, 1fr);
+      padding-left: 0;
+
+      &-node {
+        width: 16px;
+        height: 16px;
+        position: static;
+        justify-self: center;
+        align-self: center;
+        padding: 2px;
+      }
+
+      &-card {
+        grid-column: 2 !important;
+        padding: 22px 20px;
+        border-radius: 22px;
+      }
+    }
+
+
+
+    &__step-title {
+      margin-bottom: 12px;
+      font-size: 18px;
+    }
+
+    &__step-text {
+      font-size: 14px;
+      line-height: 1.7;
     }
   }
 }

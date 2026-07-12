@@ -1,0 +1,132 @@
+@use '../abstracts/mixins';
+
+.contact-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+
+  &.is-open {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  &__overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(8px);
+  }
+
+  &__content {
+    position: relative;
+    width: 100%;
+    max-width: 480px;
+    margin: 0 24px;
+    padding: 48px 40px;
+    border-radius: 30px;
+    background: var(--color-bg-light);
+    border: 1px solid rgba(168, 55, 255, 0.3);
+    box-shadow: 0 0 60px rgba(168, 55, 255, 0.15);
+  }
+
+  &__close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 32px;
+    height: 32px;
+    background: none;
+    border: none;
+    cursor: pointer;
+
+    &::before,
+    &::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 4px;
+      right: 4px;
+      height: 2px;
+      background: var(--color-font-p);
+      border-radius: 1px;
+    }
+
+    &::before {
+      transform: rotate(45deg);
+    }
+
+    &::after {
+      transform: rotate(-45deg);
+    }
+  }
+
+  &__title {
+    font-family: var(--font-primary);
+    font-size: 32px;
+    color: var(--color-font);
+    margin-bottom: 32px;
+
+    @include mixins.respond(mobile) {
+      font-size: 24px;
+    }
+  }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  &__field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+
+    span {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--color-font-p);
+    }
+
+    input,
+    textarea {
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 12px;
+      padding: 14px 18px;
+      background: rgba(255, 255, 255, 0.05);
+      font-family: var(--font-secondary);
+      font-size: 16px;
+      color: var(--color-font);
+      outline: none;
+      transition: border-color 0.2s ease;
+
+      &:focus {
+        border-color: var(--color-link);
+      }
+
+      &::placeholder {
+        color: rgba(255, 255, 255, 0.3);
+      }
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+  }
+
+  button[type="submit"] {
+    align-self: flex-start;
+    margin-top: 8px;
+  }
+}
+
+.contact-modal[hidden] {
+  display: none !important;
+}

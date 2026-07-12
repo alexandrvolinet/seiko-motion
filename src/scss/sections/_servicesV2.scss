@@ -5,7 +5,7 @@
     --services-v2-line-offset: 180px;
     --services-v2-connector-width: 23px;
     --services-v2-connector-height: 29%;
-    --services-v2-progress-size: 4px;
+    --services-v2-progress-size: 2px;
     --services-v2-marker-padding: 15px;
     --services-v2-marker-inner-size: 10px;
     --services-v2-marker-size: calc((var(--services-v2-marker-padding) * 3) + var(--services-v2-marker-inner-size));
@@ -61,22 +61,20 @@
       content: "";
       position: absolute;
       left: 50%;
-      bottom: calc((var(--services-v2-marker-size) - var(--services-v2-progress-size)) / -2);
-      width: var(--services-v2-marker-size);
-      height: var(--services-v2-marker-size);
+      bottom: calc((20px - var(--services-v2-progress-size)) / -2);
+      width: 20px;
+      height: 20px;
       border-radius: 50%;
-      padding: var(--services-v2-marker-padding);
+      padding: 3px;
       box-sizing: border-box;
       opacity: var(--services-v2-marker-opacity, 1);
       transform: translateX(-50%);
       z-index: 50;
 
       background:
-        radial-gradient(circle, #a837ff 0 100%) content-box,
-        #4c4c4d border-box;
-
-
-
+        radial-gradient(circle, #ffffff 0 14%, #a837ff 15% 100%) content-box,
+        rgba(255, 255, 255, 0.05);
+      box-shadow: 0 0 0 8px rgba(168, 55, 255, 0.08);
     }
   }
 
@@ -101,10 +99,10 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      width: 80px;
-      height: 80px;
+      width: 70px;
+      height: 70px;
       border-radius: 50%;
-      margin-bottom: 40px;
+      margin-bottom: 20px;
 
       img {
         max-width: 100%;
@@ -114,13 +112,12 @@
 
     span {
       font-weight: 600;
-      font-size: 24px;
-      line-height: 125%;
+      font-size: 23px;
       color: var(--color-font);
     }
 
     p {
-      margin: 30px 0;
+      margin: 20px 0;
       font-weight: 500;
       font-size: 20px;
       line-height: 150%;
@@ -177,7 +174,6 @@
     height: 100%;
     border-radius: inherit;
     background: #a837ff;
-    box-shadow: 0 8px 9px 0 #420e61;
     transform-origin: left center;
   }
 
@@ -202,7 +198,7 @@
 
       &::after {
         top: 50%;
-        right: calc((var(--services-v2-marker-size) - var(--services-v2-progress-size)) / -2);
+        right: calc((20px - var(--services-v2-progress-size)) / -2);
         bottom: auto;
         left: auto;
         transform: translateY(-50%);
@@ -260,6 +256,12 @@
 
     &__item {
       padding-right: var(--services-v2-line-offset);
+
+      &::after {
+        width: 16px;
+        height: 16px;
+        padding: 2px;
+      }
     }
 
     .card {

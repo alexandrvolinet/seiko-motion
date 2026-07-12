@@ -43,11 +43,11 @@ export function initCosmicPlanet(containerId) {
   const initialPositions = new Float32Array(totalParticles * 3);
   const velocities = new Float32Array(totalParticles * 3);
 
-  // Fixed Cosmic Nebula Color Palette (violet, pink, deep blue)
   const nebulaColors = {
-    primary: new THREE.Color("#8b5cf6"),   // Violet
-    secondary: new THREE.Color("#ec4899"), // Pink
-    accent: new THREE.Color("#3b82f6"),    // Blue
+  primary: new THREE.Color("#AB37FF"),   
+  secondary: new THREE.Color("#000"), 
+  accent: new THREE.Color("#fff"),    
+
   };
 
   const tempColor = new THREE.Color();
