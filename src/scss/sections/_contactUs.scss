@@ -5,13 +5,20 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 16px;
-    margin-bottom: 34px;
+    margin-bottom: 64px;
     text-align: center;
 
     .text-subtitle {
       margin: 0;
       max-width: 860px;
+    }
+
+    @include mixins.respond(tablet) {
+      margin-bottom: 48px;
+    }
+
+    @include mixins.respond(mobile) {
+      margin-bottom: 32px;
     }
   }
 

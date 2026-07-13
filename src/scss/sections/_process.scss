@@ -6,12 +6,8 @@
     flex-direction: column;
 
     > .text-subtitle {
-      margin: 57px 0 0;
+      margin: 0 0 64px;
       text-align: center;
-      font-family: var(--font-secondary);
-      font-weight: 500;
-      font-size: 20px;
-      color: var(--color-font-p);
     }
   }
 
@@ -286,8 +282,7 @@
 
   @include mixins.respond(mobile) {
     &__content > .text-subtitle {
-      margin-top: 36px;
-      font-size: 16px;
+      margin-bottom: 40px;
     }
 
     &__timeline {

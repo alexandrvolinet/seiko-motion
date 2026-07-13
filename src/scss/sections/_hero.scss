@@ -65,9 +65,13 @@
     .home__subtitle {
       max-width: 820px;
       text-wrap: wrap;
-      margin: 15px 0 58px 0;
+      margin: 0 0 64px;
 
       @include mixins.respond(tablet) {
+        margin-bottom: 48px;
+      }
+
+      @include mixins.respond(mobile) {
         margin-bottom: 32px;
       }
     }

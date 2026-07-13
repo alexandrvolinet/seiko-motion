@@ -6,7 +6,15 @@
     flex-direction: column;
 
     .text-subtitle {
-      margin: 52px 0 84px;
+      margin: 0 0 64px;
+
+      @include mixins.respond(tablet) {
+        margin-bottom: 48px;
+      }
+
+      @include mixins.respond(mobile) {
+        margin-bottom: 32px;
+      }
     }
   }
 

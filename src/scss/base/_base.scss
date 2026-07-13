@@ -48,14 +48,17 @@ u {
   font-size: 64px;
   color: var(--color-font);
   text-align: center;
+  margin-bottom: 24px;
 
   @include mixins.respond(tablet) {
     font-size: 44px;
+    margin-bottom: 20px;
   }
 
   @include mixins.respond(mobile) {
     font-size: 22px;
     line-height: 1.64;
+    margin-bottom: 16px;
   }
 }
 
