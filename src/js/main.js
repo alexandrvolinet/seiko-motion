@@ -1,6 +1,6 @@
 import "../scss/main.scss";
 import { animateHeader, initMobileMenu, pinHeader } from "./gsap/header.js";
-import { heroTitle, heroCTA } from "./gsap/hero.js";
+import { heroTitle, heroCTA, initHeroExpand } from "./gsap/hero.js";
 import { arc } from "./gsap/hero.js";
 import { initContactModal } from "./gsap/contactModal.js";
 import { initShowcaseExpand } from "./gsap/showcase.js";
@@ -135,6 +135,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initMobileMenu();
   initContactModal();
   initShowcaseExpand();
+  initHeroExpand();
   criticalReadyPromise = startCriticalExperience();
 });
 

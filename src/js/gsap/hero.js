@@ -32,12 +32,22 @@ export function heroTitle() {
   return () => ctx.revert();
 }
 
+export function initHeroExpand() {
+  const toggle = document.querySelector(".home__subtitle-toggle");
+  if (!toggle) return;
+
+  toggle.addEventListener("click", () => {
+    const isOpen = toggle.classList.toggle("is-open");
+    toggle.setAttribute("aria-expanded", isOpen);
+  });
+}
+
 export function heroCTA() {
   const hero = document.querySelector(".home__content");
   if (!hero) return;
 
   const ctx = gsap.context(() => {
-    const btn = hero.querySelector("button");
+    const btn = hero.querySelector(".home__btn");
     if (!btn) return;
 
     gsap.set(btn, {
