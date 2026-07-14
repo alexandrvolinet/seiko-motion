@@ -46,15 +46,13 @@ export function initFaqAccordion() {
   const closeOtherFaqItems = (currentItem) => {
     items.forEach((item) => {
       if (item !== currentItem && item.classList.contains("is-open")) {
-        animateAnswer(item, "out", () => {
-          item.classList.remove("is-open");
-          item.removeAttribute("open");
-        });
+        item.classList.remove("is-open");
+        animateAnswer(item, "out");
       }
     });
   };
 
-  const animateAnswer = (item, direction, onComplete) => {
+  const animateAnswer = (item, direction) => {
     const answer = item.querySelector(".faq__answer");
     if (!answer) return;
 
@@ -72,7 +70,6 @@ export function initFaqAccordion() {
         onComplete: () => {
           answer.style.height = "";
           answer.style.overflow = "";
-          if (onComplete) onComplete();
         }
       });
     } else {
@@ -84,10 +81,7 @@ export function initFaqAccordion() {
         opacity: 0,
         marginTop: 0,
         duration: 0.5,
-        ease: "expo.out",
-        onComplete: () => {
-          if (onComplete) onComplete();
-        }
+        ease: "expo.out"
       });
     }
   };
@@ -100,19 +94,16 @@ export function initFaqAccordion() {
       const isOpen = item.classList.contains("is-open");
 
       if (isOpen) {
-        animateAnswer(item, "out", () => {
-          item.classList.remove("is-open");
-          item.removeAttribute("open");
-        });
+        item.classList.remove("is-open");
+        animateAnswer(item, "out");
       } else {
         closeOtherFaqItems(item);
         item.classList.add("is-open");
-        item.setAttribute("open", "");
         animateAnswer(item, "in");
       }
     });
 
-    if (item.hasAttribute("open")) {
+    if (item.classList.contains("is-open")) {
       item.classList.add("is-open");
 
       if (answer) {
