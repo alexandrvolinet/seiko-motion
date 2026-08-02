@@ -8,32 +8,28 @@ export function animateFaq() {
     const faqItems = section.querySelectorAll(".faq__item");
     const faqVisual = section.querySelector(".faq__visual");
 
-    gsap.set(faqItems, { y: 40, opacity: 0 });
+    gsap.set(faqItems, { y: 50, opacity: 0 });
     gsap.set(faqVisual, { x: 100, opacity: 0 });
 
-    const tl = gsap.timeline({
+    faqItems.forEach((item) => {
+      gsap.to(item, {
+        y: 0, opacity: 1, duration: 0.5, ease: "power2.out",
+        scrollTrigger: {
+          trigger: item,
+          start: "top 82%",
+          toggleActions: "play none none none"
+        }
+      });
+    });
+
+    gsap.to(faqVisual, {
+      x: 0, opacity: 1, duration: 0.5, ease: "power2.out",
       scrollTrigger: {
         trigger: section,
         start: "top 50%",
         toggleActions: "play none none none"
       }
     });
-
-    tl.to(faqItems, {
-      y: 0,
-      opacity: 1,
-      duration: 0.6,
-      stagger: 0.15,
-      ease: "power2.out"
-    })
-    .to(faqVisual, {
-      x: 0,
-      opacity: 1,
-      duration: 0.8,
-      ease: "power2.out"
-    }, "-=0.4");
-
-    return tl;
   }, section);
 
   return () => ctx.revert();

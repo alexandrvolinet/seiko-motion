@@ -46,19 +46,19 @@ export function animateServicesV2() {
 
         gsap.set(connectors, {
           opacity: 0,
-          y: 20,
+          y: 50,
           willChange: "transform, opacity"
         });
 
         gsap.set(cards, {
           opacity: 0,
-          y: 40,
+          y: 50,
           willChange: "transform, opacity"
         });
 
         gsap.set(labels, {
           opacity: 0,
-          y: 20,
+          y: 50,
           willChange: "transform, opacity"
         });
 
@@ -90,7 +90,7 @@ export function animateServicesV2() {
                 item,
                 {
                   "--services-v2-marker-opacity": 1,
-                  duration: 0.14
+                  duration: 0.5
                 },
                 0.04
               )
@@ -99,7 +99,7 @@ export function animateServicesV2() {
                 {
                   opacity: 1,
                   y: 0,
-                  duration: 0.18
+                  duration: 0.5
                 },
                 0.1
               )
@@ -108,7 +108,7 @@ export function animateServicesV2() {
                 {
                   opacity: 1,
                   y: 0,
-                  duration: 0.18
+                  duration: 0.5
                 },
                 0.14
               )
@@ -117,8 +117,8 @@ export function animateServicesV2() {
                 {
                   opacity: 1,
                   y: 0,
-                  duration: 0.32,
-                  ease: "power3.out"
+                  duration: 0.5,
+                  ease: "power2.out"
                 },
                 0.18
               );
@@ -150,7 +150,7 @@ export function animateServicesV2() {
         );
 
         items.forEach((item, index) => {
-          const markerStart = 0.16 + index * 0.24;
+          const markerStart = 0.16 + index * 0.2;
           const connectorStart = markerStart + 0.05;
           const labelStart = markerStart + 0.08;
           const cardStart = markerStart + 0.12;
@@ -160,37 +160,37 @@ export function animateServicesV2() {
               item,
               {
                 "--services-v2-marker-opacity": 1,
-                duration: 0.14
-              },
-              markerStart
-            )
-            .to(
-              connectors[index],
-              {
-                opacity: 1,
-                y: 0,
-                duration: 0.18
-              },
-              connectorStart
-            )
-            .to(
-              labels[index],
-              {
-                opacity: 1,
-                y: 0,
-                duration: 0.18
-              },
-              labelStart
-            )
-            .to(
-              cards[index],
-              {
-                opacity: 1,
-                y: 0,
-                duration: 0.32,
-                ease: "power3.out"
-              },
-              cardStart
+              duration: 0.5
+            },
+            markerStart
+          )
+          .to(
+            connectors[index],
+            {
+              opacity: 1,
+              y: 0,
+              duration: 0.5
+            },
+            connectorStart
+          )
+          .to(
+            labels[index],
+            {
+              opacity: 1,
+              y: 0,
+              duration: 0.5
+            },
+            labelStart
+          )
+          .to(
+            cards[index],
+            {
+              opacity: 1,
+              y: 0,
+              duration: 0.5,
+              ease: "power2.out"
+            },
+            cardStart
             );
         });
 

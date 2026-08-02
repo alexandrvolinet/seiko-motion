@@ -2,9 +2,9 @@ import { gsap } from "gsap";
 
 export function fadeInUp(elements, trigger, options = {}) {
   const defaults = {
-    y: 60,
+    y: 50,
     opacity: 0,
-    duration: 0.9,
+    duration: 0.5,
     ease: "power2.out",
     scrollTrigger: {
       trigger: trigger,

@@ -99,6 +99,19 @@ export function initProcessVideo() {
     hideControl();
   };
 
+  const viewportObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) {
+          video.pause();
+        }
+      });
+    },
+    { threshold: 0.3 },
+  );
+
+  viewportObserver.observe(videoWrap);
+
   control.addEventListener("click", handleControlClick);
   video.addEventListener("click", handleVideoClick);
   videoWrap.addEventListener("pointermove", handlePointerMove);
@@ -111,6 +124,7 @@ export function initProcessVideo() {
 
   return () => {
     clearHideControlTimeout();
+    viewportObserver.disconnect();
     control.removeEventListener("click", handleControlClick);
     video.removeEventListener("click", handleVideoClick);
     videoWrap.removeEventListener("pointermove", handlePointerMove);
@@ -129,7 +143,7 @@ export function animateProcessMedia() {
     const media = section.querySelector(".process__media");
 
     gsap.set(media, {
-      y: 80,
+      y: 50,
       scale: 0.7,
       opacity: 0,
       transformOrigin: "center center",
@@ -138,8 +152,8 @@ export function animateProcessMedia() {
 
     const tl = gsap.timeline({
       scrollTrigger: {
-        trigger: section,
-        start: "top 70%",
+        trigger: media,
+        start: "top 82%",
         toggleActions: "play none none none"
       }
     });
@@ -148,7 +162,7 @@ export function animateProcessMedia() {
       y: 0,
       opacity: 1,
       scale: 1,
-      duration: 0.8,
+      duration: 0.5,
       ease: "power2.out"
     });
 
@@ -163,50 +177,76 @@ export function animateProcessTimeline() {
   if (!section) return;
 
   const ctx = gsap.context(() => {
-    const cards = section.querySelectorAll(".process__step-card");
-    const nodes = section.querySelectorAll(".process__step-node");
+    const timelineLine = section.querySelector(".process__timeline-line");
+    const steps = section.querySelectorAll(".process__step");
 
-    if (!cards.length) return;
+    if (!steps.length) return;
 
-    gsap.set(cards, {
-      y: 50,
-      opacity: 0,
-      willChange: "transform, opacity",
+    // --- Timeline line ---
+    gsap.set(timelineLine, {
+      scaleY: 0,
+      transformOrigin: "top center",
+      willChange: "transform",
     });
 
-    gsap.set(nodes, {
-      scale: 0.6,
-      opacity: 0,
-      willChange: "transform, opacity",
-    });
-
-    const tl = gsap.timeline({
+    gsap.to(timelineLine, {
+      scaleY: 1,
+      ease: "none",
       scrollTrigger: {
-        trigger: section,
-        start: "top 68%",
-        toggleActions: "play none none none",
+        trigger: section.querySelector(".process__steps"),
+        start: "top 72%",
+        end: "bottom 100%",
+        scrub: 0.5,
+        onUpdate: (self) => {
+          if (self.animation.progress() >= 1) {
+            timelineLine.classList.add("is-complete");
+          }
+        },
       },
     });
 
-    tl.to(cards, {
-      y: 0,
-      opacity: 1,
-      duration: 0.75,
-      ease: "power2.out",
-      stagger: 0.12,
-    }).to(
-      nodes,
-      {
-        scale: 1,
-        opacity: 1,
-        duration: 0.45,
-        ease: "back.out(1.8)",
-        stagger: 0.12,
-      },
-      "<0.1",
-    );
+    // --- Per-step animations ---
+    steps.forEach((step) => {
+      const card = step.querySelector(".process__step-card");
+      const node = step.querySelector(".process__step-node");
+      if (!card || !node) return;
 
-    return tl;
+      gsap.set(card, {
+        y: 50,
+        opacity: 0,
+        willChange: "transform, opacity",
+      });
+
+      gsap.set(node, {
+        scale: 0.6,
+        opacity: 0,
+        willChange: "transform, opacity",
+      });
+
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: step,
+          start: "top 82%",
+          toggleActions: "play none none none",
+        },
+      });
+
+      tl.to(card, {
+        y: 0,
+        opacity: 1,
+        duration: 0.5,
+        ease: "power2.out",
+      }).to(
+        node,
+        {
+          scale: 1,
+          opacity: 1,
+          duration: 0.5,
+          ease: "power2.out",
+        },
+        ">",
+      );
+    });
   }, section);
 
   return () => ctx.revert();

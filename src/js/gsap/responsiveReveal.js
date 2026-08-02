@@ -13,14 +13,14 @@ export function createResponsiveReveal({
   desktopStart = "top 60%",
   stackedStart = "top 80%",
   set = {
-    y: 60,
+    y: 50,
     opacity: 0,
     willChange: "transform, opacity"
   },
   to = {
     y: 0,
     opacity: 1,
-    duration: 0.9,
+    duration: 0.5,
     ease: "power2.out"
   },
   desktopStagger = 0.2

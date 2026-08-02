@@ -12,10 +12,47 @@ export function initShowcaseExpand() {
       const expandable = btn.closest(".showcase__expandable");
       if (!expandable) return;
 
-      const expand = expandable.querySelector(".showcase__expand");
-      if (!expand) return;
+      const expandEl = expandable.querySelector(".showcase__expand");
+      if (!expandEl) return;
 
-      expand.classList.toggle("is-open");
+      const content = expandEl.querySelector("p");
+      if (!content) return;
+
+      const isOpen = expandEl.classList.contains("is-open");
+
+      if (isOpen) {
+        expandEl.classList.remove("is-open");
+        const h = content.scrollHeight;
+        content.style.height = h + "px";
+        content.style.overflow = "hidden";
+        gsap.to(content, {
+          height: 0,
+          opacity: 0,
+          duration: 0.5,
+          ease: "expo.out",
+          onComplete: () => {
+            content.style.height = "";
+            content.style.overflow = "";
+            content.style.opacity = "";
+          }
+        });
+      } else {
+        expandEl.classList.add("is-open");
+        const h = content.scrollHeight;
+        content.style.height = "0px";
+        content.style.overflow = "hidden";
+        content.style.opacity = "0";
+        gsap.to(content, {
+          height: h,
+          opacity: 1,
+          duration: 0.5,
+          ease: "expo.out",
+          onComplete: () => {
+            content.style.height = "";
+            content.style.overflow = "";
+          }
+        });
+      }
     });
   });
 }

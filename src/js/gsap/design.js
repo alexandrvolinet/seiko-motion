@@ -1,11 +1,12 @@
 import * as THREE from "three";
 import { gsap } from "./config.js";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 export function animateDesign() {
   const cleanups = [];
   const planetCleanup = initCosmicPlanet("canvas-container");
   if (planetCleanup) cleanups.push(planetCleanup);
-  const revealCleanup = animateReveal();
+  const revealCleanup = animateDesignReveal();
   if (revealCleanup) cleanups.push(revealCleanup);
   return () => cleanups.forEach((fn) => fn());
 }
@@ -13,6 +14,9 @@ export function animateDesign() {
 export function initCosmicPlanet(containerId) {
   const container = document.getElementById(containerId);
   if (!container) return;
+
+  const section = container.closest("#design");
+  if (!section) return;
 
   const width = container.clientWidth;
   const height = container.clientHeight;
@@ -208,11 +212,13 @@ export function initCosmicPlanet(containerId) {
   renderer.domElement.addEventListener("mousemove", handleMouseMove);
   renderer.domElement.addEventListener("mouseleave", handleMouseLeave);
 
-  // --- Animation loop ---
+  // --- Animation loop (paused until in view) ---
   let frameId;
+  let isActive = false;
   const rotateSpeedY = 0.003;
 
   const animate = () => {
+    if (!isActive) return;
     frameId = requestAnimationFrame(animate);
 
     coreMesh.rotation.y += 0.001;
@@ -324,7 +330,50 @@ export function initCosmicPlanet(containerId) {
     renderer.render(scene, camera);
   };
 
-  animate();
+  // Start hidden, fade + slide up on scroll
+  gsap.set(renderer.domElement, { opacity: 0, y: 50 });
+
+  // Start/stop animation based on scroll
+  const ctx = gsap.context(() => {
+    const startAnim = () => {
+      isActive = true;
+      if (!frameId) frameId = requestAnimationFrame(animate);
+    };
+    const stopAnim = () => {
+      isActive = false;
+      frameId = null;
+    };
+
+    ScrollTrigger.create({
+      trigger: section,
+      start: "top 35%",
+      onEnter: startAnim,
+      onLeave: stopAnim,
+      onEnterBack: startAnim,
+      onLeaveBack: stopAnim,
+    });
+
+    gsap.fromTo(renderer.domElement,
+      { y: 50, opacity: 0 },
+      {
+        y: 0,
+        opacity: 1,
+        duration: 0.5,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: section,
+          start: "top 25%",
+          toggleActions: "play none none none",
+        },
+      }
+    );
+
+    // If already in view on load, start immediately
+    const rect = section.getBoundingClientRect();
+    if (rect.top < window.innerHeight * 0.45 && rect.bottom > 0) {
+      startAnim();
+    }
+  }, section);
 
   const handleResize = () => {
     if (!container) return;
@@ -341,7 +390,9 @@ export function initCosmicPlanet(containerId) {
   resizeObserver.observe(container);
 
   return () => {
-    cancelAnimationFrame(frameId);
+    isActive = false;
+    if (frameId) cancelAnimationFrame(frameId);
+    ctx.revert();
     resizeObserver.disconnect();
     if (renderer.domElement && container.contains(renderer.domElement)) {
       renderer.domElement.removeEventListener("mousemove", handleMouseMove);
@@ -367,82 +418,44 @@ export function initCosmicPlanet(containerId) {
   }
 }
 
-function animateReveal() {
+function animateDesignReveal() {
   const section = document.querySelector("#design");
   if (!section) return;
 
   const title = section.querySelector(".title");
-  const left = section.querySelector(".design__left");
-  const right = section.querySelector(".design__right");
-  const items = section.querySelectorAll(".design__item");
-  const elements = [title, left, right].filter(Boolean);
+  const canvasEl = section.querySelector("#canvas-container");
+  const items = [...section.querySelectorAll(".design__item")];
 
-  if (!elements.length) return;
+  if (!items.length) return;
 
   const ctx = gsap.context(() => {
-    const mm = gsap.matchMedia();
-
-    mm.add({ all: "all", stacked: "(max-width: 1023px)" }, (context) => {
-      const isStacked = context.conditions.stacked;
-
-      gsap.set(elements, { y: 60, opacity: 0 });
-      gsap.set(items, { y: 30, opacity: 0 });
-
-      if (isStacked) {
-        [...elements, ...items].forEach((item) => {
-          gsap.to(item, {
-            y: 0,
-            opacity: 1,
-            duration: 0.8,
-            ease: "power2.out",
-            scrollTrigger: {
-              trigger: item,
-              start: "top 82%",
-              toggleActions: "play none none none"
-            }
-          });
-        });
-      } else {
-        gsap.to(title, {
-          y: 0,
-          opacity: 1,
-          duration: 0.9,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: section,
-            start: "top 60%",
-            toggleActions: "play none none none"
-          }
-        });
-
-        gsap.to([left, right], {
-          y: 0,
-          opacity: 1,
-          duration: 0.9,
-          ease: "power2.out",
-          stagger: 0.15,
-          scrollTrigger: {
-            trigger: section,
-            start: "top 60%",
-            toggleActions: "play none none none"
-          }
-        });
-
-        gsap.to(items, {
-          y: 0,
-          opacity: 1,
-          duration: 0.8,
-          ease: "power2.out",
-          stagger: 0.1,
-          scrollTrigger: {
-            trigger: left,
-            start: "top 70%",
-            toggleActions: "play none none none"
-          }
-        });
-      }
-    });
+    if (title && canvasEl) {
+      gsap.set([title, canvasEl], { y: 50, opacity: 0 });
+      gsap.to([title, canvasEl], {
+        y: 0, opacity: 1, duration: 0.5, stagger: 0.2, ease: "power2.out",
+        scrollTrigger: { trigger: section, start: "top 35%", toggleActions: "play none none none" }
+      });
+    }
   }, section);
 
-  return () => ctx.revert();
+  const mm = gsap.matchMedia();
+  mm.add({ all: "all", stacked: "(max-width: 991px)" }, (mediaContext) => {
+    gsap.set(items, { y: 50, opacity: 0, willChange: "transform, opacity" });
+
+    if (mediaContext.conditions.stacked) {
+      items.forEach((card) => {
+        gsap.to(card, {
+          y: 0, opacity: 1, duration: 0.5, ease: "power2.out",
+          scrollTrigger: { trigger: card, start: "top 82%", toggleActions: "play none none none" }
+        });
+      });
+    } else {
+      gsap.to(items, {
+        y: 0, opacity: 1, duration: 0.5, ease: "power2.out", stagger: 0.2,
+        scrollTrigger: { trigger: section, start: "top 60%", toggleActions: "play none none none" }
+      });
+    }
+  });
+
+  return () => { mm.revert(); ctx.revert(); };
 }

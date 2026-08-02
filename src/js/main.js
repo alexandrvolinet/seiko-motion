@@ -84,6 +84,7 @@ function loadDeferredModules() {
     import("./gsap/footer.js"),
     import("./gsap/process.js"),
     import("./gsap/faq.js"),
+    import("./gsap/contact.js"),
   ]);
 
   return deferredModulesPromise;
@@ -114,6 +115,7 @@ async function startDeferredExperience() {
     footerModule,
     processModule,
     faqModule,
+    contactModule,
   ] = await loadDeferredModules();
 
   faqModule.initFaqAccordion();
@@ -128,6 +130,7 @@ async function startDeferredExperience() {
   processModule.animateProcessMedia();
   processModule.initProcessVideo();
   footerModule.animateFooter();
+  contactModule.animateContactCards();
 }
 
 document.addEventListener("DOMContentLoaded", () => {

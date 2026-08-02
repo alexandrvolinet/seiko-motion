@@ -67,7 +67,7 @@ export function animateStats() {
       const start = mediaContext.conditions.stacked ? "top 82%" : "top 60%";
 
       gsap.set(cards, {
-        y: 60,
+        y: 50,
         opacity: 0,
         willChange: "transform, opacity",
       });
@@ -80,8 +80,8 @@ export function animateStats() {
             gsap.to(card, {
               y: 0,
               opacity: 1,
-              duration: 0.8,
-              ease: "power3.out",
+              duration: 0.5,
+              ease: "power2.out",
               scrollTrigger: {
                 trigger: card,
                 start,
@@ -96,9 +96,9 @@ export function animateStats() {
         const desktopAnim = gsap.to(cards, {
           y: 0,
           opacity: 1,
-          duration: 0.9,
-          ease: "power3.out",
-          stagger: 0.15,
+          duration: 0.5,
+          ease: "power2.out",
+          stagger: 0.2,
           scrollTrigger: {
             trigger: section,
             start,

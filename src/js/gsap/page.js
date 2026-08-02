@@ -3,9 +3,9 @@ import { gsap } from "./config.js";
 
 
 const motion = {
-  y: 60,
-  duration: 0.9,
-  stagger: 0.15,
+  y: 50,
+  duration: 0.5,
+  stagger: 0.2,
   ease: "power2.out",
   start: "top 60%",
 };
