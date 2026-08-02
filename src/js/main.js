@@ -12,6 +12,7 @@ let deferredModulesPromise;
 
 function hideLoader() {
   document.querySelector(".loader")?.classList.add("loader--hidden");
+  document.documentElement.classList.remove("is-loading");
   document.body.classList.add("page-loaded");
 }
 
@@ -95,11 +96,11 @@ async function startCriticalExperience() {
   isCriticalStarted = true;
 
   await waitForCriticalResources();
-  hideLoader();
   animateHeader();
   heroTitle();
   heroCTA();
   arc();
+  hideLoader();
 }
 
 async function startDeferredExperience() {

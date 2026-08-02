@@ -11,6 +11,16 @@ body {
   overflow-x: hidden;
 }
 
+html.is-loading body {
+  overflow: hidden;
+}
+
+html.is-loading body > header,
+html.is-loading body > main,
+html.is-loading body > footer {
+  visibility: hidden;
+}
+
 body > main,
 body > footer,
 body > .loader {
