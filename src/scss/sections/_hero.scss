@@ -53,9 +53,8 @@
 
     @include mixins.respond(tablet) {
       .home__btn {
-        padding: 18px 34px;
+        padding: 24px 43px 20px;
         width: 303px;
-        height: 49px;
         font-size: 18px;
         line-height: 100%;
         text-align: center;

@@ -1,9 +1,11 @@
 {
-  "homepage": "https://alexandrvolinet.github.io/seiko-motion/",
   "name": "seikomotions",
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "engines": {
+    "node": ">=20.19"
+  },
   "scripts": {
     "dev": "vite",
     "build": "vite build",
