@@ -112,7 +112,7 @@
 
             <nav class="header__nav">
               <a href="#hero">Home</a>
-              <a href="#about">About</a>
+              <a href="#design">About</a>
               <a href="#portfolio">Portfolio</a>
             </nav>
           </div>
@@ -136,10 +136,10 @@
         <button class="mobile-menu__close" aria-label="Close menu"></button>
 
         <nav class="mobile-menu__nav">
-          <a href="#">Home</a>
-          <a href="#">About</a>
-          <a href="#">Portfolio</a>
-          <a href="#">Services</a>
+          <a href="#hero">Home</a>
+          <a href="#design">About</a>
+          <a href="#portfolio">Portfolio</a>
+          <a href="#services">Services</a>
         </nav>
       </div>
     </header>
@@ -253,9 +253,9 @@
 
             <p class="home__subtitle text-subtitle">
               <span>
-                Seiko Motion Design is a creative studio producing high-end motion
-                design, video content, 3D visuals, graphic design, and websites
-                for digital-first companies.
+                Seiko Motion Design is a creative studio producing high-end
+                motion design, video content, 3D visuals, graphic design, and
+                websites for digital-first companies.
               </span>
 
               <span class="home__subtitle-expand">
@@ -263,18 +263,27 @@
                   <br />
                   <br />
                   From bold promotional videos to complete brand visuals and web
-                  experiences, we help companies turn ideas into polished digital
-                  content that looks sharp, feels premium, and delivers impact.
+                  experiences, we help companies turn ideas into polished
+                  digital content that looks sharp, feels premium, and delivers
+                  impact.
                 </span>
               </span>
 
-              <button class="home__subtitle-toggle" type="button" aria-expanded="false">
+              <button
+                class="home__subtitle-toggle"
+                type="button"
+                aria-expanded="false"
+              >
                 <span>Show more</span>
-                <span class="home__subtitle-arrow">↓</span>
+                <span class="home__subtitle-arrow" aria-hidden="true">
+                  <span class="home__subtitle-arrow-icon">↓</span>
+                </span>
               </button>
             </p>
 
-            <button class="home__btn btn">Contact us</button>
+            <a href="#contact-us">
+              <button class="home__btn btn">Contact us</button>
+            </a>
           </div>
         </div>
       </section>
@@ -472,6 +481,59 @@
         </div>
       </section>
 
+      <section id="stats" class="stats section">
+        <div class="container">
+          <div class="stats__content">
+            <h2 class="title">Our Motion Speaks for Itself</h2>
+            <p class="text-subtitle">
+              We help brands move faster, look better, and communicate with more
+              confidence.
+            </p>
+            <div class="stats__grid">
+              <div class="stats__card">
+                <div class="stats__heading">
+                  <span class="stats__num" data-target="5" data-suffix="+"
+                    >0</span
+                  >
+                  <span class="stats__unit">Years</span>
+                </div>
+                <p class="stats__desc">
+                  of creative studio experience across different industries
+                </p>
+              </div>
+              <div class="stats__card">
+                <div class="stats__heading">
+                  <span class="stats__num" data-target="4000" data-suffix="+"
+                    >0</span
+                  >
+                  <span class="stats__unit">Projects</span>
+                </div>
+                <p class="stats__desc">
+                  completed for brands, startups, creators, and digital
+                  companies
+                </p>
+              </div>
+              <div class="stats__card">
+                <div class="stats__heading">
+                  <span class="stats__label">Premium Quality</span>
+                </div>
+                <p class="stats__desc">
+                  clean, modern, and high-end visuals tailored to your goals
+                </p>
+              </div>
+              <div class="stats__card">
+                <div class="stats__heading">
+                  <span class="stats__label">Fast Delivery</span>
+                </div>
+                <p class="stats__desc">
+                  efficient production without sacrificing visual quality
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section id="portfolio" class="showcase section">
         <div class="container">
           <div class="showcase_content">
@@ -547,53 +609,118 @@
         </div>
       </section>
 
-      <section id="stats" class="stats section">
+      <section id="process" class="process section section__process">
         <div class="container">
-          <div class="stats__content">
-            <h2 class="title">Our Motion Speaks for Itself</h2>
+          <div class="process__content">
+            <h2 class="title">Our Process in Motion</h2>
             <p class="text-subtitle">
-              We help brands move faster, look better, and communicate with more
-              confidence.
+              From the first message to final delivery, we keep the process
+              clear, flexible, and easy for the client.
             </p>
-            <div class="stats__grid">
-              <div class="stats__card">
-                <div class="stats__heading">
-                  <span class="stats__num" data-target="5" data-suffix="+"
-                    >0</span
-                  >
-                  <span class="stats__unit">Years</span>
-                </div>
-                <p class="stats__desc">
-                  of creative studio experience across different industries
-                </p>
-              </div>
-              <div class="stats__card">
-                <div class="stats__heading">
-                  <span class="stats__num" data-target="4000" data-suffix="+"
-                    >0</span
-                  >
-                  <span class="stats__unit">Projects</span>
-                </div>
-                <p class="stats__desc">
-                  completed for brands, startups, creators, and digital
-                  companies
-                </p>
-              </div>
-              <div class="stats__card">
-                <div class="stats__heading">
-                  <span class="stats__label">Premium Quality</span>
-                </div>
-                <p class="stats__desc">
-                  clean, modern, and high-end visuals tailored to your goals
-                </p>
-              </div>
-              <div class="stats__card">
-                <div class="stats__heading">
-                  <span class="stats__label">Fast Delivery</span>
-                </div>
-                <p class="stats__desc">
-                  efficient production without sacrificing visual quality
-                </p>
+            <div
+              class="process__timeline"
+              aria-label="Project process timeline"
+            >
+              <div class="process__timeline-line" aria-hidden="true"></div>
+              <ol class="process__steps">
+                <li class="process__step process__step--left">
+                  <div class="process__step-node" aria-hidden="true"></div>
+                  <article class="process__step-card">
+                    <h3 class="process__step-title">Contact & Brief</h3>
+                    <p class="process__step-text">
+                      You contact us by email, Instagram, TikTok, or any
+                      available channel and tell us what you need. It can be a
+                      detailed brief, a short idea, a reference, or just a goal.
+                      We will help shape the project direction from there.
+                    </p>
+                  </article>
+                </li>
+
+                <li class="process__step process__step--right">
+                  <div class="process__step-node" aria-hidden="true"></div>
+                  <article class="process__step-card">
+                    <h3 class="process__step-title">
+                      Consultation & Discussion
+                    </h3>
+                    <p class="process__step-text">
+                      We discuss the project, timeline, budget, style,
+                      deliverables, and expectations. Free consultation is
+                      available, so we can understand your needs and recommend
+                      the best creative solution.
+                    </p>
+                  </article>
+                </li>
+
+                <li class="process__step process__step--left">
+                  <div class="process__step-node" aria-hidden="true"></div>
+                  <article class="process__step-card">
+                    <h3 class="process__step-title">Concept & References</h3>
+                    <p class="process__step-text">
+                      After we agree on the project, we prepare the creative
+                      direction. This can include references, moodboards, visual
+                      style, structure, design direction, and ideas for how the
+                      final result should look and feel.
+                    </p>
+                  </article>
+                </li>
+
+                <li class="process__step process__step--right">
+                  <div class="process__step-node" aria-hidden="true"></div>
+                  <article class="process__step-card">
+                    <h3 class="process__step-title">Production</h3>
+                    <p class="process__step-text">
+                      We start creating the visuals, animation, video, design,
+                      3D assets, or website. During this stage, we focus on
+                      quality, consistency, and making sure the project matches
+                      the approved direction.
+                    </p>
+                  </article>
+                </li>
+
+                <li class="process__step process__step--left">
+                  <div class="process__step-node" aria-hidden="true"></div>
+                  <article class="process__step-card">
+                    <h3 class="process__step-title">Revisions</h3>
+                    <p class="process__step-text">
+                      We include 1–2 free revision rounds, depending on the
+                      project. Additional revision rounds can be discussed and
+                      added as paid revisions if needed.
+                    </p>
+                  </article>
+                </li>
+
+                <li class="process__step process__step--right">
+                  <div class="process__step-node" aria-hidden="true"></div>
+                  <article class="process__step-card">
+                    <h3 class="process__step-title">Final Delivery</h3>
+                    <p class="process__step-text">
+                      Once everything is approved, we deliver the final files,
+                      videos, designs, or website assets in the agreed formats.
+                      The result is ready to use for your campaign, platform,
+                      website, social media, or brand presentation.
+                    </p>
+                  </article>
+                </li>
+              </ol>
+            </div>
+            <div class="process__media">
+              <div class="process__video">
+                <video
+                  class="process__video-el"
+                  src="src/assets/videos/process.mp4"
+                  preload="none"
+                  poster="src/assets/images/process.webp"
+                  muted
+                  loop
+                ></video>
+                <button
+                  class="process__control is-paused"
+                  aria-label="Play video"
+                  aria-pressed="false"
+                >
+                  <span class="icon icon--play"></span>
+                  <span class="icon icon--pause"></span>
+                </button>
               </div>
             </div>
           </div>
@@ -714,7 +841,10 @@
 
                 <div class="faq__item">
                   <div class="faq__question">
-                    <span>Do you work on long-term projects or monthly retainers?</span>
+                    <span
+                      >Do you work on long-term projects or monthly
+                      retainers?</span
+                    >
                     <span class="faq__indicator"></span>
                   </div>
                   <div class="faq__answer">
@@ -741,124 +871,6 @@
                     loading="lazy"
                   />
                 </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="process" class="process section section__process">
-        <div class="container">
-          <div class="process__content">
-            <h2 class="title">Our Process in Motion</h2>
-            <p class="text-subtitle">
-              From the first message to final delivery, we keep the process
-              clear, flexible, and easy for the client.
-            </p>
-            <div
-              class="process__timeline"
-              aria-label="Project process timeline"
-            >
-              <div class="process__timeline-line" aria-hidden="true"></div>
-              <ol class="process__steps">
-                <li class="process__step process__step--left">
-                  <div class="process__step-node" aria-hidden="true"></div>
-                  <article class="process__step-card">
-                    <h3 class="process__step-title">Contact & Brief</h3>
-                    <p class="process__step-text">
-                      You contact us by email, Instagram, TikTok, or any
-                      available channel and tell us what you need. It can be a
-                      detailed brief, a short idea, a reference, or just a goal.
-                      We will help shape the project direction from there.
-                    </p>
-                  </article>
-                </li>
-
-                <li class="process__step process__step--right">
-                  <div class="process__step-node" aria-hidden="true"></div>
-                  <article class="process__step-card">
-                    <h3 class="process__step-title">
-                      Consultation & Discussion
-                    </h3>
-                    <p class="process__step-text">
-                      We discuss the project, timeline, budget, style,
-                      deliverables, and expectations. Free consultation is
-                      available, so we can understand your needs and recommend
-                      the best creative solution.
-                    </p>
-                  </article>
-                </li>
-
-                <li class="process__step process__step--left">
-                  <div class="process__step-node" aria-hidden="true"></div>
-                  <article class="process__step-card">
-                    <h3 class="process__step-title">Concept & References</h3>
-                    <p class="process__step-text">
-                      After we agree on the project, we prepare the creative
-                      direction. This can include references, moodboards, visual
-                      style, structure, design direction, and ideas for how the
-                      final result should look and feel.
-                    </p>
-                  </article>
-                </li>
-
-                <li class="process__step process__step--right">
-                  <div class="process__step-node" aria-hidden="true"></div>
-                  <article class="process__step-card">
-                    <h3 class="process__step-title">Production</h3>
-                    <p class="process__step-text">
-                      We start creating the visuals, animation, video, design,
-                      3D assets, or website. During this stage, we focus on
-                      quality, consistency, and making sure the project matches
-                      the approved direction.
-                    </p>
-                  </article>
-                </li>
-
-                <li class="process__step process__step--left">
-                  <div class="process__step-node" aria-hidden="true"></div>
-                  <article class="process__step-card">
-                    <h3 class="process__step-title">Revisions</h3>
-                    <p class="process__step-text">
-                      We include 1–2 free revision rounds, depending on the
-                      project. Additional revision rounds can be discussed and
-                      added as paid revisions if needed.
-                    </p>
-                  </article>
-                </li>
-
-                <li class="process__step process__step--right">
-                  <div class="process__step-node" aria-hidden="true"></div>
-                  <article class="process__step-card">
-                    <h3 class="process__step-title">Final Delivery</h3>
-                    <p class="process__step-text">
-                      Once everything is approved, we deliver the final files,
-                      videos, designs, or website assets in the agreed formats.
-                      The result is ready to use for your campaign, platform,
-                      website, social media, or brand presentation.
-                    </p>
-                  </article>
-                </li>
-              </ol>
-            </div>
-            <div class="process__media">
-              <div class="process__video">
-                <video
-                  class="process__video-el"
-                  src="src/assets/videos/process.mp4"
-                  preload="none"
-                  poster="src/assets/images/process.webp"
-                  muted
-                  loop
-                ></video>
-                <button
-                  class="process__control is-paused"
-                  aria-label="Play video"
-                  aria-pressed="false"
-                >
-                  <span class="icon icon--play"></span>
-                  <span class="icon icon--pause"></span>
-                </button>
               </div>
             </div>
           </div>
@@ -1046,7 +1058,7 @@
                 id="openContactBtn"
                 data-contact-modal-trigger
               >
-                Subscribe
+                Contact Us
               </button>
             </div>
           </div>

@@ -117,9 +117,14 @@
   }
 
   &__visual {
+    position: relative;
     height: 100%;
     border-radius: 30px;
     padding: 30px;
+    overflow: hidden;
+    isolation: isolate;
+    background-clip: padding-box;
+    @include mixins.gradient-border(30px, 1.5px, 0);
 
     display: flex;
     align-items: flex-end;
@@ -130,8 +135,7 @@
     background-position: center;
     background-repeat: no-repeat;
 
-    position: relative;
-    overflow: hidden;
+    z-index: 1;
   }
 
   &__visual-content {

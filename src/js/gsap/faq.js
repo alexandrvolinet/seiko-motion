@@ -1,4 +1,5 @@
 import { gsap } from "./config.js";
+import { animateTextReveal } from "./responsiveReveal.js";
 
 export function animateFaq() {
   const section = document.querySelector(".faq");
@@ -8,22 +9,24 @@ export function animateFaq() {
     const faqItems = section.querySelectorAll(".faq__item");
     const faqVisual = section.querySelector(".faq__visual");
 
-    gsap.set(faqItems, { y: 50, opacity: 0 });
-    gsap.set(faqVisual, { x: 100, opacity: 0 });
-
-    faqItems.forEach((item) => {
-      gsap.to(item, {
-        y: 0, opacity: 1, duration: 0.5, ease: "power2.out",
-        scrollTrigger: {
-          trigger: item,
-          start: "top 82%",
-          toggleActions: "play none none none"
-        }
-      });
+    animateTextReveal(faqItems, {
+      scope: section,
+      y: 28,
+      duration: 0.9,
+      ease: "power2.out",
+      stagger: 0.08,
+      scrollTrigger: {
+        trigger: section,
+        start: "top 82%",
+        toggleActions: "play none none none"
+      }
     });
 
-    gsap.to(faqVisual, {
-      x: 0, opacity: 1, duration: 0.5, ease: "power2.out",
+    animateTextReveal([faqVisual], {
+      scope: section,
+      y: 28,
+      duration: 1,
+      ease: "power2.out",
       scrollTrigger: {
         trigger: section,
         start: "top 50%",

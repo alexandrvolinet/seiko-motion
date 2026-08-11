@@ -78,21 +78,38 @@
     .home__subtitle-expand {
       display: grid;
       grid-template-rows: 0fr;
-      transition: grid-template-rows 0.4s ease;
+      opacity: 0;
+      transform: translateY(-10px);
+      transition:
+        grid-template-rows 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+        opacity 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+        transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+      will-change: grid-template-rows, opacity, transform;
 
       > span {
         overflow: hidden;
+        display: block;
+
+        > span {
+          display: block;
+          opacity: 0;
+          transform: translateY(12px);
+          transition:
+            opacity 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+            transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+        }
       }
     }
 
     &:has(.home__subtitle-toggle.is-open) .home__subtitle-expand {
       grid-template-rows: 1fr;
+      opacity: 1;
+      transform: translateY(0);
     }
 
-    &:has(.home__subtitle-toggle.is-open) .home__subtitle-toggle {
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.3s ease 0.35s;
+    &:has(.home__subtitle-toggle.is-open) .home__subtitle-expand > span > span {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     .home__subtitle-toggle {
@@ -112,19 +129,37 @@
       &:hover {
         color: var(--color-link);
       }
+
+      &.is-open .home__subtitle-arrow-icon {
+        transform: rotate(180deg);
+      }
     }
 
     .home__subtitle-arrow {
-      display: inline-block;
-      transition: transform 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
       margin-top: -7px;
+      animation: float 2.2s ease-in-out infinite;
+      will-change: transform;
+    }
+
+    .home__subtitle-arrow-icon {
+      display: inline-block;
       font-size: 20px;
-      animation: float 2s ease-in-out infinite;
+      transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+      will-change: transform;
     }
 
     @keyframes float {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(5px); }
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(5px);
+      }
     }
   }
 }

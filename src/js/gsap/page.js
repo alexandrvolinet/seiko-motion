@@ -1,14 +1,5 @@
 import { gsap } from "./config.js";
-
-
-
-const motion = {
-  y: 50,
-  duration: 0.5,
-  stagger: 0.2,
-  ease: "power2.out",
-  start: "top 60%",
-};
+import { animateTextReveal } from "./responsiveReveal.js";
 
 export function revealSections() {
   const sections = document.querySelectorAll(".section:not(#design)");
@@ -22,29 +13,18 @@ export function revealSections() {
 
     const elements = subtitle ? [title, subtitle] : [title];
 
-    gsap.set(elements, {
-      y: motion.y,
-      opacity: 0,
-      willChange: "transform, opacity",
+    animateTextReveal(elements, {
+      scope: section,
+      y: 60,
+      duration: 1,
+      ease: "power2.out",
+      stagger: 0.2,
+      scrollTrigger: {
+        trigger: section,
+        start: "top 60%",
+        toggleActions: "play none none none",
+      },
     });
-
-    gsap
-      .timeline({
-        defaults: {
-          ease: motion.ease,
-          duration: motion.duration,
-        },
-        scrollTrigger: {
-          trigger: section,
-          start: motion.start,
-          toggleActions: "play none none none",
-        },
-      })
-      .to(elements, {
-        y: 0,
-        opacity: 1,
-        stagger: motion.stagger,
-      });
   });
 }
 
@@ -145,4 +125,3 @@ export function animateBackgroundDots() {
     );
   }
 }
-

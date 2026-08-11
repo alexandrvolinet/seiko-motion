@@ -55,10 +55,6 @@
       text-decoration: none;
       transition: opacity 0.2s ease;
       overflow: hidden;
-
-      &:hover {
-        opacity: 0.7;
-      }
     }
 
     @include mixins.respond(tablet) {

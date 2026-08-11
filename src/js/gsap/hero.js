@@ -1,44 +1,45 @@
 import { gsap } from "gsap";
+import { animateTextReveal } from "./responsiveReveal.js";
 
 export function heroTitle() {
   const hero = document.querySelector(".home__content");
   if (!hero) return;
 
-  const ctx = gsap.context(() => {
-    const title = hero.querySelector(".title");
-    const subtitle = hero.querySelector(".text-subtitle");
+  const title = hero.querySelector(".title");
+  const subtitle = hero.querySelector(".text-subtitle");
 
-    const elements = subtitle ? [title, subtitle] : [title];
-    if (!title) return;
-
-    gsap.set(elements, {
-      y: 60,
-      opacity: 0,
-      willChange: "transform, opacity"
-    });
-
-    gsap.to(elements, {
-      y: 0,
-      opacity: 1,
-      duration: 1,
-      stagger: 0.2,
-      ease: "power3.out",
-      delay: 0.3
-    });
-
-    return elements;
-  }, hero);
-
-  return () => ctx.revert();
+  return animateTextReveal(title && subtitle ? [title, subtitle] : [title], {
+    scope: hero,
+    y: 60,
+    duration: 1,
+    ease: "power2.out",
+    stagger: 0.2,
+    delay: 0.2,
+  });
 }
 
 export function initHeroExpand() {
   const toggle = document.querySelector(".home__subtitle-toggle");
-  if (!toggle) return;
+  const expand = document.querySelector(".home__subtitle-expand");
+  if (!toggle || !expand) return;
+
+  const label = toggle.firstElementChild;
+  const collapsedLabel = "Show more";
+  const expandedLabel = "Show less";
+
+  const syncToggleState = (isOpen) => {
+    toggle.classList.toggle("is-open", isOpen);
+    toggle.setAttribute("aria-expanded", String(isOpen));
+
+    if (label) {
+      label.textContent = isOpen ? expandedLabel : collapsedLabel;
+    }
+  };
+
+  syncToggleState(false);
 
   toggle.addEventListener("click", () => {
-    const isOpen = toggle.classList.toggle("is-open");
-    toggle.setAttribute("aria-expanded", isOpen);
+    syncToggleState(!toggle.classList.contains("is-open"));
   });
 }
 
@@ -46,30 +47,16 @@ export function heroCTA() {
   const hero = document.querySelector(".home__content");
   if (!hero) return;
 
-  const ctx = gsap.context(() => {
-    const btn = hero.querySelector(".home__btn");
-    if (!btn) return;
+  const btn = hero.querySelector(".home__btn");
+  if (!btn) return;
 
-    gsap.set(btn, {
-      y: 60,
-      opacity: 0,
-      willChange: "transform, opacity"
-    });
-
-    const tl = gsap.timeline({
-      delay: 0.8,
-    });
-
-    tl.to(btn, {
-      y: 0,
-      opacity: 1,
-      duration: 0.9,
-      ease: "power2.out"
-    });
-    return tl;
-  }, hero);
-
-  return () => ctx.revert();
+  return animateTextReveal([btn], {
+    scope: hero,
+    y: 28,
+    duration: 0.95,
+    ease: "power2.out",
+    delay: 0.55,
+  });
 }
 
 export function arc() {
