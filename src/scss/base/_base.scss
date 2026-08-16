@@ -1,7 +1,17 @@
 @use '../abstracts/mixins';
 
-*{
+html {
   scroll-behavior: smooth;
+}
+
+html.is-resizing,
+html.is-resizing * {
+  scroll-behavior: auto !important;
+}
+
+html.is-resizing,
+html.is-resizing body {
+  overflow-anchor: none;
 }
 
 body {

@@ -21,148 +21,71 @@ export function animateServicesV2() {
   );
   const labels = items.map((item) => item.querySelector(".services-v2__label"));
 
-  const mm = gsap.matchMedia();
   const ctx = gsap.context(() => {
-    mm.add(
-      {
-        horizontal: "(min-width: 1281px)",
-        vertical: "(max-width: 1280px)"
-      },
-      (mediaContext) => {
-        const isVertical = mediaContext.conditions.vertical;
-        const progressAxis = isVertical ? "scaleY" : "scaleX";
-        const progressOrigin = isVertical ? "center top" : "left center";
+    const isVertical = window.matchMedia("(max-width: 1280px)").matches;
+    const progressAxis = isVertical ? "scaleY" : "scaleX";
+    const progressOrigin = isVertical ? "center top" : "left center";
 
-        gsap.set(items, {
-          "--services-v2-marker-opacity": 0
-        });
+    gsap.set(items, {
+      "--services-v2-marker-opacity": 0
+    });
 
-        gsap.set(progressValue, {
-          scaleX: isVertical ? 1 : 0,
-          scaleY: isVertical ? 0 : 1,
-          transformOrigin: progressOrigin,
-          willChange: "transform"
-        });
+    gsap.set(progressValue, {
+      scaleX: isVertical ? 1 : 0,
+      scaleY: isVertical ? 0 : 1,
+      transformOrigin: progressOrigin,
+      willChange: "transform"
+    });
 
-        gsap.set(connectors, {
-          opacity: 0,
-          y: 50,
-          willChange: "transform, opacity"
-        });
+    gsap.set(connectors, {
+      opacity: 0,
+      y: 50,
+      willChange: "transform, opacity"
+    });
 
-        gsap.set(cards, {
-          opacity: 0,
-          y: 50,
-          willChange: "transform, opacity"
-        });
+    gsap.set(cards, {
+      opacity: 0,
+      y: 50,
+      willChange: "transform, opacity"
+    });
 
-        gsap.set(labels, {
-          opacity: 0,
-          y: 50,
-          willChange: "transform, opacity"
-        });
+    gsap.set(labels, {
+      opacity: 0,
+      y: 50,
+      willChange: "transform, opacity"
+    });
 
-        if (isVertical) {
-          const animations = items.map((item, index) => {
-            const progressScale = (index + 1) / items.length;
+    if (isVertical) {
+      const animations = items.map((item, index) => {
+        const progressScale = (index + 1) / items.length;
 
-            return gsap
-              .timeline({
-                defaults: {
-                  ease: "power2.out"
-                },
-                scrollTrigger: {
-                  trigger: item,
-                  start: "top 80%",
-                  toggleActions: "play none none none"
-                }
-              })
-              .to(
-                progressValue,
-                {
-                  scaleY: progressScale,
-                  duration: 0.28,
-                  overwrite: "auto"
-                },
-                0
-              )
-              .to(
-                item,
-                {
-                  "--services-v2-marker-opacity": 1,
-                  duration: 0.5
-                },
-                0.04
-              )
-              .to(
-                connectors[index],
-                {
-                  opacity: 1,
-                  y: 0,
-                  duration: 0.5
-                },
-                0.1
-              )
-              .to(
-                labels[index],
-                {
-                  opacity: 1,
-                  y: 0,
-                  duration: 0.5
-                },
-                0.14
-              )
-              .to(
-                cards[index],
-                {
-                  opacity: 1,
-                  y: 0,
-                  duration: 0.5,
-                  ease: "power2.out"
-                },
-                0.18
-              );
-          });
-
-          return () => {
-            animations.forEach(killAnimation);
-          };
-        }
-
-        const desktopTimeline = gsap.timeline({
-          defaults: {
-            ease: "power2.out"
-          },
-          scrollTrigger: {
-            trigger: timelineElement,
-            start: "top 70%",
-            toggleActions: "play none none none"
-          }
-        });
-
-        desktopTimeline.to(
-          progressValue,
-          {
-            [progressAxis]: 1,
-            duration: 1.2
-          },
-          0
-        );
-
-        items.forEach((item, index) => {
-          const markerStart = 0.16 + index * 0.2;
-          const connectorStart = markerStart + 0.05;
-          const labelStart = markerStart + 0.08;
-          const cardStart = markerStart + 0.12;
-
-          desktopTimeline
-            .to(
-              item,
-              {
-                "--services-v2-marker-opacity": 1,
+        return gsap
+          .timeline({
+            defaults: {
+              ease: "power2.out"
+            },
+            scrollTrigger: {
+              trigger: item,
+              start: "top 80%",
+              toggleActions: "play none none none"
+            }
+          })
+          .to(
+            progressValue,
+            {
+              scaleY: progressScale,
+              duration: 0.28,
+              overwrite: "auto"
+            },
+            0
+          )
+          .to(
+            item,
+            {
+              "--services-v2-marker-opacity": 1,
               duration: 0.5
             },
-            markerStart
+            0.04
           )
           .to(
             connectors[index],
@@ -171,7 +94,7 @@ export function animateServicesV2() {
               y: 0,
               duration: 0.5
             },
-            connectorStart
+            0.1
           )
           .to(
             labels[index],
@@ -180,7 +103,7 @@ export function animateServicesV2() {
               y: 0,
               duration: 0.5
             },
-            labelStart
+            0.14
           )
           .to(
             cards[index],
@@ -190,19 +113,86 @@ export function animateServicesV2() {
               duration: 0.5,
               ease: "power2.out"
             },
-            cardStart
-            );
-        });
+            0.18
+          );
+      });
 
-        return () => {
-          killAnimation(desktopTimeline);
-        };
+      return () => {
+        animations.forEach(killAnimation);
+      };
+    }
+
+    const desktopTimeline = gsap.timeline({
+      defaults: {
+        ease: "power2.out"
+      },
+      scrollTrigger: {
+        trigger: timelineElement,
+        start: "top 70%",
+        toggleActions: "play none none none"
       }
+    });
+
+    desktopTimeline.to(
+      progressValue,
+      {
+        [progressAxis]: 1,
+        duration: 1.2
+      },
+      0
     );
+
+    items.forEach((item, index) => {
+      const markerStart = 0.16 + index * 0.2;
+      const connectorStart = markerStart + 0.05;
+      const labelStart = markerStart + 0.08;
+      const cardStart = markerStart + 0.12;
+
+      desktopTimeline
+        .to(
+          item,
+          {
+            "--services-v2-marker-opacity": 1,
+            duration: 0.5
+          },
+          markerStart
+        )
+        .to(
+          connectors[index],
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.5
+          },
+          connectorStart
+        )
+        .to(
+          labels[index],
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.5
+          },
+          labelStart
+        )
+        .to(
+          cards[index],
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.5,
+            ease: "power2.out"
+          },
+          cardStart
+        );
+    });
+
+    return () => {
+      killAnimation(desktopTimeline);
+    };
   }, section);
 
   return () => {
-    mm.revert();
     ctx.revert();
   };
 }

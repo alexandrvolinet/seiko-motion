@@ -1,6 +1,5 @@
 import * as THREE from "three";
 import { gsap } from "./config.js";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 export function animateDesign() {
   const cleanups = [];
@@ -30,9 +29,14 @@ export function initCosmicPlanet(containerId) {
 
   // --- Renderer Setup (transparent background) ---
   const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-  renderer.setSize(width, height);
+  renderer.setSize(width, height, false);
   renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
   renderer.setClearColor(0x000000, 0); // Transparent background
+  renderer.domElement.style.position = "absolute";
+  renderer.domElement.style.inset = "0";
+  renderer.domElement.style.width = "100%";
+  renderer.domElement.style.height = "100%";
+  renderer.domElement.style.display = "block";
   container.appendChild(renderer.domElement);
 
   // --- Particles Configuration ---
@@ -215,6 +219,7 @@ export function initCosmicPlanet(containerId) {
   // --- Animation loop (paused until in view) ---
   let frameId;
   let isActive = false;
+  let isRevealed = false;
   const rotateSpeedY = 0.003;
 
   const animate = () => {
@@ -333,67 +338,82 @@ export function initCosmicPlanet(containerId) {
   // Start hidden, fade + slide up on scroll
   gsap.set(renderer.domElement, { opacity: 0, y: 50 });
 
-  // Start/stop animation based on scroll
-  const ctx = gsap.context(() => {
-    const startAnim = () => {
-      isActive = true;
-      if (!frameId) frameId = requestAnimationFrame(animate);
-    };
-    const stopAnim = () => {
-      isActive = false;
-      frameId = null;
-    };
+  const startAnim = () => {
+    isActive = true;
+    if (!frameId) frameId = requestAnimationFrame(animate);
+  };
 
-    ScrollTrigger.create({
-      trigger: section,
-      start: "top 35%",
-      onEnter: startAnim,
-      onLeave: stopAnim,
-      onEnterBack: startAnim,
-      onLeaveBack: stopAnim,
+  const stopAnim = () => {
+    isActive = false;
+    if (frameId) cancelAnimationFrame(frameId);
+    frameId = null;
+  };
+
+  const revealRenderer = () => {
+    if (isRevealed) return;
+    isRevealed = true;
+    gsap.to(renderer.domElement, {
+      y: 0,
+      opacity: 1,
+      duration: 0.5,
+      ease: "power2.out",
     });
+  };
 
-    gsap.fromTo(renderer.domElement,
-      { y: 50, opacity: 0 },
-      {
-        y: 0,
-        opacity: 1,
-        duration: 0.5,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: section,
-          start: "top 25%",
-          toggleActions: "play none none none",
-        },
+  const visibilityObserver = new IntersectionObserver(
+    ([entry]) => {
+      if (entry.isIntersecting) {
+        startAnim();
+        revealRenderer();
+      } else {
+        stopAnim();
       }
-    );
-
-    // If already in view on load, start immediately
-    const rect = section.getBoundingClientRect();
-    if (rect.top < window.innerHeight * 0.45 && rect.bottom > 0) {
-      startAnim();
+    },
+    {
+      threshold: 0.35,
+      rootMargin: "0px 0px -10% 0px",
     }
-  }, section);
+  );
+
+  visibilityObserver.observe(section);
+
+  // If already in view on load, start immediately
+  const rect = section.getBoundingClientRect();
+  if (rect.top < window.innerHeight * 0.45 && rect.bottom > 0) {
+    startAnim();
+    revealRenderer();
+  }
 
   const handleResize = () => {
     if (!container) return;
     const w = container.clientWidth;
     const h = container.clientHeight;
+    if (!w || !h) return;
     camera.aspect = w / h;
     camera.updateProjectionMatrix();
-    renderer.setSize(w, h);
+    renderer.setSize(w, h, false);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
   };
 
-  const resizeObserver = new ResizeObserver(() => {
-    handleResize();
-  });
-  resizeObserver.observe(container);
+  let resizeFrame = null;
+  const scheduleResize = () => {
+    if (resizeFrame) cancelAnimationFrame(resizeFrame);
+    resizeFrame = requestAnimationFrame(() => {
+      resizeFrame = null;
+      handleResize();
+    });
+  };
+
+  window.addEventListener("resize", scheduleResize, { passive: true });
+  window.visualViewport?.addEventListener("resize", scheduleResize, { passive: true });
 
   return () => {
     isActive = false;
     if (frameId) cancelAnimationFrame(frameId);
-    ctx.revert();
-    resizeObserver.disconnect();
+    if (resizeFrame) cancelAnimationFrame(resizeFrame);
+    visibilityObserver.disconnect();
+    window.removeEventListener("resize", scheduleResize);
+    window.visualViewport?.removeEventListener("resize", scheduleResize);
     if (renderer.domElement && container.contains(renderer.domElement)) {
       renderer.domElement.removeEventListener("mousemove", handleMouseMove);
       renderer.domElement.removeEventListener("mouseleave", handleMouseLeave);
@@ -426,36 +446,35 @@ function animateDesignReveal() {
   const canvasEl = section.querySelector("#canvas-container");
   const items = [...section.querySelectorAll(".design__item")];
 
-  if (!items.length) return;
+  const targets = [title, canvasEl, ...items].filter(Boolean);
+  if (!targets.length) return;
 
-  const ctx = gsap.context(() => {
-    if (title && canvasEl) {
-      gsap.set([title, canvasEl], { y: 60, opacity: 0 });
-      gsap.to([title, canvasEl], {
-        y: 0, opacity: 1, duration: 1, stagger: 0.2, ease: "power2.out",
-        scrollTrigger: { trigger: section, start: "top 35%", toggleActions: "play none none none" }
-      });
-    }
-  }, section);
+  gsap.set(targets, { y: 50, opacity: 0, willChange: "transform, opacity" });
 
-  const mm = gsap.matchMedia();
-  mm.add({ all: "all", stacked: "(max-width: 991px)" }, (mediaContext) => {
-    gsap.set(items, { y: 50, opacity: 0, willChange: "transform, opacity" });
+  const revealed = new WeakSet();
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting || revealed.has(entry.target)) return;
+        revealed.add(entry.target);
 
-    if (mediaContext.conditions.stacked) {
-      items.forEach((card) => {
-        gsap.to(card, {
-          y: 0, opacity: 1, duration: 0.5, ease: "power2.out",
-          scrollTrigger: { trigger: card, start: "top 82%", toggleActions: "play none none none" }
+        gsap.to(entry.target, {
+          y: 0,
+          opacity: 1,
+          duration: entry.target === title || entry.target === canvasEl ? 0.9 : 0.55,
+          ease: "power2.out",
         });
-      });
-    } else {
-      gsap.to(items, {
-        y: 0, opacity: 1, duration: 0.5, ease: "power2.out", stagger: 0.2,
-        scrollTrigger: { trigger: section, start: "top 60%", toggleActions: "play none none none" }
-      });
-    }
-  });
 
-  return () => { mm.revert(); ctx.revert(); };
+        observer.unobserve(entry.target);
+      });
+    },
+    {
+      threshold: 0.2,
+      rootMargin: "0px 0px -8% 0px",
+    }
+  );
+
+  targets.forEach((target) => observer.observe(target));
+
+  return () => observer.disconnect();
 }

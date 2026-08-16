@@ -74,15 +74,11 @@ export function createResponsiveReveal({
     return () => {};
   }
 
-  const mm = gsap.matchMedia();
+  const isStacked = window.matchMedia(stackQuery).matches;
+  gsap.set(targets, set);
 
-  mm.add({ all: "all", stacked: stackQuery }, (context) => {
-    const isStacked = context.conditions.stacked;
-
-    gsap.set(targets, set);
-
-    if (isStacked) {
-      const animations = targets.map((item) =>
+  const animations = isStacked
+    ? targets.map((item) =>
         gsap.to(item, {
           ...to,
           scrollTrigger: {
@@ -91,29 +87,20 @@ export function createResponsiveReveal({
             toggleActions: "play none none none"
           }
         })
-      );
-
-      return () => {
-        animations.forEach(killAnimation);
-      };
-    }
-
-    const animation = gsap.to(targets, {
-      ...to,
-      stagger: desktopStagger,
-      scrollTrigger: {
-        trigger: desktopTrigger,
-        start: desktopStart,
-        toggleActions: "play none none none"
-      }
-    });
-
-    return () => {
-      killAnimation(animation);
-    };
-  });
+      )
+    : [
+        gsap.to(targets, {
+          ...to,
+          stagger: desktopStagger,
+          scrollTrigger: {
+            trigger: desktopTrigger,
+            start: desktopStart,
+            toggleActions: "play none none none"
+          }
+        })
+      ];
 
   return () => {
-    mm.revert();
+    animations.forEach(killAnimation);
   };
 }

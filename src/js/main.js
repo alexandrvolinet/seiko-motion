@@ -1,4 +1,5 @@
 import "../scss/main.scss";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { animateHeader, initMobileMenu, pinHeader } from "./gsap/header.js";
 import { heroTitle, heroCTA, initHeroExpand } from "./gsap/hero.js";
 import { arc } from "./gsap/hero.js";
@@ -9,6 +10,36 @@ let isCriticalStarted = false;
 let isDeferredStarted = false;
 let criticalReadyPromise = Promise.resolve();
 let deferredModulesPromise;
+let resizeRefreshTimeout = null;
+let lastResizeScrollX = 0;
+let lastResizeScrollY = 0;
+
+function refreshScrollTriggersOnResize() {
+  lastResizeScrollX = window.scrollX || window.pageXOffset || 0;
+  lastResizeScrollY = window.scrollY || window.pageYOffset || 0;
+  document.documentElement.classList.add("is-resizing");
+
+  if (resizeRefreshTimeout) {
+    window.clearTimeout(resizeRefreshTimeout);
+  }
+
+  resizeRefreshTimeout = window.setTimeout(() => {
+    resizeRefreshTimeout = null;
+
+    ScrollTrigger.refresh(true);
+
+    window.requestAnimationFrame(() => {
+      window.scrollTo({
+        left: lastResizeScrollX,
+        top: lastResizeScrollY,
+        behavior: "auto",
+      });
+      window.requestAnimationFrame(() => {
+        document.documentElement.classList.remove("is-resizing");
+      });
+    });
+  }, 180);
+}
 
 function hideLoader() {
   document.querySelector(".loader")?.classList.add("loader--hidden");
@@ -140,6 +171,8 @@ document.addEventListener("DOMContentLoaded", () => {
   initContactModal();
   initShowcaseExpand();
   initHeroExpand();
+  window.addEventListener("resize", refreshScrollTriggersOnResize, { passive: true });
+  window.visualViewport?.addEventListener("resize", refreshScrollTriggersOnResize, { passive: true });
   criticalReadyPromise = startCriticalExperience();
 });
 

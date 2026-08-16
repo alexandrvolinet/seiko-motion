@@ -59,41 +59,41 @@ export function animateStats() {
 
   if (!cards.length || !counters.length) return;
 
-  const mm = gsap.matchMedia();
   const ctx = gsap.context(() => {
-    mm.add({ all: "all", stacked: "(max-width: 991px)" }, (mediaContext) => {
-      prepareCounters(counters);
+    prepareCounters(counters);
 
-      const start = mediaContext.conditions.stacked ? "top 82%" : "top 60%";
+    const isStacked = window.matchMedia("(max-width: 991px)").matches;
+    const start = isStacked ? "top 82%" : "top 60%";
 
-      gsap.set(cards, {
-        y: 50,
-        opacity: 0,
-        willChange: "transform, opacity",
+    gsap.set(cards, {
+      y: 50,
+      opacity: 0,
+      willChange: "transform, opacity",
+    });
+
+    const animations = [];
+
+    if (isStacked) {
+      cards.forEach((card) => {
+        animations.push(
+          gsap.to(card, {
+            y: 0,
+            opacity: 1,
+            duration: 0.5,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: card,
+              start,
+              toggleActions: "play none none none",
+              onEnter: () =>
+                startCounters(card.querySelectorAll(".stats__num")),
+            },
+          })
+        );
       });
-
-      const animations = [];
-
-      if (mediaContext.conditions.stacked) {
-        cards.forEach((card) => {
-          animations.push(
-            gsap.to(card, {
-              y: 0,
-              opacity: 1,
-              duration: 0.5,
-              ease: "power2.out",
-              scrollTrigger: {
-                trigger: card,
-                start,
-                toggleActions: "play none none none",
-                onEnter: () =>
-                  startCounters(card.querySelectorAll(".stats__num")),
-              },
-            })
-          );
-        });
-      } else {
-        const desktopAnim = gsap.to(cards, {
+    } else {
+      animations.push(
+        gsap.to(cards, {
           y: 0,
           opacity: 1,
           duration: 0.5,
@@ -105,18 +105,16 @@ export function animateStats() {
             toggleActions: "play none none none",
             onEnter: () => startCounters(counters),
           },
-        });
-        animations.push(desktopAnim);
-      }
+        })
+      );
+    }
 
-      return () => {
-        animations.forEach(killAnimation);
-      };
-    });
+    return () => {
+      animations.forEach(killAnimation);
+    };
   }, section);
 
   return () => {
-    mm.revert();
     ctx.revert();
   };
 }
