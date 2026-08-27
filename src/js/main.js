@@ -5,6 +5,7 @@ import { heroTitle, heroCTA, initHeroExpand } from "./gsap/hero.js";
 import { arc } from "./gsap/hero.js";
 import { initContactModal } from "./gsap/contactModal.js";
 import { initShowcaseExpand } from "./gsap/showcase.js";
+import { initProjectCards } from "./gsap/projects.js";
 
 let isCriticalStarted = false;
 let isDeferredStarted = false;
@@ -117,6 +118,7 @@ function loadDeferredModules() {
     import("./gsap/process.js"),
     import("./gsap/faq.js"),
     import("./gsap/contact.js"),
+    import("./gsap/projects.js"),
   ]);
 
   return deferredModulesPromise;
@@ -148,6 +150,7 @@ async function startDeferredExperience() {
     processModule,
     faqModule,
     contactModule,
+    projectsModule,
   ] = await loadDeferredModules();
 
   faqModule.initFaqAccordion();
@@ -163,6 +166,8 @@ async function startDeferredExperience() {
   processModule.initProcessVideo();
   footerModule.animateFooter();
   contactModule.animateContactCards();
+  projectsModule.initProjectCards();
+  projectsModule.animateProjectCards();
 }
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -171,6 +176,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initContactModal();
   initShowcaseExpand();
   initHeroExpand();
+
   window.addEventListener("resize", refreshScrollTriggersOnResize, { passive: true });
   window.visualViewport?.addEventListener("resize", refreshScrollTriggersOnResize, { passive: true });
   criticalReadyPromise = startCriticalExperience();

@@ -64,38 +64,6 @@
     />
   </head>
   <body>
-    <svg xmlns="http://www.w3.org/2000/svg" style="display: none">
-      <defs>
-        <filter
-          id="filter0_f_2_7"
-          x="-5"
-          y="-5"
-          width="33"
-          height="132"
-          filterUnits="userSpaceOnUse"
-          color-interpolation-filters="sRGB"
-        >
-          <feFlood flood-opacity="0" result="BackgroundImageFix" />
-          <feBlend
-            mode="normal"
-            in="SourceGraphic"
-            in2="BackgroundImageFix"
-            result="shape"
-          />
-          <feGaussianBlur
-            stdDeviation="2"
-            result="effect1_foregroundBlur_2_7"
-          />
-        </filter>
-      </defs>
-      <symbol id="connector-path" viewBox="0 0 23 122" fill="none">
-        <path
-          d="M12.1333 4.29918C11.7463 3.90521 11.1132 3.89961 10.7192 4.28666L4.29916 10.5941C3.9052 10.9811 3.8996 11.6143 4.28665 12.0082C4.6737 12.4022 5.30684 12.4078 5.70081 12.0207L11.4075 6.41416L17.0141 12.1208C17.4011 12.5148 18.0343 12.5204 18.4282 12.1334C18.8222 11.7463 18.8278 11.1132 18.4407 10.7192L12.1333 4.29918ZM10.42 118L11.42 118.009L12.42 5.00885L11.42 5L10.4201 4.99115L9.42005 117.991L10.42 118Z"
-          fill="#A837FF"
-          filter="url(#filter0_f_2_7)"
-        />
-      </symbol>
-    </svg>
     <header class="header">
       <div class="container">
         <div class="header__inner">
@@ -104,8 +72,7 @@
               <img
                 src="src/assets/images/logo.svg"
                 alt="Seiko motion"
-                width="135"
-                height="24"
+                height="39"
                 fetchpriority="high"
               />
             </a>
@@ -113,7 +80,7 @@
             <nav class="header__nav">
               <a href="#hero">Home</a>
               <a href="#design">About</a>
-              <a href="#portfolio">Portfolio</a>
+              <a href="#portfolio">Projects</a>
             </nav>
           </div>
 
@@ -138,7 +105,7 @@
         <nav class="mobile-menu__nav">
           <a href="#hero">Home</a>
           <a href="#design">About</a>
-          <a href="#portfolio">Portfolio</a>
+          <a href="#portfolio">Projects</a>
           <a href="#services">Services</a>
         </nav>
       </div>
@@ -534,7 +501,7 @@
         </div>
       </section>
 
-      <section id="portfolio" class="showcase section">
+      <section id="showcase" class="showcase section">
         <div class="container">
           <div class="showcase_content">
             <div class="showcase__header">
@@ -605,6 +572,334 @@
                 class="showcase__column showcase__column--third showcaseUp"
               ></div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="portfolio" class="projects section">
+        <div class="container">
+          <div class="projects__header">
+            <h2 class="title">Projects</h2>
+            <p class="text-subtitle">
+              A curated collection of motion design, brand animation, and visual
+              storytelling - crafted to move, inspire, and connect.
+            </p>
+          </div>
+
+          <div class="projects__grid">
+            <article class="project-card" id="luma-motion-studio">
+              <div class="project-card__top">
+                <div class="project-card__title-wrap">
+                  <a
+                    class="project-card__link"
+                    href="/projects.html#luma-motion-studio"
+                  >
+                    <h3 class="project-card__title">Luma Motion Studio</h3>
+                  </a>
+                  <div class="project-card__meta">
+                    <span>Motion Design / Brand Animation</span>
+                  </div>
+                </div>
+              </div>
+
+              <a
+                class="project-card__link"
+                href="/projects.html#luma-motion-studio"
+              >
+                <div class="project-card__visual">
+                  <video
+                    class="project-card__video"
+                    data-project-video
+                    data-video-src="/src/assets/videos/design.webm"
+                    muted
+                    loop
+                    playsinline
+                    preload="none"
+                    aria-hidden="true"
+                  ></video>
+                </div>
+              </a>
+
+              <button
+                class="project-card__toggle"
+                type="button"
+                aria-expanded="false"
+                aria-controls="luma-motion-studio-details"
+              >
+                <span>View details</span>
+              </button>
+
+              <div
+                class="project-card__details"
+                id="luma-motion-studio-details"
+                data-project-details
+                aria-hidden="true"
+              >
+                <div class="project-card__details-inner">
+                  <div class="project-card__facts">
+                    <div class="project-card__fact">
+                      <span>Year</span>
+                      <strong>2026</strong>
+                    </div>
+                    <div class="project-card__fact">
+                      <span>Industry</span>
+                      <strong>Motion Design Studio</strong>
+                    </div>
+                  </div>
+
+                  <p class="project-card__description">
+                    A complete motion identity for a creative studio — from
+                    kinetic logo and brand film to a flexible motion system for
+                    social media. Every piece designed to feel like part of one
+                    cohesive visual language.
+                  </p>
+
+                  <div class="project-card__notes">
+                    <span class="project-card__note">Kinetic typography</span>
+                    <span class="project-card__note"
+                      >Cohesive motion system</span
+                    >
+                    <span class="project-card__note"
+                      >Social-ready templates</span
+                    >
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <article class="project-card" id="axon-3d-branding">
+              <div class="project-card__top">
+                <div class="project-card__title-wrap">
+                  <a
+                    class="project-card__link"
+                    href="/projects.html#axon-3d-branding"
+                  >
+                    <h3 class="project-card__title">Axon 3D Branding</h3>
+                  </a>
+                  <div class="project-card__meta">
+                    <span>3D Motion / Creative Development</span>
+                  </div>
+                </div>
+              </div>
+
+              <a
+                class="project-card__link"
+                href="/projects.html#axon-3d-branding"
+              >
+                <div class="project-card__visual">
+                  <video
+                    class="project-card__video"
+                    data-project-video
+                    data-video-src="/src/assets/videos/process.mp4"
+                    muted
+                    loop
+                    playsinline
+                    preload="none"
+                    aria-hidden="true"
+                  ></video>
+                </div>
+              </a>
+
+              <button
+                class="project-card__toggle"
+                type="button"
+                aria-expanded="false"
+                aria-controls="axon-3d-branding-details"
+              >
+                <span>View details</span>
+              </button>
+
+              <div
+                class="project-card__details"
+                id="axon-3d-branding-details"
+                data-project-details
+                aria-hidden="true"
+              >
+                <div class="project-card__details-inner">
+                  <div class="project-card__facts">
+                    <div class="project-card__fact">
+                      <span>Year</span>
+                      <strong>2025</strong>
+                    </div>
+                    <div class="project-card__fact">
+                      <span>Industry</span>
+                      <strong>Tech / Web3</strong>
+                    </div>
+                  </div>
+
+                  <p class="project-card__description">
+                    Immersive 3D branding system for a decentralized protocol.
+                    Real-time WebGL hero, generative blob animations, and a
+                    scroll-driven narrative — all performant at 60fps on mobile.
+                  </p>
+
+                  <div class="project-card__notes">
+                    <span class="project-card__note">Three.js / WebGL</span>
+                    <span class="project-card__note">GSAP ScrollTrigger</span>
+                    <span class="project-card__note">Generative Shaders</span>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <article class="project-card" id="luma-motion-studio">
+              <div class="project-card__top">
+                <div class="project-card__title-wrap">
+                  <a
+                    class="project-card__link"
+                    href="/projects.html#luma-motion-studio"
+                  >
+                    <h3 class="project-card__title">Luma Motion Studio</h3>
+                  </a>
+                  <div class="project-card__meta">
+                    <span>Motion Design / Brand Animation</span>
+                  </div>
+                </div>
+              </div>
+
+              <a
+                class="project-card__link"
+                href="/projects.html#luma-motion-studio"
+              >
+                <div class="project-card__visual">
+                  <video
+                    class="project-card__video"
+                    data-project-video
+                    data-video-src="/src/assets/videos/design.webm"
+                    muted
+                    loop
+                    playsinline
+                    preload="none"
+                    aria-hidden="true"
+                  ></video>
+                </div>
+              </a>
+
+              <button
+                class="project-card__toggle"
+                type="button"
+                aria-expanded="false"
+                aria-controls="luma-motion-studio-details"
+              >
+                <span>View details</span>
+              </button>
+
+              <div
+                class="project-card__details"
+                id="luma-motion-studio-details"
+                data-project-details
+                aria-hidden="true"
+              >
+                <div class="project-card__details-inner">
+                  <div class="project-card__facts">
+                    <div class="project-card__fact">
+                      <span>Year</span>
+                      <strong>2026</strong>
+                    </div>
+                    <div class="project-card__fact">
+                      <span>Industry</span>
+                      <strong>Motion Design Studio</strong>
+                    </div>
+                  </div>
+
+                  <p class="project-card__description">
+                    A complete motion identity for a creative studio — from
+                    kinetic logo and brand film to a flexible motion system for
+                    social media. Every piece designed to feel like part of one
+                    cohesive visual language.
+                  </p>
+
+                  <div class="project-card__notes">
+                    <span class="project-card__note">Kinetic typography</span>
+                    <span class="project-card__note"
+                      >Cohesive motion system</span
+                    >
+                    <span class="project-card__note"
+                      >Social-ready templates</span
+                    >
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <article class="project-card" id="axon-3d-branding">
+              <div class="project-card__top">
+                <div class="project-card__title-wrap">
+                  <a
+                    class="project-card__link"
+                    href="/projects.html#axon-3d-branding"
+                  >
+                    <h3 class="project-card__title">Axon 3D Branding</h3>
+                  </a>
+                  <div class="project-card__meta">
+                    <span>3D Motion / Creative Development</span>
+                  </div>
+                </div>
+              </div>
+
+              <a
+                class="project-card__link"
+                href="/projects.html#axon-3d-branding"
+              >
+                <div class="project-card__visual">
+                  <video
+                    class="project-card__video"
+                    data-project-video
+                    data-video-src="/src/assets/videos/process.mp4"
+                    muted
+                    loop
+                    playsinline
+                    preload="none"
+                    aria-hidden="true"
+                  ></video>
+                </div>
+              </a>
+
+              <button
+                class="project-card__toggle"
+                type="button"
+                aria-expanded="false"
+                aria-controls="axon-3d-branding-details"
+              >
+                <span>View details</span>
+              </button>
+
+              <div
+                class="project-card__details"
+                id="axon-3d-branding-details"
+                data-project-details
+                aria-hidden="true"
+              >
+                <div class="project-card__details-inner">
+                  <div class="project-card__facts">
+                    <div class="project-card__fact">
+                      <span>Year</span>
+                      <strong>2025</strong>
+                    </div>
+                    <div class="project-card__fact">
+                      <span>Industry</span>
+                      <strong>Tech / Web3</strong>
+                    </div>
+                  </div>
+
+                  <p class="project-card__description">
+                    Immersive 3D branding system for a decentralized protocol.
+                    Real-time WebGL hero, generative blob animations, and a
+                    scroll-driven narrative — all performant at 60fps on mobile.
+                  </p>
+
+                  <div class="project-card__notes">
+                    <span class="project-card__note">Three.js / WebGL</span>
+                    <span class="project-card__note">GSAP ScrollTrigger</span>
+                    <span class="project-card__note">Generative Shaders</span>
+                  </div>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <div class="projects__actions">
+            <a class="btn btn--sm" href="/projects.html">View all projects</a>
           </div>
         </div>
       </section>
@@ -858,20 +1153,7 @@
             </div>
 
             <div class="faq__right">
-              <div class="faq__visual">
-                <div class="faq__visual-content">
-                  <img
-                    src="src/assets/images/faq/faqSlogan.svg"
-                    alt=""
-                    loading="lazy"
-                  />
-                  <img
-                    src="src/assets/images/faq/faqLogo.svg"
-                    alt=""
-                    loading="lazy"
-                  />
-                </div>
-              </div>
+              <div class="faq__visual"></div>
             </div>
           </div>
         </div>
