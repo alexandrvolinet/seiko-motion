@@ -38,44 +38,43 @@ export function initProjectCards() {
 
 export function animateProjectCards() {
   const grid = document.querySelector(".projects__grid");
-  const cards = grid ? Array.from(grid.querySelectorAll(".project-card")) : [];
+  const cards = grid
+    ? Array.from(grid.querySelectorAll(".project-card"))
+    : [];
+
   if (!cards.length) return;
 
-  const isStacked = window.matchMedia("(max-width: 991px)").matches;
+  gsap.set(cards, {
+    opacity: 0,
+    y: 50,
+  });
 
-  if (isStacked) {
-    cards.forEach((card, index) => {
-      ScrollTrigger.create({
-        trigger: card,
-        start: "top 85%",
-        toggleActions: "play none none none",
-        once: true,
-        onEnter: () => {
-          gsap.to(card, {
-            opacity: 1,
-            y: 0,
-            duration: 0.9,
-            ease: "power2.out",
-            delay: index * 0.15,
-          });
-        },
-      });
-    });
-  } else {
+  cards.forEach((card) => {
+    const toggle = card.querySelector(".project-card__toggle");
+    
     ScrollTrigger.create({
-      trigger: grid,
-      start: "top 75%",
-      toggleActions: "play none none none",
+      trigger: card,
+      start: "top 85%",
       once: true,
+
       onEnter: () => {
-        gsap.to(cards, {
+        gsap.to(card, {
           opacity: 1,
           y: 0,
           duration: 0.9,
           ease: "power2.out",
-          stagger: 0.15,
         });
+
+        if (toggle) {
+          gsap.to(toggle, {
+            opacity: 1,
+            y: 0,
+            duration: 0.7,
+            ease: "power2.out",
+            delay: 0.3,
+          });
+        }
       },
     });
-  }
+  });
 }
