@@ -4,8 +4,8 @@ import { animateHeader, initMobileMenu, pinHeader } from "./gsap/header.js";
 import { heroTitle, heroCTA, initHeroExpand } from "./gsap/hero.js";
 import { arc } from "./gsap/hero.js";
 import { initContactModal } from "./gsap/contactModal.js";
-import { initShowcaseExpand } from "./gsap/showcase.js";
-import { initProjectCards } from "./gsap/projects.js";
+import { initShowcaseExpand } from "./gsap/showcaseExpand.js";
+import { initProjectCards } from "./gsap/projectCards.js";
 
 let isCriticalStarted = false;
 let isDeferredStarted = false;
@@ -14,6 +14,9 @@ let deferredModulesPromise;
 let resizeRefreshTimeout = null;
 let lastResizeScrollX = 0;
 let lastResizeScrollY = 0;
+let designStarted = false;
+let designCleanup = null;
+let designObserver = null;
 
 function refreshScrollTriggersOnResize() {
   lastResizeScrollX = window.scrollX || window.pageXOffset || 0;
@@ -113,7 +116,6 @@ function loadDeferredModules() {
     import("./gsap/stats.js"),
     import("./gsap/showcase.js"),
     import("./gsap/servicesV2.js"),
-    import("./gsap/design.js"),
     import("./gsap/footer.js"),
     import("./gsap/process.js"),
     import("./gsap/faq.js"),
@@ -145,7 +147,6 @@ async function startDeferredExperience() {
     statsModule,
     showcaseModule,
     servicesModule,
-    designModule,
     footerModule,
     processModule,
     faqModule,
@@ -157,7 +158,6 @@ async function startDeferredExperience() {
   faqModule.animateFaq();
   pageModule.revealSections();
   pageModule.animateBackgroundDots();
-  designModule.animateDesign();
   servicesModule.animateServicesV2();
   showcaseModule.showcaseUp();
   statsModule.animateStats();
@@ -170,12 +170,38 @@ async function startDeferredExperience() {
   projectsModule.animateProjectCards();
 }
 
+function lazyLoadDesign() {
+  const section = document.querySelector("#design");
+  if (!section) return;
+
+  const startDesign = async () => {
+    if (designStarted) return;
+    designStarted = true;
+    designObserver?.disconnect();
+    designObserver = null;
+    const designModule = await import("./gsap/design.js");
+    designCleanup = await designModule.animateDesign();
+  };
+
+  if (!("IntersectionObserver" in window)) {
+    startDesign();
+    return;
+  }
+
+  designObserver = new IntersectionObserver(
+    ([entry]) => { if (entry.isIntersecting) startDesign(); },
+    { rootMargin: "250px 0px", threshold: 0.01 },
+  );
+  designObserver.observe(section);
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   pinHeader();
   initMobileMenu();
   initContactModal();
   initShowcaseExpand();
   initHeroExpand();
+  lazyLoadDesign();
 
   window.addEventListener("resize", refreshScrollTriggersOnResize, { passive: true });
   window.visualViewport?.addEventListener("resize", refreshScrollTriggersOnResize, { passive: true });
@@ -184,4 +210,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
 window.addEventListener("load", () => {
   criticalReadyPromise.finally(startDeferredExperience);
+});
+
+window.addEventListener("pagehide", (event) => {
+  if (event.persisted) return;
+  designObserver?.disconnect();
+  designObserver = null;
+  designCleanup?.();
+  designCleanup = null;
 });

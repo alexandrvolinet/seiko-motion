@@ -17,8 +17,10 @@
     />
     <meta name="author" content="Seiko Motion Studio" />
     <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://seikomotion.com/" />
 
     <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Seiko Motion Studio" />
     <meta property="og:url" content="https://seikomotion.com/" />
     <meta
       property="og:title"
@@ -30,18 +32,18 @@
     />
     <meta property="og:image" content="https://seikomotion.com/og-image.jpg" />
 
-    <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content="https://seikomotion.com/" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://seikomotion.com/" />
     <meta
-      property="twitter:title"
+      name="twitter:title"
       content="Seiko Motion Studio | Motion Graphics & Visual Design Agency"
     />
     <meta
-      property="twitter:description"
+      name="twitter:description"
       content="We blend design, rhythm, and storytelling to bring brands to life through captivating motion graphics and visuals that stay in mind."
     />
     <meta
-      property="twitter:image"
+      name="twitter:image"
       content="https://seikomotion.com/og-image.jpg"
     />
 
@@ -52,21 +54,27 @@
     <link rel="icon" href="/favicon.ico" sizes="any" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
     <meta name="theme-color" content="#000000" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <link
+      rel="preload"
       href="src/assets/fonts/azonix/Azonix.woff2"
       as="font"
       type="font/woff2"
       crossorigin
     />
+    <script type="application/ld+json">
+      {"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://seikomotion.com/#organization","name":"Seiko Motion Studio","url":"https://seikomotion.com/","logo":"https://seikomotion.com/apple-touch-icon.png","email":"hello@seikomotion.com","sameAs":["https://instagram.com/seikomotion","https://tiktok.com/@seikomotion","https://linkedin.com/company/seikomotion"]},{"@type":"WebSite","@id":"https://seikomotion.com/#website","url":"https://seikomotion.com/","name":"Seiko Motion Studio","publisher":{"@id":"https://seikomotion.com/#organization"}}]}
+    </script>
   </head>
   <body>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
 
     <!-- // service arrow -->
-    <svg xmlns="http://www.w3.org/2000/svg" style="display: none">
+    <svg xmlns="http://www.w3.org/2000/svg" style="display: none" aria-hidden="true">
       <defs>
         <filter
           id="filter0_f_2_7"
@@ -113,7 +121,7 @@
               />
             </a>
 
-            <nav class="header__nav">
+            <nav class="header__nav" aria-label="Primary navigation">
               <a href="#hero">Home</a>
               <a href="#design">About</a>
               <a href="#portfolio">Projects</a>
@@ -122,11 +130,9 @@
 
           <div class="header__right">
             <a href="#services" class="header__link">Services</a>
-            <a href="#contact"
-              ><button class="btn btn--sm">Contact us</button></a
-            >
+            <a href="#contact-us" class="btn btn--sm">Contact us</a>
 
-            <button class="burger" aria-label="Open menu">
+            <button class="burger" type="button" aria-label="Open menu" aria-controls="mobile-menu" aria-expanded="false">
               <span></span>
               <span></span>
               <span></span>
@@ -135,10 +141,10 @@
         </div>
       </div>
 
-      <div class="mobile-menu" hidden>
+      <div class="mobile-menu" id="mobile-menu" aria-label="Mobile navigation" hidden>
         <button class="mobile-menu__close" aria-label="Close menu"></button>
 
-        <nav class="mobile-menu__nav">
+        <nav class="mobile-menu__nav" aria-label="Mobile navigation">
           <a href="#hero">Home</a>
           <a href="#design">About</a>
           <a href="#portfolio">Projects</a>
@@ -147,7 +153,7 @@
       </div>
     </header>
 
-    <div class="loader">
+    <div class="loader" aria-hidden="true">
       <i></i>
       <i></i>
       <i></i>
@@ -160,9 +166,9 @@
       <i></i>
     </div>
 
-    <div class="space-bg"></div>
+    <div class="space-bg" aria-hidden="true"></div>
 
-    <main>
+    <main id="main-content">
       <section id="hero" class="home">
         <svg
           class="arc"
@@ -261,7 +267,7 @@
                 websites for digital-first companies.
               </span>
 
-              <span class="home__subtitle-expand">
+              <span class="home__subtitle-expand" id="hero-summary-more">
                 <span>
                   <br />
                   <br />
@@ -276,6 +282,7 @@
                 class="home__subtitle-toggle"
                 type="button"
                 aria-expanded="false"
+                aria-controls="hero-summary-more"
               >
                 <span>Show more</span>
                 <span class="home__subtitle-arrow" aria-hidden="true">
@@ -284,9 +291,7 @@
               </button>
             </p>
 
-            <a href="#contact-us">
-              <button class="home__btn btn">Contact us</button>
-            </a>
+            <a class="home__btn btn" href="#contact-us">Contact us</a>
           </div>
         </div>
       </section>
@@ -343,7 +348,7 @@
 
             <div class="design__right">
               <div class="design__visual">
-                <div id="canvas-container"></div>
+                <div id="canvas-container" aria-hidden="true"></div>
               </div>
             </div>
           </div>
@@ -623,14 +628,14 @@
           </div>
 
           <div class="projects__grid">
-            <article class="project-card" id="luma-motion-studio">
+            <article class="project-card" id="luma-motion-studio-identity">
               <div class="project-card__top">
                 <div class="project-card__title-wrap">
                   <a
                     class="project-card__link"
                     href="/projects.html#luma-motion-studio"
                   >
-                    <h3 class="project-card__title">Luma Motion Studio</h3>
+                    <h3 class="project-card__title">Luma Motion Identity</h3>
                   </a>
                   <div class="project-card__meta">
                     <span>Motion Design / Brand Animation</span>
@@ -660,14 +665,14 @@
                 class="project-card__toggle"
                 type="button"
                 aria-expanded="false"
-                aria-controls="luma-motion-studio-details"
+                aria-controls="luma-motion-studio-identity-details"
               >
                 <span>View details</span>
               </button>
 
               <div
                 class="project-card__details"
-                id="luma-motion-studio-details"
+                id="luma-motion-studio-identity-details"
                 data-project-details
                 aria-hidden="true"
               >
@@ -703,14 +708,14 @@
               </div>
             </article>
 
-            <article class="project-card" id="axon-3d-branding">
+            <article class="project-card" id="axon-3d-brand-world">
               <div class="project-card__top">
                 <div class="project-card__title-wrap">
                   <a
                     class="project-card__link"
                     href="/projects.html#axon-3d-branding"
                   >
-                    <h3 class="project-card__title">Axon 3D Branding</h3>
+                    <h3 class="project-card__title">Axon 3D Brand World</h3>
                   </a>
                   <div class="project-card__meta">
                     <span>3D Motion / Creative Development</span>
@@ -740,14 +745,14 @@
                 class="project-card__toggle"
                 type="button"
                 aria-expanded="false"
-                aria-controls="axon-3d-branding-details"
+                aria-controls="axon-3d-brand-world-details"
               >
                 <span>View details</span>
               </button>
 
               <div
                 class="project-card__details"
-                id="axon-3d-branding-details"
+                id="axon-3d-brand-world-details"
                 data-project-details
                 aria-hidden="true"
               >
@@ -778,17 +783,17 @@
               </div>
             </article>
 
-            <article class="project-card" id="luma-motion-studio">
+            <article class="project-card" id="pulse-launch-campaign">
               <div class="project-card__top">
                 <div class="project-card__title-wrap">
                   <a
                     class="project-card__link"
                     href="/projects.html#luma-motion-studio"
                   >
-                    <h3 class="project-card__title">Luma Motion Studio</h3>
+                    <h3 class="project-card__title">Pulse Launch Campaign</h3>
                   </a>
                   <div class="project-card__meta">
-                    <span>Motion Design / Brand Animation</span>
+                    <span>Motion Design / Product Launch</span>
                   </div>
                 </div>
               </div>
@@ -815,14 +820,14 @@
                 class="project-card__toggle"
                 type="button"
                 aria-expanded="false"
-                aria-controls="luma-motion-studio-details"
+                aria-controls="pulse-launch-campaign-details"
               >
                 <span>View details</span>
               </button>
 
               <div
                 class="project-card__details"
-                id="luma-motion-studio-details"
+                id="pulse-launch-campaign-details"
                 data-project-details
                 aria-hidden="true"
               >
@@ -834,41 +839,40 @@
                     </div>
                     <div class="project-card__fact">
                       <span>Industry</span>
-                      <strong>Motion Design Studio</strong>
+                      <strong>Consumer Technology</strong>
                     </div>
                   </div>
 
                   <p class="project-card__description">
-                    A complete motion identity for a creative studio — from
-                    kinetic logo and brand film to a flexible motion system for
-                    social media. Every piece designed to feel like part of one
-                    cohesive visual language.
+                    A high-energy product launch system that combines a hero
+                    film, product loops, and paid-social cutdowns into one
+                    adaptable motion language for every campaign touchpoint.
                   </p>
 
                   <div class="project-card__notes">
-                    <span class="project-card__note">Kinetic typography</span>
+                    <span class="project-card__note">Launch film</span>
                     <span class="project-card__note"
-                      >Cohesive motion system</span
+                      >Product animation</span
                     >
                     <span class="project-card__note"
-                      >Social-ready templates</span
+                      >Social cutdowns</span
                     >
                   </div>
                 </div>
               </div>
             </article>
 
-            <article class="project-card" id="axon-3d-branding">
+            <article class="project-card" id="signal-motion-toolkit">
               <div class="project-card__top">
                 <div class="project-card__title-wrap">
                   <a
                     class="project-card__link"
                     href="/projects.html#axon-3d-branding"
                   >
-                    <h3 class="project-card__title">Axon 3D Branding</h3>
+                    <h3 class="project-card__title">Signal Motion Toolkit</h3>
                   </a>
                   <div class="project-card__meta">
-                    <span>3D Motion / Creative Development</span>
+                    <span>Motion Design / Social Campaign</span>
                   </div>
                 </div>
               </div>
@@ -895,14 +899,14 @@
                 class="project-card__toggle"
                 type="button"
                 aria-expanded="false"
-                aria-controls="axon-3d-branding-details"
+                aria-controls="signal-motion-toolkit-details"
               >
                 <span>View details</span>
               </button>
 
               <div
                 class="project-card__details"
-                id="axon-3d-branding-details"
+                id="signal-motion-toolkit-details"
                 data-project-details
                 aria-hidden="true"
               >
@@ -914,20 +918,21 @@
                     </div>
                     <div class="project-card__fact">
                       <span>Industry</span>
-                      <strong>Tech / Web3</strong>
+                      <strong>Music &amp; Culture</strong>
                     </div>
                   </div>
 
                   <p class="project-card__description">
-                    Immersive 3D branding system for a decentralized protocol.
-                    Real-time WebGL hero, generative blob animations, and a
-                    scroll-driven narrative — all performant at 60fps on mobile.
+                    A flexible library of animated type, transitions, and
+                    looping artwork for a culture-led social campaign. The
+                    system keeps daily content recognisable without feeling
+                    repetitive.
                   </p>
 
                   <div class="project-card__notes">
-                    <span class="project-card__note">Three.js / WebGL</span>
-                    <span class="project-card__note">GSAP ScrollTrigger</span>
-                    <span class="project-card__note">Generative Shaders</span>
+                    <span class="project-card__note">Animated type</span>
+                    <span class="project-card__note">Social templates</span>
+                    <span class="project-card__note">Looping artwork</span>
                   </div>
                 </div>
               </div>
@@ -1046,6 +1051,7 @@
                 ></video>
                 <button
                   class="process__control is-paused"
+                  type="button"
                   aria-label="Play video"
                   aria-pressed="false"
                 >
@@ -1226,7 +1232,7 @@
             </div>
 
             <div class="contact-us__card contact-us__card--contacts">
-              <div class="contact-us__options" aria-label="Contact options">
+              <nav class="contact-us__options" aria-label="Contact options">
                 <a
                   class="contact-us__option"
                   href="mailto:hello@seikomotion.com"
@@ -1252,7 +1258,7 @@
                   <span>TikTok</span>
                   <strong>@seikomotion</strong>
                 </a>
-              </div>
+              </nav>
 
               <button
                 class="btn btn--sm contact-us__cta"
@@ -1366,10 +1372,13 @@
               <span
                 >Seiko Motion Design — visuals that move your brand forward.
               </span>
+              <label class="sr-only" for="footerEmailInput">Your email address</label>
               <input
                 type="email"
                 placeholder="Enter Your Email"
                 id="footerEmailInput"
+                name="footer-email"
+                autocomplete="email"
               />
               <button
                 class="btn btn--sm"
@@ -1384,23 +1393,23 @@
       </div>
     </footer>
 
-    <div class="contact-modal" id="contactModal" hidden>
-      <div class="contact-modal__overlay"></div>
-      <div class="contact-modal__content">
+    <div class="contact-modal" id="contactModal" role="dialog" aria-modal="true" aria-labelledby="contactModalTitle" hidden>
+      <div class="contact-modal__overlay" aria-hidden="true"></div>
+      <div class="contact-modal__content" tabindex="-1">
         <button class="contact-modal__close" aria-label="Close modal"></button>
-        <h2 class="contact-modal__title">Let's Talk</h2>
+        <h2 class="contact-modal__title" id="contactModalTitle">Let's Talk</h2>
         <form class="contact-modal__form" id="contactForm">
           <label class="contact-modal__field">
             <span>Email</span>
-            <input type="email" id="modalEmail" required />
+            <input type="email" id="modalEmail" name="email" autocomplete="email" required />
           </label>
           <label class="contact-modal__field">
             <span>Name</span>
-            <input type="text" id="modalName" required />
+            <input type="text" id="modalName" name="name" autocomplete="name" required />
           </label>
           <label class="contact-modal__field">
             <span>Message</span>
-            <textarea id="modalMessage" rows="4" required></textarea>
+            <textarea id="modalMessage" name="message" rows="4" required></textarea>
           </label>
           <button type="submit" class="btn btn--sm">Send</button>
         </form>

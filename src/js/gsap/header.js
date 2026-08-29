@@ -78,12 +78,14 @@ export function initMobileMenu() {
   if (!burger || !mobileMenu || !closeBtn) return;
 
   const menuLinks = mobileMenu.querySelectorAll("a");
+  let closeAnimation = null;
 
   const resetMenu = () => {
     burger.classList.remove("is-active");
     mobileMenu.classList.remove("is-open");
     document.body.classList.remove("menu-open");
     mobileMenu.hidden = true;
+    burger.setAttribute("aria-expanded", "false");
     gsap.set(menuLinks, { x: -100, opacity: 0 });
   };
 
@@ -92,22 +94,29 @@ export function initMobileMenu() {
     burger.classList.add("is-active");
     mobileMenu.classList.add("is-open");
     document.body.classList.add("menu-open");
+    burger.setAttribute("aria-expanded", "true");
 
     gsap.fromTo(
       menuLinks,
       { x: -100, opacity: 0 },
       { x: 0, opacity: 1, duration: 0.5, stagger: 0.15, ease: "power2.out" },
     );
+    window.requestAnimationFrame(() => closeBtn.focus());
   };
 
-  const closeMenu = () => {
-    gsap.to(menuLinks, {
+  const closeMenu = ({ returnFocus = true } = {}) => {
+    if (mobileMenu.hidden || closeAnimation) return;
+    closeAnimation = gsap.to(menuLinks, {
       x: 100,
       opacity: 0,
       duration: 0.3,
       stagger: 0.1,
       ease: "power2.in",
-      onComplete: resetMenu,
+      onComplete: () => {
+        closeAnimation = null;
+        resetMenu();
+        if (returnFocus) burger.focus();
+      },
     });
   };
 
@@ -115,11 +124,17 @@ export function initMobileMenu() {
 
   burger.addEventListener("click", openMenu);
   menuLinks.forEach((link) => {
-    link.addEventListener("click", closeMenu);
+    link.addEventListener("click", () => closeMenu({ returnFocus: false }));
   });
   closeBtn.addEventListener("click", closeMenu);
   mobileMenu.addEventListener("click", (e) => {
     if (e.target === mobileMenu) {
+      closeMenu();
+    }
+  });
+  document.addEventListener("keydown", (event) => {
+    if (!mobileMenu.hidden && event.key === "Escape") {
+      event.preventDefault();
       closeMenu();
     }
   });

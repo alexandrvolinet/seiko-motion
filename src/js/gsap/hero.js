@@ -30,6 +30,7 @@ export function initHeroExpand() {
   const syncToggleState = (isOpen) => {
     toggle.classList.toggle("is-open", isOpen);
     toggle.setAttribute("aria-expanded", String(isOpen));
+    expand.setAttribute("aria-hidden", String(!isOpen));
 
     if (label) {
       label.textContent = isOpen ? expandedLabel : collapsedLabel;

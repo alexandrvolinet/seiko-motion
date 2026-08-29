@@ -42,10 +42,17 @@ export function initFaqAccordion() {
   const items = document.querySelectorAll(".faq__item");
   if (!items.length) return;
 
+  const setExpanded = (item, isOpen) => {
+    const answer = item.querySelector(".faq__answer");
+    item.classList.toggle("is-open", isOpen);
+    item.setAttribute("aria-expanded", String(isOpen));
+    answer?.setAttribute("aria-hidden", String(!isOpen));
+  };
+
   const closeOtherFaqItems = (currentItem) => {
     items.forEach((item) => {
       if (item !== currentItem && item.classList.contains("is-open")) {
-        item.classList.remove("is-open");
+        setExpanded(item, false);
         animateAnswer(item, "out");
       }
     });
@@ -85,25 +92,37 @@ export function initFaqAccordion() {
     }
   };
 
-  items.forEach((item) => {
+  items.forEach((item, index) => {
     const answer = item.querySelector(".faq__answer");
+    if (!answer) return;
+    answer.id ||= `faq-answer-${index + 1}`;
+    item.setAttribute("role", "button");
+    item.setAttribute("tabindex", "0");
+    item.setAttribute("aria-controls", answer.id);
+    setExpanded(item, item.classList.contains("is-open"));
 
-    item.addEventListener("click", (e) => {
-      e.preventDefault();
+    const toggleAnswer = () => {
       const isOpen = item.classList.contains("is-open");
 
       if (isOpen) {
-        item.classList.remove("is-open");
+        setExpanded(item, false);
         animateAnswer(item, "out");
       } else {
         closeOtherFaqItems(item);
-        item.classList.add("is-open");
+        setExpanded(item, true);
         animateAnswer(item, "in");
+      }
+    };
+    item.addEventListener("click", toggleAnswer);
+    item.addEventListener("keydown", (event) => {
+      if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        toggleAnswer();
       }
     });
 
     if (item.classList.contains("is-open")) {
-      item.classList.add("is-open");
+      setExpanded(item, true);
 
       if (answer) {
         answer.style.height = "";

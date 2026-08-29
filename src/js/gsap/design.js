@@ -1,16 +1,16 @@
-import * as THREE from "three";
 import { gsap } from "./config.js";
 
-export function animateDesign() {
+export async function animateDesign() {
+  const THREE = await import("three");
   const cleanups = [];
-  const planetCleanup = initCosmicPlanet("canvas-container");
+  const planetCleanup = initCosmicPlanet("canvas-container", THREE);
   if (planetCleanup) cleanups.push(planetCleanup);
   const revealCleanup = animateDesignReveal();
   if (revealCleanup) cleanups.push(revealCleanup);
   return () => cleanups.forEach((fn) => fn());
 }
 
-export function initCosmicPlanet(containerId) {
+export function initCosmicPlanet(containerId, THREE) {
   const container = document.getElementById(containerId);
   if (!container) return;
 
@@ -219,6 +219,7 @@ export function initCosmicPlanet(containerId) {
   // --- Animation loop (paused until in view) ---
   let frameId;
   let isActive = false;
+  let isInViewport = false;
   let isRevealed = false;
   const rotateSpeedY = 0.003;
 
@@ -360,14 +361,18 @@ export function initCosmicPlanet(containerId) {
     });
   };
 
+  const syncAnimationState = () => {
+    if (isInViewport && !document.hidden) startAnim();
+    else stopAnim();
+  };
+
   const visibilityObserver = new IntersectionObserver(
     ([entry]) => {
-      if (entry.isIntersecting) {
-        startAnim();
+      isInViewport = entry.isIntersecting;
+      if (isInViewport) {
         revealRenderer();
-      } else {
-        stopAnim();
       }
+      syncAnimationState();
     },
     {
       threshold: 0.35,
@@ -380,9 +385,12 @@ export function initCosmicPlanet(containerId) {
   // If already in view on load, start immediately
   const rect = section.getBoundingClientRect();
   if (rect.top < window.innerHeight * 0.45 && rect.bottom > 0) {
-    startAnim();
+    isInViewport = true;
+    syncAnimationState();
     revealRenderer();
   }
+
+  const handleVisibilityChange = () => syncAnimationState();
 
   const handleResize = () => {
     if (!container) return;
@@ -406,6 +414,7 @@ export function initCosmicPlanet(containerId) {
 
   window.addEventListener("resize", scheduleResize, { passive: true });
   window.visualViewport?.addEventListener("resize", scheduleResize, { passive: true });
+  document.addEventListener("visibilitychange", handleVisibilityChange);
 
   return () => {
     isActive = false;
@@ -414,11 +423,21 @@ export function initCosmicPlanet(containerId) {
     visibilityObserver.disconnect();
     window.removeEventListener("resize", scheduleResize);
     window.visualViewport?.removeEventListener("resize", scheduleResize);
+    document.removeEventListener("visibilitychange", handleVisibilityChange);
     if (renderer.domElement && container.contains(renderer.domElement)) {
       renderer.domElement.removeEventListener("mousemove", handleMouseMove);
       renderer.domElement.removeEventListener("mouseleave", handleMouseLeave);
       container.removeChild(renderer.domElement);
     }
+    scene.traverse((object) => {
+      object.geometry?.dispose?.();
+      const materials = Array.isArray(object.material) ? object.material : [object.material];
+      materials.forEach((material) => material?.dispose?.());
+    });
+    particleTexture.dispose();
+    renderer.renderLists.dispose();
+    renderer.dispose();
+    renderer.forceContextLoss();
   };
 
   function createCircularParticleTexture() {
