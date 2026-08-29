@@ -42,8 +42,7 @@ export function initCosmicPlanet(containerId, THREE) {
   // --- Particles Configuration ---
   const planetCount = 2500;
   const ringCount = 1200;
-  const starCount = 0;
-  const totalParticles = planetCount + ringCount + starCount;
+  const totalParticles = planetCount + ringCount;
 
   const positions = new Float32Array(totalParticles * 3);
   const colors = new Float32Array(totalParticles * 3);
@@ -105,23 +104,6 @@ export function initCosmicPlanet(containerId, THREE) {
       g = tempColor.g;
       b = tempColor.b;
       particleSize = Math.random() * 1.8 + 0.5;
-
-    } else {
-      // 3. Ambient surrounding stardust field
-      const starIndex = i - (planetCount + ringCount);
-      const rStar = 9.0 + Math.random() * 6.0;
-      const phi = Math.acos(-1 + (2 * starIndex) / starCount);
-      const theta = Math.sqrt(starCount * Math.PI) * phi;
-
-      x = rStar * Math.sin(phi) * Math.cos(theta);
-      y = rStar * Math.sin(phi) * Math.sin(theta);
-      z = rStar * Math.cos(phi);
-
-      tempColor.copy(nebulaColors.accent).multiplyScalar(0.7);
-      r = tempColor.r;
-      g = tempColor.g;
-      b = tempColor.b;
-      particleSize = Math.random() * 1.0 + 0.5;
     }
 
     positions[i * 3] = x;
@@ -416,7 +398,7 @@ export function initCosmicPlanet(containerId, THREE) {
   window.visualViewport?.addEventListener("resize", scheduleResize, { passive: true });
   document.addEventListener("visibilitychange", handleVisibilityChange);
 
-  return () => {
+return () => {
     isActive = false;
     if (frameId) cancelAnimationFrame(frameId);
     if (resizeFrame) cancelAnimationFrame(resizeFrame);
@@ -424,11 +406,13 @@ export function initCosmicPlanet(containerId, THREE) {
     window.removeEventListener("resize", scheduleResize);
     window.visualViewport?.removeEventListener("resize", scheduleResize);
     document.removeEventListener("visibilitychange", handleVisibilityChange);
+    
     if (renderer.domElement && container.contains(renderer.domElement)) {
       renderer.domElement.removeEventListener("mousemove", handleMouseMove);
       renderer.domElement.removeEventListener("mouseleave", handleMouseLeave);
       container.removeChild(renderer.domElement);
     }
+    
     scene.traverse((object) => {
       object.geometry?.dispose?.();
       const materials = Array.isArray(object.material) ? object.material : [object.material];

@@ -168,6 +168,8 @@ async function startDeferredExperience() {
   contactModule.animateContactCards();
   projectsModule.initProjectCards();
   projectsModule.animateProjectCards();
+
+  ScrollTrigger.refresh();
 }
 
 function lazyLoadDesign() {
