@@ -6,6 +6,7 @@ import { arc } from "./gsap/hero.js";
 import { initContactModal } from "./gsap/contactModal.js";
 import { initShowcaseExpand } from "./gsap/showcaseExpand.js";
 import { initProjectCards } from "./gsap/projectCards.js";
+import { initCursor } from "./gsap/cursor.js";
 
 let isCriticalStarted = false;
 let isDeferredStarted = false;
@@ -203,6 +204,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initContactModal();
   initShowcaseExpand();
   initHeroExpand();
+  initCursor();
   lazyLoadDesign();
 
   window.addEventListener("resize", refreshScrollTriggersOnResize, { passive: true });

@@ -1,5 +1,6 @@
 import { gsap } from "./config.js";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { createResponsiveReveal } from "./responsiveReveal.js";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -51,7 +52,7 @@ export function animateProjectCards() {
 
   cards.forEach((card) => {
     const toggle = card.querySelector(".project-card__toggle");
-    
+
     ScrollTrigger.create({
       trigger: card,
       start: "top 85%",
@@ -74,7 +75,21 @@ export function animateProjectCards() {
             delay: 0.3,
           });
         }
+
+        // Enable the toggle button when card enters viewport
+        enableCardToggle(card);
       },
     });
   });
+
+  // Animate "View all projects" button
+  const viewAllBtn = document.querySelector(".projects__view-all");
+  if (viewAllBtn) {
+    createResponsiveReveal({
+      scope: viewAllBtn,
+      items: [viewAllBtn],
+      stackedStart: "top 90%",
+      desktopStart: "top 85%",
+    });
+  }
 }

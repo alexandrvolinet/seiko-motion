@@ -42,10 +42,7 @@
       name="twitter:description"
       content="We blend design, rhythm, and storytelling to bring brands to life through captivating motion graphics and visuals that stay in mind."
     />
-    <meta
-      name="twitter:image"
-      content="https://seikomotion.com/og-image.jpg"
-    />
+    <meta name="twitter:image" content="https://seikomotion.com/og-image.jpg" />
 
     <script>
       document.documentElement.classList.add("is-loading");
@@ -67,14 +64,58 @@
       crossorigin
     />
     <script type="application/ld+json">
-      {"@context":"https://schema.org","@graph":[{"@type":"Organization","@id":"https://seikomotion.com/#organization","name":"Seiko Motion Studio","url":"https://seikomotion.com/","logo":"https://seikomotion.com/apple-touch-icon.png","email":"hello@seikomotion.com","sameAs":["https://instagram.com/seikomotion","https://tiktok.com/@seikomotion","https://linkedin.com/company/seikomotion"]},{"@type":"WebSite","@id":"https://seikomotion.com/#website","url":"https://seikomotion.com/","name":"Seiko Motion Studio","publisher":{"@id":"https://seikomotion.com/#organization"}}]}
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "Organization",
+            "@id": "https://seikomotion.com/#organization",
+            "name": "Seiko Motion Studio",
+            "url": "https://seikomotion.com/",
+            "logo": "https://seikomotion.com/apple-touch-icon.png",
+            "email": "hello@seikomotion.com",
+            "sameAs": [
+              "https://instagram.com/seikomotion",
+              "https://tiktok.com/@seikomotion",
+              "https://linkedin.com/company/seikomotion"
+            ]
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://seikomotion.com/#website",
+            "url": "https://seikomotion.com/",
+            "name": "Seiko Motion Studio",
+            "publisher": { "@id": "https://seikomotion.com/#organization" }
+          }
+        ]
+      }
     </script>
+    <style>
+      canvas {
+        position: fixed;
+        inset: 0;
+        display: block;
+      }
+
+      #starfield {
+        z-index: 1;
+        pointer-events: none;
+      }
+      #fx-canvas {
+        z-index: 2;
+        pointer-events: none;
+      }
+    </style>
   </head>
   <body>
     <a class="skip-link" href="#main-content">Skip to main content</a>
 
     <!-- // service arrow -->
-    <svg xmlns="http://www.w3.org/2000/svg" style="display: none" aria-hidden="true">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      style="display: none"
+      aria-hidden="true"
+    >
       <defs>
         <filter
           id="filter0_f_2_7"
@@ -106,7 +147,8 @@
         />
       </symbol>
     </svg>
-
+    <canvas id="starfield"></canvas>
+    <canvas id="fx-canvas"></canvas>
 
     <header class="header">
       <div class="container">
@@ -132,7 +174,13 @@
             <a href="#services" class="header__link">Services</a>
             <a href="#contact-us" class="btn btn--sm">Contact us</a>
 
-            <button class="burger" type="button" aria-label="Open menu" aria-controls="mobile-menu" aria-expanded="false">
+            <button
+              class="burger"
+              type="button"
+              aria-label="Open menu"
+              aria-controls="mobile-menu"
+              aria-expanded="false"
+            >
               <span></span>
               <span></span>
               <span></span>
@@ -141,7 +189,12 @@
         </div>
       </div>
 
-      <div class="mobile-menu" id="mobile-menu" aria-label="Mobile navigation" hidden>
+      <div
+        class="mobile-menu"
+        id="mobile-menu"
+        aria-label="Mobile navigation"
+        hidden
+      >
         <button class="mobile-menu__close" aria-label="Close menu"></button>
 
         <nav class="mobile-menu__nav" aria-label="Mobile navigation">
@@ -851,12 +904,8 @@
 
                   <div class="project-card__notes">
                     <span class="project-card__note">Launch film</span>
-                    <span class="project-card__note"
-                      >Product animation</span
-                    >
-                    <span class="project-card__note"
-                      >Social cutdowns</span
-                    >
+                    <span class="project-card__note">Product animation</span>
+                    <span class="project-card__note">Social cutdowns</span>
                   </div>
                 </div>
               </div>
@@ -940,7 +989,7 @@
           </div>
 
           <div class="projects__actions">
-            <a class="btn btn--sm" href="/projects.html">View all projects</a>
+            <a class="btn btn--sm projects__view-all" href="/projects.html">View all projects</a>
           </div>
         </div>
       </section>
@@ -1372,7 +1421,9 @@
               <span
                 >Seiko Motion Design — visuals that move your brand forward.
               </span>
-              <label class="sr-only" for="footerEmailInput">Your email address</label>
+              <label class="sr-only" for="footerEmailInput"
+                >Your email address</label
+              >
               <input
                 type="email"
                 placeholder="Enter Your Email"
@@ -1393,7 +1444,14 @@
       </div>
     </footer>
 
-    <div class="contact-modal" id="contactModal" role="dialog" aria-modal="true" aria-labelledby="contactModalTitle" hidden>
+    <div
+      class="contact-modal"
+      id="contactModal"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="contactModalTitle"
+      hidden
+    >
       <div class="contact-modal__overlay" aria-hidden="true"></div>
       <div class="contact-modal__content" tabindex="-1">
         <button class="contact-modal__close" aria-label="Close modal"></button>
@@ -1401,15 +1459,32 @@
         <form class="contact-modal__form" id="contactForm">
           <label class="contact-modal__field">
             <span>Email</span>
-            <input type="email" id="modalEmail" name="email" autocomplete="email" required />
+            <input
+              type="email"
+              id="modalEmail"
+              name="email"
+              autocomplete="email"
+              required
+            />
           </label>
           <label class="contact-modal__field">
             <span>Name</span>
-            <input type="text" id="modalName" name="name" autocomplete="name" required />
+            <input
+              type="text"
+              id="modalName"
+              name="name"
+              autocomplete="name"
+              required
+            />
           </label>
           <label class="contact-modal__field">
             <span>Message</span>
-            <textarea id="modalMessage" name="message" rows="4" required></textarea>
+            <textarea
+              id="modalMessage"
+              name="message"
+              rows="4"
+              required
+            ></textarea>
           </label>
           <button type="submit" class="btn btn--sm">Send</button>
         </form>
@@ -1417,5 +1492,6 @@
     </div>
 
     <script type="module" src="/src/js/main.js"></script>
+
   </body>
 </html>
