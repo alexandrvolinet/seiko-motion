@@ -1,6 +1,7 @@
 import { gsap } from "./config.js";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { createResponsiveReveal } from "./responsiveReveal.js";
+import { initVideoAutoplay } from "./videoAutoplay.js";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -75,12 +76,12 @@ export function animateProjectCards() {
             delay: 0.3,
           });
         }
-
-        // Enable the toggle button when card enters viewport
-        enableCardToggle(card);
       },
     });
   });
+
+  // Initialize video autoplay with viewport detection
+  initVideoAutoplay();
 
   // Animate "View all projects" button
   const viewAllBtn = document.querySelector(".projects__view-all");

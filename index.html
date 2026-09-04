@@ -90,26 +90,8 @@
         ]
       }
     </script>
-    <style>
-      canvas {
-        position: fixed;
-        inset: 0;
-        display: block;
-      }
-
-      #starfield {
-        z-index: 1;
-        pointer-events: none;
-      }
-      #fx-canvas {
-        z-index: 2;
-        pointer-events: none;
-      }
-    </style>
   </head>
   <body>
-    <a class="skip-link" href="#main-content">Skip to main content</a>
-
     <!-- // service arrow -->
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -993,7 +975,9 @@
           </div>
 
           <div class="projects__actions">
-            <a class="btn btn--sm projects__view-all" href="/projects.html">View all projects</a>
+            <a class="btn btn--sm projects__view-all" href="/projects.html"
+              >View all projects</a
+            >
           </div>
         </div>
       </section>
@@ -1413,6 +1397,19 @@
                     loading="lazy"
                   />
                 </a>
+                <a
+                  href="https://youtube.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="circle"
+                >
+                  <img
+                    style="transform: scaleY(1)"
+                    src="src/assets/icons/footerYoutube.svg"
+                    alt="YouTube icon"
+                    loading="lazy"
+                  />
+                </a>
               </div>
               <p>
                 Seiko Motion Design is a creative studio focused on motion
@@ -1496,6 +1493,5 @@
     </div>
 
     <script type="module" src="/src/js/main.js"></script>
-
   </body>
 </html>

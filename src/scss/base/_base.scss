@@ -25,17 +25,10 @@ html.is-loading body {
   overflow: hidden;
 }
 
-html.is-loading body > header,
-html.is-loading body > main,
-html.is-loading body > footer {
+html.is-loading body>header,
+html.is-loading body>main,
+html.is-loading body>footer {
   visibility: hidden;
-}
-
-body > main,
-body > footer,
-body > .loader {
-  position: relative;
-  z-index: 1;
 }
 
 h1,
@@ -75,23 +68,11 @@ u {
   border: 0;
 }
 
-.skip-link {
-  position: fixed;
-  top: 12px;
-  left: 12px;
-  z-index: 200;
-  padding: 12px 16px;
-  border-radius: 8px;
-  background: var(--color-font);
-  color: var(--color-bg);
-  transform: translateY(-160%);
-  transition: transform 0.2s ease;
-
-  &:focus { transform: translateY(0); }
-}
-
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
+
+  *,
+  *::before,
+  *::after {
     scroll-behavior: auto !important;
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
@@ -143,4 +124,24 @@ u {
     font-size: 14px;
     line-height: 1.43;
   }
+}
+
+/* ================================
+   canvas
+================================ */
+
+canvas {
+  position: fixed;
+  inset: 0;
+  display: block;
+}
+
+#starfield {
+  z-index: 1;
+  pointer-events: none;
+}
+
+#fx-canvas {
+  z-index: 2;
+  pointer-events: none;
 }

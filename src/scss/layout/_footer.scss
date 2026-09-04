@@ -1,7 +1,7 @@
 @use "../abstracts/mixins";
 
 .footer {
-  margin-bottom: 90px;
+  padding-bottom: 90px;
 
   &__content {
     display: flex;

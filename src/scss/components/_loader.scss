@@ -19,8 +19,10 @@
 }
 
 .loader {
-  position: fixed;
-  inset: 0;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  width: 100vw;
   background: black;
   display: flex;
   align-items: center;
@@ -31,12 +33,13 @@
   &--hidden {
     opacity: 0;
     visibility: hidden;
+    display: none;
   }
 }
 
 i {
   display: block;
-  position: absolute;
+  position:absolute;
   width: 200px;
   height: 200px;
   border-radius: 140px;

@@ -3,10 +3,7 @@
   <head>
     <title>Projects | Seiko Motion Studio</title>
     <meta charset="UTF-8" />
-    <meta
-      name="title"
-      content="Projects | Seiko Motion Studio"
-    />
+    <meta name="title" content="Projects | Seiko Motion Studio" />
     <meta
       name="description"
       content="Selected work by Seiko Motion Studio: motion design, creative development, 3D visuals, and full-stack web builds."
@@ -36,10 +33,7 @@
       name="twitter:description"
       content="Selected work by Seiko Motion Studio: motion design, creative development, 3D visuals, and full-stack web builds."
     />
-    <meta
-      name="twitter:image"
-      content="https://seikomotion.com/og-image.jpg"
-    />
+    <meta name="twitter:image" content="https://seikomotion.com/og-image.jpg" />
 
     <script>
       document.documentElement.classList.add("is-loading");
@@ -52,12 +46,27 @@
     <meta name="theme-color" content="#000000" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script type="application/ld+json">
-      {"@context":"https://schema.org","@type":"CollectionPage","name":"Projects | Seiko Motion Studio","description":"Selected motion design, creative development, and 3D visual projects by Seiko Motion Studio.","url":"https://seikomotion.com/projects.html","isPartOf":{"@type":"WebSite","name":"Seiko Motion Studio","url":"https://seikomotion.com/"}}
+      {
+        "@context": "https://schema.org",
+        "@type": "CollectionPage",
+        "name": "Projects | Seiko Motion Studio",
+        "description": "Selected motion design, creative development, and 3D visual projects by Seiko Motion Studio.",
+        "url": "https://seikomotion.com/projects.html",
+        "isPartOf": {
+          "@type": "WebSite",
+          "name": "Seiko Motion Studio",
+          "url": "https://seikomotion.com/"
+        }
+      }
     </script>
   </head>
   <body>
-    <a class="skip-link" href="#main-content">Skip to main content</a>
-    <svg xmlns="http://www.w3.org/2000/svg" style="display: none" aria-hidden="true">
+    <style>body { overflow:visible !important; }</style>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      style="display: none"
+      aria-hidden="true"
+    >
       <defs>
         <filter
           id="filter0_f_2_7"
@@ -115,7 +124,13 @@
             <a href="/index.html#services" class="header__link">Services</a>
             <a href="/index.html#contact-us" class="btn btn--sm">Contact us</a>
 
-            <button class="burger" type="button" aria-label="Open menu" aria-controls="mobile-menu" aria-expanded="false">
+            <button
+              class="burger"
+              type="button"
+              aria-label="Open menu"
+              aria-controls="mobile-menu"
+              aria-expanded="false"
+            >
               <span></span>
               <span></span>
               <span></span>
@@ -124,7 +139,12 @@
         </div>
       </div>
 
-      <div class="mobile-menu" id="mobile-menu" aria-label="Mobile navigation" hidden>
+      <div
+        class="mobile-menu"
+        id="mobile-menu"
+        aria-label="Mobile navigation"
+        hidden
+      >
         <button class="mobile-menu__close" aria-label="Close menu"></button>
 
         <nav class="mobile-menu__nav" aria-label="Mobile navigation">
@@ -136,7 +156,7 @@
       </div>
     </header>
 
-    <div class="loader">
+    <div class="loader" aria-hidden="true">
       <i></i>
       <i></i>
       <i></i>
@@ -162,12 +182,20 @@
             </p>
 
             <div class="projects__actions">
-              <a class="btn btn--sm" href="/index.html#portfolio">Back to home</a>
-              <a class="btn btn--sm" href="/index.html#contact-us">Start a project</a>
+              <a class="btn btn--sm" href="/index.html#portfolio"
+                >Back to home</a
+              >
+              <a class="btn btn--sm" href="/index.html#contact-us"
+                >Start a project</a
+              >
             </div>
           </div>
 
-          <div class="projects__grid" data-projects-grid data-projects-mode="archive"></div>
+          <div
+            class="projects__grid"
+            data-projects-grid
+            data-projects-mode="archive"
+          ></div>
         </div>
       </section>
     </main>
@@ -271,7 +299,9 @@
               <span
                 >Seiko Motion Design — visuals that move your brand forward.
               </span>
-              <label class="sr-only" for="footerEmailInput">Your email address</label>
+              <label class="sr-only" for="footerEmailInput"
+                >Your email address</label
+              >
               <input
                 type="email"
                 placeholder="Enter Your Email"
@@ -292,7 +322,14 @@
       </div>
     </footer>
 
-    <div class="contact-modal" id="contactModal" role="dialog" aria-modal="true" aria-labelledby="contactModalTitle" hidden>
+    <div
+      class="contact-modal"
+      id="contactModal"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="contactModalTitle"
+      hidden
+    >
       <div class="contact-modal__overlay" aria-hidden="true"></div>
       <div class="contact-modal__content" tabindex="-1">
         <button class="contact-modal__close" aria-label="Close modal"></button>
@@ -300,15 +337,32 @@
         <form class="contact-modal__form" id="contactForm">
           <label class="contact-modal__field">
             <span>Email</span>
-            <input type="email" id="modalEmail" name="email" autocomplete="email" required />
+            <input
+              type="email"
+              id="modalEmail"
+              name="email"
+              autocomplete="email"
+              required
+            />
           </label>
           <label class="contact-modal__field">
             <span>Name</span>
-            <input type="text" id="modalName" name="name" autocomplete="name" required />
+            <input
+              type="text"
+              id="modalName"
+              name="name"
+              autocomplete="name"
+              required
+            />
           </label>
           <label class="contact-modal__field">
             <span>Message</span>
-            <textarea id="modalMessage" name="message" rows="4" required></textarea>
+            <textarea
+              id="modalMessage"
+              name="message"
+              rows="4"
+              required
+            ></textarea>
           </label>
           <button type="submit" class="btn btn--sm">Send</button>
         </form>
