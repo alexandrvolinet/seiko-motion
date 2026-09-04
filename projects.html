@@ -174,28 +174,490 @@
     <main id="main-content">
       <section id="projects" class="projects section">
         <div class="container">
+          <nav class="breadcrumbs" aria-label="Breadcrumb">
+            <ol>
+              <li><a href="/index.html">Home</a></li>
+              <li aria-current="page">Projects</li>
+            </ol>
+          </nav>
+
           <div class="projects__header">
-            <h1 class="title">Projects / Selected Work</h1>
+            <h1 class="title">Projects</h1>
             <p class="text-subtitle">
               A full archive of six portfolio pieces across motion design,
               creative development, 3D visuals, and full-stack web work.
             </p>
+          </div>
 
-            <div class="projects__actions">
-              <a class="btn btn--sm" href="/index.html#portfolio"
-                >Back to home</a
-              >
-              <a class="btn btn--sm" href="/index.html#contact-us"
-                >Start a project</a
-              >
+          <div class="projects__toolbar" data-projects-filters>
+            <div class="projects__filter">
+              <label for="filterIndustry">Industry</label>
+              <select id="filterIndustry" data-filter="industry">
+                <option value="all">All industries</option>
+              </select>
             </div>
+            <div class="projects__filter">
+              <label for="filterTag">Tag</label>
+              <select id="filterTag" data-filter="tag">
+                <option value="all">All tags</option>
+              </select>
+            </div>
+            <button
+              class="projects__reset"
+              type="button"
+              data-filter-reset
+              hidden
+            >
+              Reset filters
+            </button>
+            <p class="projects__count" data-filter-count role="status"></p>
           </div>
 
           <div
             class="projects__grid"
             data-projects-grid
             data-projects-mode="archive"
-          ></div>
+          >
+            <article
+              class="project-card"
+              id="luma-motion-studio"
+              data-industry="Motion Design Studio"
+              data-tags="Kinetic typography|Cohesive motion system|Social-ready templates"
+            >
+              <div class="project-card__top">
+                <div class="project-card__title-wrap">
+                  <h3 class="project-card__title">Luma Motion Identity</h3>
+                  <div class="project-card__meta">
+                    <span>Motion Design / Brand Animation</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="project-card__visual">
+                <video
+                  class="project-card__video"
+                  data-project-video
+                  src="/src/assets/videos/design.webm"
+                  muted
+                  loop
+                  playsinline
+                  autoplay
+                  preload="metadata"
+                  aria-hidden="true"
+                ></video>
+              </div>
+
+              <button
+                class="project-card__toggle"
+                type="button"
+                aria-expanded="false"
+                aria-controls="luma-motion-studio-details"
+              >
+                <span>View details</span>
+              </button>
+
+              <div
+                class="project-card__details"
+                id="luma-motion-studio-details"
+                data-project-details
+                aria-hidden="true"
+              >
+                <div class="project-card__details-inner">
+                  <div class="project-card__facts">
+                    <div class="project-card__fact">
+                      <span>Year</span>
+                      <strong>2026</strong>
+                    </div>
+                    <div class="project-card__fact">
+                      <span>Industry</span>
+                      <strong>Motion Design Studio</strong>
+                    </div>
+                  </div>
+
+                  <p class="project-card__description">
+                    A complete motion identity for a creative studio — from
+                    kinetic logo and brand film to a flexible motion system for
+                    social media. Every piece designed to feel like part of one
+                    cohesive visual language.
+                  </p>
+
+                  <div class="project-card__notes">
+                    <span class="project-card__note">Kinetic typography</span>
+                    <span class="project-card__note"
+                      >Cohesive motion system</span
+                    >
+                    <span class="project-card__note"
+                      >Social-ready templates</span
+                    >
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <article
+              class="project-card"
+              id="axon-3d-branding"
+              data-industry="Tech / Web3"
+              data-tags="Three.js / WebGL|GSAP ScrollTrigger|Generative Shaders"
+            >
+              <div class="project-card__top">
+                <div class="project-card__title-wrap">
+                  <h3 class="project-card__title">Axon 3D Brand World</h3>
+                  <div class="project-card__meta">
+                    <span>3D Motion / Creative Development</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="project-card__visual">
+                <video
+                  class="project-card__video"
+                  data-project-video
+                  src="/src/assets/videos/process.webm"
+                  muted
+                  loop
+                  playsinline
+                  autoplay
+                  preload="metadata"
+                  aria-hidden="true"
+                ></video>
+              </div>
+
+              <button
+                class="project-card__toggle"
+                type="button"
+                aria-expanded="false"
+                aria-controls="axon-3d-branding-details"
+              >
+                <span>View details</span>
+              </button>
+
+              <div
+                class="project-card__details"
+                id="axon-3d-branding-details"
+                data-project-details
+                aria-hidden="true"
+              >
+                <div class="project-card__details-inner">
+                  <div class="project-card__facts">
+                    <div class="project-card__fact">
+                      <span>Year</span>
+                      <strong>2025</strong>
+                    </div>
+                    <div class="project-card__fact">
+                      <span>Industry</span>
+                      <strong>Tech / Web3</strong>
+                    </div>
+                  </div>
+
+                  <p class="project-card__description">
+                    Immersive 3D branding system for a decentralized protocol.
+                    Real-time WebGL hero, generative blob animations, and a
+                    scroll-driven narrative — all performant at 60fps on mobile.
+                  </p>
+
+                  <div class="project-card__notes">
+                    <span class="project-card__note">Three.js / WebGL</span>
+                    <span class="project-card__note">GSAP ScrollTrigger</span>
+                    <span class="project-card__note">Generative Shaders</span>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <article
+              class="project-card"
+              id="pulse-launch-campaign"
+              data-industry="Consumer Technology"
+              data-tags="Launch film|Product animation|Social cutdowns"
+            >
+              <div class="project-card__top">
+                <div class="project-card__title-wrap">
+                  <h3 class="project-card__title">Pulse Launch Campaign</h3>
+                  <div class="project-card__meta">
+                    <span>Motion Design / Product Launch</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="project-card__visual">
+                <video
+                  class="project-card__video"
+                  data-project-video
+                  src="/src/assets/videos/design.webm"
+                  muted
+                  loop
+                  playsinline
+                  autoplay
+                  preload="metadata"
+                  aria-hidden="true"
+                ></video>
+              </div>
+
+              <button
+                class="project-card__toggle"
+                type="button"
+                aria-expanded="false"
+                aria-controls="pulse-launch-campaign-details"
+              >
+                <span>View details</span>
+              </button>
+
+              <div
+                class="project-card__details"
+                id="pulse-launch-campaign-details"
+                data-project-details
+                aria-hidden="true"
+              >
+                <div class="project-card__details-inner">
+                  <div class="project-card__facts">
+                    <div class="project-card__fact">
+                      <span>Year</span>
+                      <strong>2026</strong>
+                    </div>
+                    <div class="project-card__fact">
+                      <span>Industry</span>
+                      <strong>Consumer Technology</strong>
+                    </div>
+                  </div>
+
+                  <p class="project-card__description">
+                    A high-energy product launch system that combines a hero
+                    film, product loops, and paid-social cutdowns into one
+                    adaptable motion language for every campaign touchpoint.
+                  </p>
+
+                  <div class="project-card__notes">
+                    <span class="project-card__note">Launch film</span>
+                    <span class="project-card__note"
+                      >Product animation</span
+                    >
+                    <span class="project-card__note"
+                      >Social cutdowns</span
+                    >
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <article
+              class="project-card"
+              id="signal-motion-toolkit"
+              data-industry="Music &amp; Culture"
+              data-tags="Animated type|Social templates|Looping artwork"
+            >
+              <div class="project-card__top">
+                <div class="project-card__title-wrap">
+                  <h3 class="project-card__title">Signal Motion Toolkit</h3>
+                  <div class="project-card__meta">
+                    <span>Motion Design / Social Campaign</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="project-card__visual">
+                <video
+                  class="project-card__video"
+                  data-project-video
+                  src="/src/assets/videos/process.webm"
+                  muted
+                  loop
+                  playsinline
+                  autoplay
+                  preload="metadata"
+                  aria-hidden="true"
+                ></video>
+              </div>
+
+              <button
+                class="project-card__toggle"
+                type="button"
+                aria-expanded="false"
+                aria-controls="signal-motion-toolkit-details"
+              >
+                <span>View details</span>
+              </button>
+
+              <div
+                class="project-card__details"
+                id="signal-motion-toolkit-details"
+                data-project-details
+                aria-hidden="true"
+              >
+                <div class="project-card__details-inner">
+                  <div class="project-card__facts">
+                    <div class="project-card__fact">
+                      <span>Year</span>
+                      <strong>2025</strong>
+                    </div>
+                    <div class="project-card__fact">
+                      <span>Industry</span>
+                      <strong>Music &amp; Culture</strong>
+                    </div>
+                  </div>
+
+                  <p class="project-card__description">
+                    A flexible library of animated type, transitions, and
+                    looping artwork for a culture-led social campaign. The
+                    system keeps daily content recognisable without feeling
+                    repetitive.
+                  </p>
+
+                  <div class="project-card__notes">
+                    <span class="project-card__note">Animated type</span>
+                    <span class="project-card__note">Social templates</span>
+                    <span class="project-card__note">Looping artwork</span>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <article
+              class="project-card"
+              id="nova-brand-motion"
+              data-industry="Fintech"
+              data-tags="Logo animation|Kinetic type|Brand guidelines"
+            >
+              <div class="project-card__top">
+                <div class="project-card__title-wrap">
+                  <h3 class="project-card__title">Nova Brand Motion</h3>
+                  <div class="project-card__meta">
+                    <span>Motion Design / Brand Identity</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="project-card__visual">
+                <video
+                  class="project-card__video"
+                  data-project-video
+                  src="/src/assets/videos/design.webm"
+                  muted
+                  loop
+                  playsinline
+                  autoplay
+                  preload="metadata"
+                  aria-hidden="true"
+                ></video>
+              </div>
+
+              <button
+                class="project-card__toggle"
+                type="button"
+                aria-expanded="false"
+                aria-controls="nova-brand-motion-details"
+              >
+                <span>View details</span>
+              </button>
+
+              <div
+                class="project-card__details"
+                id="nova-brand-motion-details"
+                data-project-details
+                aria-hidden="true"
+              >
+                <div class="project-card__details-inner">
+                  <div class="project-card__facts">
+                    <div class="project-card__fact">
+                      <span>Year</span>
+                      <strong>2024</strong>
+                    </div>
+                    <div class="project-card__fact">
+                      <span>Industry</span>
+                      <strong>Fintech</strong>
+                    </div>
+                  </div>
+
+                  <p class="project-card__description">
+                    A trustworthy motion identity for a fintech product — logo
+                    animation, kinetic type for explainers, and clear brand
+                    guidelines for product and marketing teams.
+                  </p>
+
+                  <div class="project-card__notes">
+                    <span class="project-card__note">Logo animation</span>
+                    <span class="project-card__note">Kinetic type</span>
+                    <span class="project-card__note">Brand guidelines</span>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <article
+              class="project-card"
+              id="orbit-web-experience"
+              data-industry="SaaS"
+              data-tags="Landing page|UI motion|Responsive build"
+            >
+              <div class="project-card__top">
+                <div class="project-card__title-wrap">
+                  <h3 class="project-card__title">Orbit Web Experience</h3>
+                  <div class="project-card__meta">
+                    <span>Web Design / Creative Development</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="project-card__visual">
+                <video
+                  class="project-card__video"
+                  data-project-video
+                  src="/src/assets/videos/process.webm"
+                  muted
+                  loop
+                  playsinline
+                  autoplay
+                  preload="metadata"
+                  aria-hidden="true"
+                ></video>
+              </div>
+
+              <button
+                class="project-card__toggle"
+                type="button"
+                aria-expanded="false"
+                aria-controls="orbit-web-experience-details"
+              >
+                <span>View details</span>
+              </button>
+
+              <div
+                class="project-card__details"
+                id="orbit-web-experience-details"
+                data-project-details
+                aria-hidden="true"
+              >
+                <div class="project-card__details-inner">
+                  <div class="project-card__facts">
+                    <div class="project-card__fact">
+                      <span>Year</span>
+                      <strong>2024</strong>
+                    </div>
+                    <div class="project-card__fact">
+                      <span>Industry</span>
+                      <strong>SaaS</strong>
+                    </div>
+                  </div>
+
+                  <p class="project-card__description">
+                    A conversion-focused landing experience with scroll-driven
+                    UI motion, interactive product sections, and a fully
+                    responsive build optimised for performance.
+                  </p>
+
+                  <div class="project-card__notes">
+                    <span class="project-card__note">Landing page</span>
+                    <span class="project-card__note">UI motion</span>
+                    <span class="project-card__note">Responsive build</span>
+                  </div>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <div class="projects__empty" data-projects-empty hidden>
+            <p>No projects match these filters.</p>
+          </div>
         </div>
       </section>
     </main>
@@ -284,6 +746,19 @@
                   <img
                     src="src/assets/icons/footerLinkedIn.svg"
                     alt="LinkedIn icon"
+                    loading="lazy"
+                  />
+                </a>
+                <a
+                  href="https://youtube.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="circle"
+                >
+                  <img
+                    style="transform: scaleY(1)"
+                    src="src/assets/icons/footerYoutube.svg"
+                    alt="YouTube icon"
                     loading="lazy"
                   />
                 </a>

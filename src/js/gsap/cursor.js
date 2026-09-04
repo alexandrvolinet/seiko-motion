@@ -1,8 +1,10 @@
 export function initCursor() {
   var starCanvas = document.getElementById("starfield");
-  var starCtx = starCanvas.getContext("2d");
   var fxCanvas = document.getElementById("fx-canvas");
+  if (!starCanvas || !fxCanvas) return () => {};
+  var starCtx = starCanvas.getContext("2d");
   var fxCtx = fxCanvas.getContext("2d");
+  if (!starCtx || !fxCtx) return () => {};
 
   var reduceMotion =
     window.matchMedia &&
