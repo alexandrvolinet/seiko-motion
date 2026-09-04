@@ -1,3 +1,4 @@
+import { resolve } from "path";
 import { defineConfig } from "vite";
 import { ViteImageOptimizer } from "vite-plugin-image-optimizer";
 
@@ -25,6 +26,11 @@ export default defineConfig({
     outDir: "dist",
     assetsDir: "assets",
     rollupOptions: {
+      input: {
+        main: resolve(__dirname, "index.html"),
+        projects: resolve(__dirname, "projects.html"),
+        projectLuma: resolve(__dirname, "project-luma.html"),
+      },
       output: {
         manualChunks: {
           gsap: ["gsap"],

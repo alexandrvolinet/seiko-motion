@@ -98,6 +98,8 @@
         />
       </symbol>
     </svg>
+    <canvas id="starfield"></canvas>
+    <canvas id="fx-canvas"></canvas>
 
     <header class="header">
       <div class="container">
@@ -226,26 +228,37 @@
             >
               <div class="project-card__top">
                 <div class="project-card__title-wrap">
-                  <h3 class="project-card__title">Luma Motion Identity</h3>
+                  <a
+                    class="project-card__link"
+                    href="/project-luma.html"
+                  >
+                    <h3 class="project-card__title">Luma Motion Identity</h3>
+                  </a>
                   <div class="project-card__meta">
                     <span>Motion Design / Brand Animation</span>
                   </div>
                 </div>
               </div>
 
-              <div class="project-card__visual">
-                <video
-                  class="project-card__video"
-                  data-project-video
-                  src="/src/assets/videos/design.webm"
-                  muted
-                  loop
-                  playsinline
-                  autoplay
-                  preload="metadata"
-                  aria-hidden="true"
-                ></video>
-              </div>
+              <a
+                class="project-card__link"
+                href="/project-luma.html"
+                aria-label="View Luma Motion Identity project"
+              >
+                <div class="project-card__visual">
+                  <video
+                    class="project-card__video"
+                    data-project-video
+                    src="/src/assets/videos/design.webm"
+                    muted
+                    loop
+                    playsinline
+                    autoplay
+                    preload="metadata"
+                    aria-hidden="true"
+                  ></video>
+                </div>
+              </a>
 
               <button
                 class="project-card__toggle"
@@ -275,7 +288,7 @@
                   </div>
 
                   <p class="project-card__description">
-                    A complete motion identity for a creative studio — from
+                    A complete motion identity for a creative studio - from
                     kinetic logo and brand film to a flexible motion system for
                     social media. Every piece designed to feel like part of one
                     cohesive visual language.
@@ -353,7 +366,7 @@
                   <p class="project-card__description">
                     Immersive 3D branding system for a decentralized protocol.
                     Real-time WebGL hero, generative blob animations, and a
-                    scroll-driven narrative — all performant at 60fps on mobile.
+                    scroll-driven narrative - all performant at 60fps on mobile.
                   </p>
 
                   <div class="project-card__notes">
@@ -569,7 +582,7 @@
                   </div>
 
                   <p class="project-card__description">
-                    A trustworthy motion identity for a fintech product — logo
+                    A trustworthy motion identity for a fintech product - logo
                     animation, kinetic type for explainers, and clear brand
                     guidelines for product and marketing teams.
                   </p>
@@ -772,7 +785,7 @@
 
             <div class="footer__email" id="footerEmail">
               <span
-                >Seiko Motion Design — visuals that move your brand forward.
+                >Seiko Motion Design - visuals that move your brand forward.
               </span>
               <label class="sr-only" for="footerEmailInput"
                 >Your email address</label

@@ -1,5 +1,7 @@
 export function initVideoAutoplay() {
-  const videos = document.querySelectorAll(".project-card__video");
+  const videos = document.querySelectorAll(
+    ".project-card__video, .project__media video"
+  );
   if (!videos.length) return;
 
   const observer = new IntersectionObserver(

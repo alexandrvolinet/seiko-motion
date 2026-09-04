@@ -6,6 +6,7 @@
 @use 'base/reset';
 
 @use 'components/loader';
+@use 'components/breadcrumbs';
 @use 'components/buttons';
 @use 'components/contactModal';
 @use 'components/backgroundDots';
@@ -19,6 +20,7 @@
 @use 'sections/design';
 @use 'sections/faq';
 @use 'sections/hero';
+@use 'sections/project';
 @use 'sections/projects';
 @use 'sections/process';
 @use 'sections/servicesV2';

@@ -1,0 +1,235 @@
+@use "../abstracts/mixins";
+
+.project {
+  &__hero {
+    text-align: center;
+    margin-bottom: 64px;
+
+    @include mixins.respond(tablet) {
+      margin-bottom: 48px;
+    }
+
+    @include mixins.respond(mobile) {
+      margin-bottom: 32px;
+    }
+  }
+
+  &__year {
+    display: block;
+    margin-bottom: 20px;
+    font-family: var(--font-secondary);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--color-font-p);
+  }
+
+  &__title {
+    margin-bottom: 20px;
+  }
+
+  &__slogan {
+    margin: 0 0 28px;
+  }
+
+  &__tags {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  &__tag {
+    display: inline-flex;
+    align-items: center;
+    min-height: 34px;
+    padding: 8px 14px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    font-family: var(--font-secondary);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-font-p);
+  }
+
+  &__media {
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    margin-bottom: 64px;
+    position: relative;
+    overflow: hidden;
+    background: var(--color-bg-light);
+
+    @include mixins.respond(tablet) {
+      margin-bottom: 48px;
+    }
+
+    @include mixins.respond(mobile) {
+      margin-bottom: 32px;
+    }
+
+    video {
+      display: block;
+      width: 100%;
+      height: clamp(320px, 56vw, 640px);
+      object-fit: cover;
+      filter: saturate(1.03) contrast(1.02);
+    }
+
+    &::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(0, 0, 0, 0) 62%, rgba(0, 0, 0, 0.32) 100%);
+      pointer-events: none;
+    }
+  }
+
+  &__body {
+    margin-bottom: 64px;
+
+    @include mixins.respond(tablet) {
+      margin-bottom: 48px;
+    }
+
+    @include mixins.respond(mobile) {
+      margin-bottom: 32px;
+    }
+  }
+
+  &__lead {
+    font-family: var(--font-secondary);
+    font-size: 24px;
+    line-height: 1.6;
+    font-weight: 500;
+    color: var(--color-font);
+    text-wrap: pretty;
+    margin: 0 0 32px;
+
+    @include mixins.respond(mobile) {
+      font-size: 19px;
+    }
+  }
+
+  &__text {
+    font-family: var(--font-secondary);
+    font-size: 17px;
+    line-height: 1.75;
+    color: var(--color-font-p);
+    margin: 0 0 24px;
+    text-wrap: pretty;
+
+    @include mixins.respond(mobile) {
+      font-size: 15px;
+    }
+
+    strong {
+      color: var(--color-font);
+      font-weight: 600;
+    }
+  }
+
+  &__facts {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 14px;
+    margin: 0 0 48px;
+    padding: 0;
+    list-style: none;
+
+    @include mixins.respond(mobile) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__fact {
+    padding: 20px;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.03);
+
+    span {
+      display: block;
+      margin-bottom: 8px;
+      font-family: var(--font-secondary);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--color-font-p);
+    }
+
+    strong {
+      font-family: var(--font-secondary);
+      font-size: 15px;
+      line-height: 1.55;
+      font-weight: 500;
+      color: var(--color-font);
+    }
+  }
+
+  &__cta {
+    margin: 0 0 64px;
+    text-align: left;
+
+    @include mixins.respond(tablet) {
+      margin-bottom: 48px;
+    }
+
+    @include mixins.respond(mobile) {
+      margin-bottom: 32px;
+    }
+  }
+
+  &__cta-line {
+    display: block;
+    margin: 0 0 6px;
+    font-family: var(--font-secondary);
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 1.6;
+    color: var(--color-font-p);
+  }
+
+  &__cta-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: var(--font-secondary);
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--color-font);
+    text-decoration: none;
+    transition: color 0.25s ease;
+
+    .project__cta-arrow {
+      display: inline-block;
+      transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    &:hover {
+      color: var(--color-link);
+    }
+
+    &:hover .project__cta-arrow {
+      transform: translateX(6px);
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--color-link);
+      outline-offset: 4px;
+      border-radius: 4px;
+    }
+  }
+}

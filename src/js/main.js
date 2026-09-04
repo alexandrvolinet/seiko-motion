@@ -123,6 +123,8 @@ function loadDeferredModules() {
     import("./gsap/contact.js"),
     import("./gsap/projects.js"),
     import("./gsap/projectsFilter.js"),
+    import("./gsap/breadcrumbs.js"),
+    import("./gsap/projectPage.js"),
   ]);
 
   return deferredModulesPromise;
@@ -155,6 +157,8 @@ async function startDeferredExperience() {
     contactModule,
     projectsModule,
     projectsFilterModule,
+    breadcrumbsModule,
+    projectPageModule,
   ] = await loadDeferredModules();
 
   faqModule.initFaqAccordion();
@@ -171,7 +175,10 @@ async function startDeferredExperience() {
   contactModule.animateContactCards();
   projectsModule.initProjectCards();
   projectsModule.animateProjectCards();
+  projectsModule.animateProjectsToolbar();
   projectsFilterModule.initProjectsFilter();
+  breadcrumbsModule.initBreadcrumbs();
+  projectPageModule.animateProjectPage();
 
   ScrollTrigger.refresh();
 }

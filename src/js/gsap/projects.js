@@ -39,6 +39,10 @@ export function initProjectCards() {
 }
 
 export function animateProjectCards() {
+  // Initialize video autoplay with viewport detection
+  // (runs for project cards and standalone project pages)
+  initVideoAutoplay();
+
   const grid = document.querySelector(".projects__grid");
   const cards = grid
     ? Array.from(grid.querySelectorAll(".project-card"))
@@ -80,9 +84,6 @@ export function animateProjectCards() {
     });
   });
 
-  // Initialize video autoplay with viewport detection
-  initVideoAutoplay();
-
   // Animate "View all projects" button
   const viewAllBtn = document.querySelector(".projects__view-all");
   if (viewAllBtn) {
@@ -93,4 +94,25 @@ export function animateProjectCards() {
       desktopStart: "top 85%",
     });
   }
+}
+
+export function animateProjectsToolbar() {
+  const toolbar = document.querySelector(".projects__toolbar");
+  if (!toolbar) return () => {};
+
+  const items = Array.from(
+    toolbar.querySelectorAll(
+      ".projects__filter, .projects__reset, .projects__count"
+    )
+  );
+  if (!items.length) return () => {};
+
+  return createResponsiveReveal({
+    scope: toolbar,
+    items,
+    desktopTrigger: toolbar,
+    desktopStart: "top 85%",
+    stackedStart: "top 90%",
+    desktopStagger: 0.12,
+  });
 }

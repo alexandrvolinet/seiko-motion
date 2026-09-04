@@ -1,0 +1,467 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Luma Motion Identity | Seiko Motion Studio</title>
+    <meta charset="UTF-8" />
+    <meta
+      name="title"
+      content="Luma Motion Identity | Seiko Motion Studio"
+    />
+    <meta
+      name="description"
+      content="Luma Motion Identity - a complete motion identity for a creative studio: kinetic logo, brand film and a flexible motion system for social media by Seiko Motion Studio."
+    />
+    <meta
+      name="keywords"
+      content="motion identity, brand animation, kinetic typography, motion design, Luma"
+    />
+    <meta name="author" content="Seiko Motion Studio" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://seikomotion.com/project-luma.html" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Seiko Motion Studio" />
+    <meta property="og:url" content="https://seikomotion.com/project-luma.html" />
+    <meta property="og:title" content="Luma Motion Identity | Seiko Motion Studio" />
+    <meta
+      property="og:description"
+      content="A complete motion identity for a creative studio - kinetic logo, brand film and a flexible motion system for social media."
+    />
+    <meta property="og:image" content="https://seikomotion.com/og-image.jpg" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://seikomotion.com/project-luma.html" />
+    <meta name="twitter:title" content="Luma Motion Identity | Seiko Motion Studio" />
+    <meta
+      name="twitter:description"
+      content="A complete motion identity for a creative studio - kinetic logo, brand film and a flexible motion system for social media."
+    />
+    <meta
+      name="twitter:image"
+      content="https://seikomotion.com/og-image.jpg"
+    />
+
+    <script>
+      document.documentElement.classList.add("is-loading");
+    </script>
+
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta name="theme-color" content="#000000" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "CreativeWork",
+        "name": "Luma Motion Identity",
+        "description": "A complete motion identity for a creative studio - kinetic logo, brand film and a flexible motion system for social media.",
+        "url": "https://seikomotion.com/project-luma.html",
+        "dateCreated": "2026",
+        "creator": {
+          "@type": "Organization",
+          "name": "Seiko Motion Studio",
+          "url": "https://seikomotion.com/"
+        },
+        "isPartOf": {
+          "@type": "WebSite",
+          "name": "Seiko Motion Studio",
+          "url": "https://seikomotion.com/"
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      style="display: none"
+      aria-hidden="true"
+    >
+      <defs>
+        <filter
+          id="filter0_f_2_7"
+          x="-5"
+          y="-5"
+          width="33"
+          height="132"
+          filterUnits="userSpaceOnUse"
+          color-interpolation-filters="sRGB"
+        >
+          <feFlood flood-opacity="0" result="BackgroundImageFix" />
+          <feBlend
+            mode="normal"
+            in="SourceGraphic"
+            in2="BackgroundImageFix"
+            result="shape"
+          />
+          <feGaussianBlur
+            stdDeviation="2"
+            result="effect1_foregroundBlur_2_7"
+          />
+        </filter>
+      </defs>
+      <symbol id="connector-path" viewBox="0 0 23 122" fill="none">
+        <path
+          d="M12.1333 4.29918C11.7463 3.90521 11.1132 3.89961 10.7192 4.28666L4.29916 10.5941C3.9052 10.9811 3.8996 11.6143 4.28665 12.0082C4.6737 12.4022 5.30684 12.4078 5.70081 12.0207L11.4075 6.41416L17.0141 12.1208C17.4011 12.5148 18.0343 12.5204 18.4282 12.1334C18.8222 11.7463 18.8278 11.1132 18.4407 10.7192L12.1333 4.29918ZM10.42 118L11.42 118.009L12.42 5.00885L11.42 5L10.4201 4.99115L9.42005 117.991L10.42 118Z"
+          fill="#A837FF"
+          filter="url(#filter0_f_2_7)"
+        />
+      </symbol>
+    </svg>
+    <canvas id="starfield"></canvas>
+    <canvas id="fx-canvas"></canvas>
+
+    <header class="header">
+      <div class="container">
+        <div class="header__inner">
+          <div class="header__left">
+            <a href="/index.html" class="header__logo">
+              <img
+                src="src/assets/images/logo.svg"
+                alt="Seiko motion"
+                width="135"
+                height="24"
+                fetchpriority="high"
+              />
+            </a>
+
+            <nav class="header__nav" aria-label="Primary navigation">
+              <a href="/index.html#hero">Home</a>
+              <a href="/index.html#design">About</a>
+              <a href="/projects.html#projects">Projects</a>
+            </nav>
+          </div>
+
+          <div class="header__right">
+            <a href="/index.html#services" class="header__link">Services</a>
+            <a href="/index.html#contact-us" class="btn btn--sm">Contact us</a>
+
+            <button
+              class="burger"
+              type="button"
+              aria-label="Open menu"
+              aria-controls="mobile-menu"
+              aria-expanded="false"
+            >
+              <span></span>
+              <span></span>
+              <span></span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div
+        class="mobile-menu"
+        id="mobile-menu"
+        aria-label="Mobile navigation"
+        hidden
+      >
+        <button class="mobile-menu__close" aria-label="Close menu"></button>
+
+        <nav class="mobile-menu__nav" aria-label="Mobile navigation">
+          <a href="/index.html#hero">Home</a>
+          <a href="/index.html#design">About</a>
+          <a href="/projects.html#projects">Projects</a>
+          <a href="/index.html#services">Services</a>
+        </nav>
+      </div>
+    </header>
+
+    <div class="loader" aria-hidden="true">
+      <i></i>
+      <i></i>
+      <i></i>
+      <i></i>
+      <i></i>
+      <i></i>
+      <i></i>
+      <i></i>
+      <i></i>
+      <i></i>
+    </div>
+
+    <div class="space-bg"></div>
+
+    <main id="main-content">
+      <article class="project section">
+        <div class="container">
+          <nav class="breadcrumbs" aria-label="Breadcrumb">
+            <ol>
+              <li><a href="/index.html">Home</a></li>
+              <li><a href="/projects.html">Projects</a></li>
+              <li aria-current="page">Luma Motion Identity</li>
+            </ol>
+          </nav>
+
+          <div class="project__hero">
+            <span class="project__year">2026</span>
+            <h1 class="project__title title">Luma Motion Identity</h1>
+            <p class="project__slogan text-subtitle">
+              One motion language for every screen - from a kinetic logo to a
+              full social-ready system.
+            </p>
+            <ul class="project__tags" aria-label="Project tags">
+              <li class="project__tag">Kinetic typography</li>
+              <li class="project__tag">Cohesive motion system</li>
+              <li class="project__tag">Social-ready templates</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="project__media">
+          <video
+            src="/src/assets/videos/design.webm"
+            muted
+            loop
+            playsinline
+            autoplay
+            preload="metadata"
+            aria-label="Luma Motion Identity showreel"
+          ></video>
+        </div>
+
+        <div class="container">
+
+                      <ul class="project__facts">
+              <li class="project__fact">
+                <span>Scope</span>
+                <strong>Brand identity motion, promo video, social media kit</strong>
+              </li>
+              <li class="project__fact">
+                <span>Deliverables</span>
+                <strong>Logo sting, brand film, 24 templates</strong>
+              </li>
+              <li class="project__fact">
+                <span>Timeline</span>
+                <strong>6 weeks, 2 revision rounds</strong>
+              </li>
+            </ul>
+          <div class="project__body">
+            <p class="project__lead">
+              Luma needed more than a logo - they needed a way to move. We
+              built a complete motion identity that carries the brand from a
+              kinetic mark to a full library of social templates.
+            </p>
+
+            <p class="project__text">
+              The project started with the <strong>kinetic logo</strong>: a
+              mark that assembles itself in under two seconds and works as a
+              sting, a loader and a watermark. From there we defined
+              timing, easing and rhythm rules so every
+              future asset feels like part of the same family - no matter who
+              produces it.
+            </p>
+
+            <p class="project__text">
+              The centrepiece is a <strong>brand film</strong> that introduces
+              the studio's capabilities in ninety seconds. Around it we built
+              modular scenes - title cards, transitions, lower thirds - that
+              the client can remix into social-ready
+              templates without touching the core animation.
+            </p>
+
+
+          </div>
+
+          <div class="project__cta">
+            <span class="project__cta-line">Have a project in mind?</span>
+            <button
+              class="project__cta-link"
+              type="button"
+              data-contact-modal-trigger
+            >
+              Leave us a message
+              <span class="project__cta-arrow" aria-hidden="true">→</span>
+            </button>
+          </div>
+        </div>
+      </article>
+    </main>
+
+    <footer id="contact" class="footer">
+      <div class="container">
+        <div class="footer__content">
+          <div class="footer__logo">
+            <img
+              src="/src/assets/images/footer/logo.svg"
+              alt="footer logo"
+              loading="lazy"
+            />
+            <img
+              src="/src/assets/images/footer/text.svg"
+              alt="footer logo text"
+              loading="lazy"
+            />
+          </div>
+
+          <div class="footer__contacts-cta">
+            <div class="footer__credentials">
+              <div class="footer__touch">
+                <span>Get in Touch</span>
+                <div class="contacts">
+                  <div class="footer__contacts">
+                    <img
+                      src="src/assets/icons/footerCity.svg"
+                      alt="location icon"
+                      loading="lazy"
+                    />
+                    <p>City, Country</p>
+                  </div>
+                  <div class="footer__contacts">
+                    <img
+                      src="src/assets/icons/footerMsg.svg"
+                      alt="message icon"
+                      loading="lazy"
+                    />
+                    <p>hello@yourstudio.com</p>
+                  </div>
+                  <div class="footer__contacts">
+                    <img
+                      src="src/assets/icons/footerPhone.svg"
+                      alt="phone icon"
+                      loading="lazy"
+                    />
+                    <p>+1 (234) 567-890</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="footer__socials">
+              <div class="social">
+                <a
+                  href="https://instagram.com/seikomotion"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="circle"
+                >
+                  <img
+                    src="src/assets/icons/footerInstagram.svg"
+                    alt="instagram icon"
+                    loading="lazy"
+                  />
+                </a>
+                <a
+                  href="https://tiktok.com/@seikomotion"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="circle"
+                >
+                  <img
+                    src="src/assets/icons/footerTiktok.svg"
+                    alt="tiktok icon"
+                    loading="lazy"
+                  />
+                </a>
+                <a
+                  href="https://linkedin.com/company/seikomotion"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="circle"
+                >
+                  <img
+                    src="src/assets/icons/footerLinkedIn.svg"
+                    alt="LinkedIn icon"
+                    loading="lazy"
+                  />
+                </a>
+                <a
+                  href="https://youtube.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="circle"
+                >
+                  <img
+                    style="transform: scaleY(1)"
+                    src="src/assets/icons/footerYoutube.svg"
+                    alt="YouTube icon"
+                    loading="lazy"
+                  />
+                </a>
+              </div>
+              <p>
+                Seiko Motion Design is a creative studio focused on motion
+                design, graphic design, 3D visuals, video editing, web design,
+                and website development for digital-first companies
+              </p>
+            </div>
+
+            <div class="footer__email" id="footerEmail">
+              <span
+                >Seiko Motion Design - visuals that move your brand forward.
+              </span>
+              <label class="sr-only" for="footerEmailInput"
+                >Your email address</label
+              >
+              <input
+                type="email"
+                placeholder="Enter Your Email"
+                id="footerEmailInput"
+                name="footer-email"
+                autocomplete="email"
+              />
+              <button
+                class="btn btn--sm"
+                id="openContactBtn"
+                data-contact-modal-trigger
+              >
+                Contact Us
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <div
+      class="contact-modal"
+      id="contactModal"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="contactModalTitle"
+      hidden
+    >
+      <div class="contact-modal__overlay" aria-hidden="true"></div>
+      <div class="contact-modal__content" tabindex="-1">
+        <button class="contact-modal__close" aria-label="Close modal"></button>
+        <h2 class="contact-modal__title" id="contactModalTitle">Let's Talk</h2>
+        <form class="contact-modal__form" id="contactForm">
+          <label class="contact-modal__field">
+            <span>Email</span>
+            <input
+              type="email"
+              id="modalEmail"
+              name="email"
+              autocomplete="email"
+              required
+            />
+          </label>
+          <label class="contact-modal__field">
+            <span>Name</span>
+            <input
+              type="text"
+              id="modalName"
+              name="name"
+              autocomplete="name"
+              required
+            />
+          </label>
+          <label class="contact-modal__field">
+            <span>Message</span>
+            <textarea
+              id="modalMessage"
+              name="message"
+              rows="4"
+              required
+            ></textarea>
+          </label>
+          <button type="submit" class="btn btn--sm">Send</button>
+        </form>
+      </div>
+    </div>
+
+    <script type="module" src="/src/js/main.js"></script>
+  </body>
+</html>
