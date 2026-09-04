@@ -33,7 +33,6 @@ export function initCursor() {
   var PURPLE_BRIGHT = [170, 60, 255];
   var PURPLE_DEEP = [120, 20, 255];
   var WHITE = [255, 255, 255];
-  var PINK = [205, 120, 255];
 
   function rgba(c, a) {
     return "rgba(" + c[0] + "," + c[1] + "," + c[2] + "," + a + ")";
@@ -123,22 +122,27 @@ export function initCursor() {
   });
 
   // ---- render loop ----
+  // Skips fullscreen clear/draw while idle so the loop costs ~nothing
+  // between clicks (rAF keeps running for instant response).
   var lastT = performance.now();
   function loop(now) {
     var dt = Math.min((now - lastT) / 1000, 0.05);
     lastT = now;
 
-    fxCtx.clearRect(0, 0, W, H);
-    fxCtx.globalCompositeOperation = "lighter";
+    if (particles.length) {
+      fxCtx.clearRect(0, 0, W, H);
+      fxCtx.globalCompositeOperation = "lighter";
 
-    particles = particles.filter(function (p) {
-      return p.step(dt);
-    });
-    particles.forEach(function (p) {
-      p.draw(fxCtx);
-    });
+      particles = particles.filter(function (p) {
+        return p.step(dt);
+      });
+      particles.forEach(function (p) {
+        p.draw(fxCtx);
+      });
 
-    fxCtx.globalCompositeOperation = "source-over";
+      fxCtx.globalCompositeOperation = "source-over";
+    }
+
     requestAnimationFrame(loop);
   }
   requestAnimationFrame(loop);

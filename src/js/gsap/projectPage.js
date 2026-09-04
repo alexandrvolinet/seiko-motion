@@ -3,9 +3,6 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
-// Note: .project__title and .project__slogan carry .title / .text-subtitle
-// classes, so they are already revealed by page.js revealSections().
-// Everything else gets its own viewport trigger here.
 const REVEAL_SELECTOR = [
   ".project__year",
   ".project__tags",
@@ -13,14 +10,15 @@ const REVEAL_SELECTOR = [
   ".project__lead",
   ".project__text",
   ".project__quote",
-  ".project__divider",
   ".project__fact",
   ".project__cta-line",
   ".project__cta-link",
+  ".notfound__code",
+  ".notfound__actions",
 ].join(", ");
 
 export function animateProjectPage() {
-  const page = document.querySelector("article.project");
+  const page = document.querySelector("article.project, section.notfound");
   if (!page) return () => {};
 
   const blocks = Array.from(page.querySelectorAll(REVEAL_SELECTOR));
@@ -46,6 +44,7 @@ export function animateProjectPage() {
             opacity: 1,
             duration: isMedia ? 1 : 0.9,
             ease: "power2.out",
+            onComplete: () => gsap.set(block, { clearProps: "willChange" }),
           });
         },
       });

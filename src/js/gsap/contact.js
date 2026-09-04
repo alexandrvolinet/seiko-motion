@@ -37,6 +37,7 @@ export function animateContactCards() {
         duration: 0.5,
         delay: i * 0.1,
         ease: "power2.out",
+        onComplete: () => gsap.set(card, { clearProps: "willChange" }),
         scrollTrigger: {
           trigger: card,
           start: "top 85%",

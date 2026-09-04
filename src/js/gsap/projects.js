@@ -9,6 +9,13 @@ export function initProjectCards() {
   const toggles = document.querySelectorAll(".project-card__toggle");
   if (!toggles.length) return;
 
+  document.querySelectorAll(".project-card").forEach((card) => {
+    const title = card.querySelector(".project-card__title")?.textContent?.trim();
+    card.querySelectorAll(".project-card__link").forEach((link) => {
+      if (!link.textContent.trim() && title) link.setAttribute("aria-label", `View ${title} project`);
+    });
+  });
+
   toggles.forEach((toggle) => {
     toggle.addEventListener("click", (e) => {
       e.preventDefault();
@@ -69,6 +76,7 @@ export function animateProjectCards() {
           y: 0,
           duration: 0.9,
           ease: "power2.out",
+          onComplete: () => gsap.set(card, { clearProps: "willChange" }),
         });
 
         if (toggle) {
@@ -78,6 +86,7 @@ export function animateProjectCards() {
             duration: 0.7,
             ease: "power2.out",
             delay: 0.3,
+            onComplete: () => gsap.set(toggle, { clearProps: "willChange" }),
           });
         }
       },

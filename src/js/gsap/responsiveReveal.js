@@ -1,6 +1,6 @@
 import { gsap } from "./config.js";
 
-export const TEXT_REVEAL = {
+const TEXT_REVEAL = {
   y: 28,
   duration: 0.9,
   ease: "power2.out",
@@ -35,6 +35,7 @@ export function animateTextReveal(targets, options = {}) {
       stagger,
       delay,
       scrollTrigger,
+      onComplete: () => gsap.set(elements, { clearProps: "willChange" }),
     });
 
     return tween;
@@ -85,7 +86,8 @@ export function createResponsiveReveal({
             trigger: item,
             start: stackedStart,
             toggleActions: "play none none none"
-          }
+          },
+          onComplete: () => gsap.set(item, { clearProps: "willChange" })
         })
       )
     : [
@@ -96,7 +98,8 @@ export function createResponsiveReveal({
             trigger: desktopTrigger,
             start: desktopStart,
             toggleActions: "play none none none"
-          }
+          },
+          onComplete: () => gsap.set(targets, { clearProps: "willChange" })
         })
       ];
 

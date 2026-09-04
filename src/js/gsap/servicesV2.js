@@ -16,9 +16,6 @@ export function animateServicesV2() {
   if (!timelineElement || !progressValue || !items.length) return;
 
   const cards = items.map((item) => item.querySelector(".card"));
-  const connectors = items.map((item) =>
-    item.querySelector(".services-v2__connector")
-  );
   const labels = items.map((item) => item.querySelector(".services-v2__label"));
 
   const ctx = gsap.context(() => {
@@ -35,12 +32,6 @@ export function animateServicesV2() {
       scaleY: isVertical ? 0 : 1,
       transformOrigin: progressOrigin,
       willChange: "transform"
-    });
-
-    gsap.set(connectors, {
-      opacity: 0,
-      y: 50,
-      willChange: "transform, opacity"
     });
 
     gsap.set(cards, {
@@ -86,15 +77,6 @@ export function animateServicesV2() {
               duration: 0.5
             },
             0.04
-          )
-          .to(
-            connectors[index],
-            {
-              opacity: 1,
-              y: 0,
-              duration: 0.5
-            },
-            0.1
           )
           .to(
             labels[index],
@@ -144,7 +126,6 @@ export function animateServicesV2() {
 
     items.forEach((item, index) => {
       const markerStart = 0.16 + index * 0.2;
-      const connectorStart = markerStart + 0.05;
       const labelStart = markerStart + 0.08;
       const cardStart = markerStart + 0.12;
 
@@ -156,15 +137,6 @@ export function animateServicesV2() {
             duration: 0.5
           },
           markerStart
-        )
-        .to(
-          connectors[index],
-          {
-            opacity: 1,
-            y: 0,
-            duration: 0.5
-          },
-          connectorStart
         )
         .to(
           labels[index],

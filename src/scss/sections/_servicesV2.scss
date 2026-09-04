@@ -2,9 +2,7 @@
 
 .services-v2 {
   &__content {
-    --services-v2-line-offset: 180px;
-    --services-v2-connector-width: 23px;
-    --services-v2-connector-height: 29%;
+    --services-v2-line-offset: 40px;
     --services-v2-progress-size: 2px;
     --services-v2-marker-padding: 15px;
     --services-v2-marker-inner-size: 10px;
@@ -128,30 +126,6 @@
     }
   }
 
-  &__connector {
-    position: absolute;
-    left: 50.5%;
-    height: var(--services-v2-connector-height);
-    bottom: 0;
-    display: flex;
-    justify-content: center;
-    width: var(--services-v2-connector-width);
-    transform: translateX(-50%);
-    transform-origin: center;
-    pointer-events: none;
-    z-index: 1;
-
-    svg {
-      display: block;
-      width: 100%;
-      height: 100%;
-    }
-
-    path {
-      stroke: #a837ff;
-    }
-  }
-
   &__progress {
     position: absolute;
     right: 0;
@@ -173,10 +147,6 @@
   }
 
   @include mixins.respond(laptop) {
-
-    &__content {
-      --services-v2-line-offset: 132px;
-    }
 
     &__header {
       margin-bottom: 40px;
@@ -200,15 +170,6 @@
       }
     }
 
-    &__connector {
-      display: none;
-      top: 50%;
-      right: 0;
-      bottom: auto;
-      left: auto;
-      transform: translateY(-50%) rotate(90deg);
-    }
-
     &__label {
       display: none;
     }
@@ -230,7 +191,6 @@
 
   @include mixins.respond(mobile) {
     &__content {
-      --services-v2-line-offset: 118px;
       --services-v2-marker-padding: 12px;
       --services-v2-marker-inner-size: 10px;
     }
@@ -242,9 +202,6 @@
 
   @media (max-width: 768px) {
     &__content {
-      --services-v2-line-offset: 59px;
-      --services-v2-connector-width: 12px;
-      --services-v2-connector-height: 15%;
       --services-v2-marker-padding: 6px;
       --services-v2-marker-inner-size: 5px;
     }

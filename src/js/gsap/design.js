@@ -10,7 +10,7 @@ export async function animateDesign() {
   return () => cleanups.forEach((fn) => fn());
 }
 
-export function initCosmicPlanet(containerId, THREE) {
+function initCosmicPlanet(containerId, THREE) {
   const container = document.getElementById(containerId);
   if (!container) return;
 
@@ -46,7 +46,6 @@ export function initCosmicPlanet(containerId, THREE) {
 
   const positions = new Float32Array(totalParticles * 3);
   const colors = new Float32Array(totalParticles * 3);
-  const sizes = new Float32Array(totalParticles);
   const initialPositions = new Float32Array(totalParticles * 3);
   const velocities = new Float32Array(totalParticles * 3);
 
@@ -62,7 +61,6 @@ export function initCosmicPlanet(containerId, THREE) {
   for (let i = 0; i < totalParticles; i++) {
     let x = 0, y = 0, z = 0;
     let r = 0, g = 0, b = 0;
-    let particleSize = 1.2;
 
     if (i < planetCount) {
       // 1. Globe surface (Fibonacci Sphere formulation for evenly distributed particles)
@@ -80,7 +78,6 @@ export function initCosmicPlanet(containerId, THREE) {
       r = tempColor.r;
       g = tempColor.g;
       b = tempColor.b;
-      particleSize = Math.random() * 1.5 + 0.8;
 
     } else if (i < planetCount + ringCount) {
       // 2. Orbital Flat Ring
@@ -103,7 +100,6 @@ export function initCosmicPlanet(containerId, THREE) {
       r = tempColor.r;
       g = tempColor.g;
       b = tempColor.b;
-      particleSize = Math.random() * 1.8 + 0.5;
     }
 
     positions[i * 3] = x;
@@ -117,8 +113,6 @@ export function initCosmicPlanet(containerId, THREE) {
     colors[i * 3] = r;
     colors[i * 3 + 1] = g;
     colors[i * 3 + 2] = b;
-
-    sizes[i] = particleSize;
 
     velocities[i * 3] = 0;
     velocities[i * 3 + 1] = 0;
@@ -294,12 +288,6 @@ export function initCosmicPlanet(containerId, THREE) {
       vx *= friction;
       vy *= friction;
       vz *= friction;
-
-      if (i >= planetCount + ringCount) {
-        vx += (Math.random() - 0.5) * 0.01;
-        vy += (Math.random() - 0.5) * 0.01;
-        vz += (Math.random() - 0.5) * 0.01;
-      }
 
       px += vx;
       py += vy;

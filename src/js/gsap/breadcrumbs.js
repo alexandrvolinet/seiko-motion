@@ -23,6 +23,7 @@ export function initBreadcrumbs() {
         duration: 0.6,
         ease: "power2.out",
         stagger: 0.18,
+        onComplete: () => gsap.set(items, { clearProps: "willChange" }),
       });
     }, nav);
 

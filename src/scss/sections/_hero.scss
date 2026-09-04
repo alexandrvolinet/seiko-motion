@@ -150,16 +150,16 @@
       transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
       will-change: transform;
     }
+  }
+}
 
-    @keyframes float {
-      0%,
-      100% {
-        transform: translateY(0);
-      }
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
 
-      50% {
-        transform: translateY(5px);
-      }
-    }
+  50% {
+    transform: translateY(5px);
   }
 }

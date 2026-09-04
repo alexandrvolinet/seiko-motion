@@ -88,6 +88,7 @@ export function animateStats() {
               onEnter: () =>
                 startCounters(card.querySelectorAll(".stats__num")),
             },
+            onComplete: () => gsap.set(card, { clearProps: "willChange" }),
           })
         );
       });
@@ -105,6 +106,7 @@ export function animateStats() {
             toggleActions: "play none none none",
             onEnter: () => startCounters(counters),
           },
+          onComplete: () => gsap.set(cards, { clearProps: "willChange" }),
         })
       );
     }

@@ -99,10 +99,6 @@
     }
   }
 
-  .project-card__title {
-    transition: color 0.3s ease;
-  }
-
   .project-card__link {
     text-decoration: none;
     color: inherit;
@@ -132,40 +128,6 @@
     }
   }
 
-  .project-card__toggle {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    align-self: flex-start;
-    background: none;
-    border: none;
-    padding: 0;
-    cursor: pointer;
-    color: var(--color-font);
-    font-family: var(--font-secondary);
-    font-size: 16px;
-    font-weight: 600;
-    transition: color 0.2s ease, transform 0.2s ease;
-    z-index: 2;
-
-    &::after {
-      content: "›";
-      font-size: 22px;
-      line-height: 1;
-      transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
-      will-change: transform;
-    }
-
-    &:hover {
-      color: var(--color-link);
-      transform: translateX(2px);
-    }
-
-    &.is-open::after {
-      transform: rotate(90deg);
-    }
-  }
-
   .project-card__top {
     display: flex;
     align-items: flex-start;
@@ -189,6 +151,7 @@
     line-height: 1.1;
     color: var(--color-font);
     text-wrap: balance;
+    transition: color 0.3s ease;
 
     @include mixins.respond(tablet) {
       font-size: 22px;
@@ -263,10 +226,6 @@
     filter: saturate(1.03) contrast(1.02);
   }
 
-  .project-card:hover .project-card__video {
-    transform: scale(1.06);
-  }
-
   .project-card__toggle {
     display: inline-flex;
     align-items: center;
@@ -314,18 +273,6 @@
       transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
     will-change: grid-template-rows, opacity, transform;
 
-    .project-card__details-inner {
-      overflow: hidden;
-      display: flex;
-
-      >* {
-        opacity: 0;
-        transition:
-          opacity 0.35s cubic-bezier(0.22, 1, 0.36, 1),
-          transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
-      }
-    }
-
     &.is-open {
       grid-template-rows: 1fr;
       opacity: 1;
@@ -343,7 +290,15 @@
     flex-direction: column;
     gap: 22px;
     padding-top: 4px;
+    overflow: hidden;
     will-change: transform, opacity;
+
+    >* {
+      opacity: 0;
+      transition:
+        opacity 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+        transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+    }
 
     @include mixins.respond(tablet) {
       gap: 18px;

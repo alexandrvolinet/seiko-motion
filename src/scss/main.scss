@@ -10,6 +10,8 @@
 @use 'components/buttons';
 @use 'components/contactModal';
 @use 'components/backgroundDots';
+@use 'components/cookies';
+@use 'components/pageTransition';
 
 @use 'layout/container';
 @use 'layout/footer';
@@ -20,6 +22,7 @@
 @use 'sections/design';
 @use 'sections/faq';
 @use 'sections/hero';
+@use 'sections/notfound';
 @use 'sections/project';
 @use 'sections/projects';
 @use 'sections/process';

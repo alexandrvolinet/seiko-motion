@@ -5,8 +5,10 @@ import { heroTitle, heroCTA, initHeroExpand } from "./gsap/hero.js";
 import { arc } from "./gsap/hero.js";
 import { initContactModal } from "./gsap/contactModal.js";
 import { initShowcaseExpand } from "./gsap/showcaseExpand.js";
-import { initProjectCards } from "./gsap/projectCards.js";
 import { initCursor } from "./gsap/cursor.js";
+import { initPageTransitions } from "./gsap/pageTransition.js";
+import { initPrefetch } from "./gsap/prefetch.js";
+import { initCookieConsent } from "./gsap/cookies.js";
 
 let isCriticalStarted = false;
 let isDeferredStarted = false;
@@ -181,6 +183,10 @@ async function startDeferredExperience() {
   projectPageModule.animateProjectPage();
 
   ScrollTrigger.refresh();
+
+  // All ScrollTriggers are positioned and initial states are set -
+  // the page-transition overlay may now reveal the finished page.
+  window.dispatchEvent(new CustomEvent("seiko:page-ready"));
 }
 
 function lazyLoadDesign() {
@@ -215,6 +221,9 @@ document.addEventListener("DOMContentLoaded", () => {
   initShowcaseExpand();
   initHeroExpand();
   initCursor();
+  initPageTransitions();
+  initPrefetch();
+  initCookieConsent();
   lazyLoadDesign();
 
   window.addEventListener("resize", refreshScrollTriggersOnResize, { passive: true });

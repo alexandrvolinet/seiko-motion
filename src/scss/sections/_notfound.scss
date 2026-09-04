@@ -1,0 +1,45 @@
+@use "../abstracts/mixins";
+
+.notfound {
+  text-align: center;
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &__code {
+    margin: 0 0 8px;
+    font-family: var(--font-primary);
+    font-weight: 400;
+    font-size: clamp(96px, 22vw, 220px);
+    line-height: 1;
+    color: var(--color-font);
+    background: linear-gradient(180deg, #eacfff, #a837ff);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    user-select: none;
+  }
+
+  .title {
+    margin-bottom: 16px;
+  }
+
+  .text-subtitle {
+    margin-bottom: 40px;
+    max-width: 560px;
+
+    @include mixins.respond(mobile) {
+      margin-bottom: 32px;
+    }
+  }
+
+  &__actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 16px;
+  }
+}

@@ -30,6 +30,9 @@ export default defineConfig({
         main: resolve(__dirname, "index.html"),
         projects: resolve(__dirname, "projects.html"),
         projectLuma: resolve(__dirname, "project-luma.html"),
+        faq: resolve(__dirname, "faq.html"),
+        terms: resolve(__dirname, "terms.html"),
+        notFound: resolve(__dirname, "404.html"),
       },
       output: {
         manualChunks: {

@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en">
   <head>
+    <style>html{background:#000}</style>
     <title>Seiko Motion Studio | Motion Graphics & Visual Design Agency</title>
     <meta charset="UTF-8" />
     <meta
@@ -9,11 +10,11 @@
     />
     <meta
       name="description"
-      content="Seiko Motion Studio creates captivating motion graphics, brand animations, and visual storytelling. Bring your brand to life with dynamic visuals that move, inspire, and connect."
+      content="Motion design studio working worldwide: promo videos, logo animation, brand films, 3D visuals and websites for digital-first companies."
     />
     <meta
       name="keywords"
-      content="motion graphics, animation studio, visual design, brand animation, motion design, video production, creative agency"
+      content="motion design studio, motion graphics, brand animation, promo videos, logo animation, explainer videos, UI motion, social media videos, video editing, graphic design, brand identity, 3D visuals, product renders, web design, landing pages, UI/UX design, creative agency, remote studio, worldwide"
     />
     <meta name="author" content="Seiko Motion Studio" />
     <meta name="robots" content="index, follow" />
@@ -55,6 +56,24 @@
     <meta name="theme-color" content="#000000" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script type="speculationrules">
+      {
+        "prerender": [
+          {
+            "source": "document",
+            "where": { "href_matches": "*/project-*.html" },
+            "eagerness": "moderate"
+          }
+        ],
+        "prefetch": [
+          {
+            "source": "list",
+            "urls": ["/", "/index.html", "/projects.html", "/project-luma.html", "/faq.html", "/terms.html"],
+            "eagerness": "moderate"
+          }
+        ]
+      }
+    </script>
 
     <link
       rel="preload"
@@ -73,12 +92,54 @@
             "name": "Seiko Motion Studio",
             "url": "https://seikomotion.com/",
             "logo": "https://seikomotion.com/apple-touch-icon.png",
-            "email": "hello@seikomotion.com",
+            "email": "work@seikomotiondesign.com",
+            "areaServed": "Worldwide",
             "sameAs": [
               "https://instagram.com/seikomotion",
               "https://tiktok.com/@seikomotion",
               "https://linkedin.com/company/seikomotion"
-            ]
+            ],
+            "hasOfferCatalog": {
+              "@type": "ItemList",
+              "itemListElement": [
+                {
+                  "@type": "Offer",
+                  "position": 1,
+                  "itemOffered": {
+                    "@type": "Service",
+                    "name": "Motion Design",
+                    "description": "Promo videos, ad creatives, explainers, logo animations, UI motion, social media videos, video editing, and full motion design production."
+                  }
+                },
+                {
+                  "@type": "Offer",
+                  "position": 2,
+                  "itemOffered": {
+                    "@type": "Service",
+                    "name": "Graphic & Brand Design",
+                    "description": "Brand visuals, social media graphics, advertising banners, presentation design, digital assets, and visual identity materials."
+                  }
+                },
+                {
+                  "@type": "Offer",
+                  "position": 3,
+                  "itemOffered": {
+                    "@type": "Service",
+                    "name": "3D Visual Design",
+                    "description": "Premium 3D visuals, product renders, abstract compositions, animated 3D scenes, and visual assets for campaigns, websites, and videos."
+                  }
+                },
+                {
+                  "@type": "Offer",
+                  "position": 4,
+                  "itemOffered": {
+                    "@type": "Service",
+                    "name": "Web Design & Development",
+                    "description": "Figma website design, landing pages, UI/UX layouts, responsive websites, and development using HTML, CSS, JavaScript, React, and other suitable tools."
+                  }
+                }
+              ]
+            }
           },
           {
             "@type": "WebSite",
@@ -92,45 +153,11 @@
     </script>
   </head>
   <body>
-    <!-- // service arrow -->
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      style="display: none"
-      aria-hidden="true"
-    >
-      <defs>
-        <filter
-          id="filter0_f_2_7"
-          x="-5"
-          y="-5"
-          width="33"
-          height="132"
-          filterUnits="userSpaceOnUse"
-          color-interpolation-filters="sRGB"
-        >
-          <feFlood flood-opacity="0" result="BackgroundImageFix" />
-          <feBlend
-            mode="normal"
-            in="SourceGraphic"
-            in2="BackgroundImageFix"
-            result="shape"
-          />
-          <feGaussianBlur
-            stdDeviation="2"
-            result="effect1_foregroundBlur_2_7"
-          />
-        </filter>
-      </defs>
-      <symbol id="connector-path" viewBox="0 0 23 122" fill="none">
-        <path
-          d="M12.1333 4.29918C11.7463 3.90521 11.1132 3.89961 10.7192 4.28666L4.29916 10.5941C3.9052 10.9811 3.8996 11.6143 4.28665 12.0082C4.6737 12.4022 5.30684 12.4078 5.70081 12.0207L11.4075 6.41416L17.0141 12.1208C17.4011 12.5148 18.0343 12.5204 18.4282 12.1334C18.8222 11.7463 18.8278 11.1132 18.4407 10.7192L12.1333 4.29918ZM10.42 118L11.42 118.009L12.42 5.00885L11.42 5L10.4201 4.99115L9.42005 117.991L10.42 118Z"
-          fill="#A837FF"
-          filter="url(#filter0_f_2_7)"
-        />
-      </symbol>
-    </svg>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+
     <canvas id="starfield"></canvas>
     <canvas id="fx-canvas"></canvas>
+    <div class="page-transition" aria-hidden="true"></div>
 
     <header class="header">
       <div class="container">
@@ -203,7 +230,7 @@
 
     <div class="space-bg" aria-hidden="true"></div>
 
-    <main id="main-content">
+    <main id="main-content" tabindex="-1">
       <section id="hero" class="home">
         <svg
           class="arc"
@@ -416,15 +443,6 @@
                     </p>
                     <a href="/">Learn More</a>
                   </div>
-                  <div class="services-v2__connector" aria-hidden="true">
-                    <svg
-                      viewBox="0 0 23 122"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <use href="#connector-path" />
-                    </svg>
-                  </div>
                   <p class="services-v2__label">Motion Design</p>
                 </li>
 
@@ -444,15 +462,6 @@
                       materials.
                     </p>
                     <a href="/">Learn More</a>
-                  </div>
-                  <div class="services-v2__connector" aria-hidden="true">
-                    <svg
-                      viewBox="0 0 23 122"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <use href="#connector-path" />
-                    </svg>
                   </div>
                   <p class="services-v2__label">Graphic & Brand Design</p>
                 </li>
@@ -474,15 +483,6 @@
                     </p>
                     <a href="/">Learn More</a>
                   </div>
-                  <div class="services-v2__connector" aria-hidden="true">
-                    <svg
-                      viewBox="0 0 23 122"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <use href="#connector-path" />
-                    </svg>
-                  </div>
                   <p class="services-v2__label">3D Visual Design</p>
                 </li>
 
@@ -502,15 +502,6 @@
                       JavaScript, React, and other suitable tools.
                     </p>
                     <a href="/">Learn More</a>
-                  </div>
-                  <div class="services-v2__connector" aria-hidden="true">
-                    <svg
-                      viewBox="0 0 23 122"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <use href="#connector-path" />
-                    </svg>
                   </div>
                   <p class="services-v2__label">Web Design & Development</p>
                 </li>
@@ -1259,24 +1250,21 @@
             </div>
 
             <div class="contact-us__card contact-us__card--video">
-              <video
-                src="src/assets/videos/contact.webm"
-                poster="src/assets/images/contact.webp"
-                autoplay
-                muted
-                loop
-                playsinline
-              ></video>
+              <img
+                src="src/assets/images/contact.webp"
+                alt="Contact Seiko Motion Studio"
+                loading="lazy"
+              />
             </div>
 
             <div class="contact-us__card contact-us__card--contacts">
               <nav class="contact-us__options" aria-label="Contact options">
                 <a
                   class="contact-us__option"
-                  href="mailto:hello@seikomotion.com"
+                  href="mailto:work@seikomotiondesign.com"
                 >
                   <span>Email</span>
-                  <strong>hello@seikomotion.com</strong>
+                  <strong>work@seikomotiondesign.com</strong>
                 </a>
                 <a
                   class="contact-us__option"
@@ -1338,7 +1326,7 @@
                       alt="location icon"
                       loading="lazy"
                     />
-                    <p>City, Country</p>
+                    <p>Worldwide, Remote</p>
                   </div>
                   <div class="footer__contacts">
                     <img
@@ -1346,7 +1334,7 @@
                       alt="message icon"
                       loading="lazy"
                     />
-                    <p>hello@yourstudio.com</p>
+                    <p>work@seikomotiondesign.com</p>
                   </div>
                   <div class="footer__contacts">
                     <img
@@ -1443,6 +1431,11 @@
             </div>
           </div>
         </div>
+        <div class="footer__legal">
+          <a href="/faq.html">FAQ</a>
+          <a href="/terms.html">Terms</a>
+          <button type="button" data-cookie-settings>Cookie Settings</button>
+        </div>
       </div>
     </footer>
 
@@ -1490,6 +1483,39 @@
           </label>
           <button type="submit" class="btn btn--sm">Send</button>
         </form>
+      </div>
+    </div>
+
+    <div
+      class="cookies"
+      id="cookieConsent"
+      role="region"
+      aria-label="Cookie consent"
+      hidden
+    >
+      <div class="cookies__content">
+        <p class="cookies__text">
+          We use only technically necessary storage - your cookie choice and a
+          page-transition flag. No analytics, no marketing, no third-party
+          cookies.
+          <a class="cookies__link" href="/terms.html#cookies">Cookie Policy</a>
+        </p>
+        <div class="cookies__actions">
+          <button
+            class="btn btn--sm cookies__btn cookies__btn--ghost"
+            type="button"
+            data-cookie-reject
+          >
+            Reject
+          </button>
+          <button
+            class="btn btn--sm cookies__btn"
+            type="button"
+            data-cookie-accept
+          >
+            Accept
+          </button>
+        </div>
       </div>
     </div>
 

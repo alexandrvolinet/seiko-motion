@@ -1,16 +1,17 @@
 <!doctype html>
 <html lang="en">
   <head>
+    <style>html{background:#000}</style>
     <title>Projects | Seiko Motion Studio</title>
     <meta charset="UTF-8" />
     <meta name="title" content="Projects | Seiko Motion Studio" />
     <meta
       name="description"
-      content="Selected work by Seiko Motion Studio: motion design, creative development, 3D visuals, and full-stack web builds."
+      content="Selected motion design and web projects by Seiko Motion Studio — brand animation, 3D visuals and creative development for clients worldwide."
     />
     <meta
       name="keywords"
-      content="projects, portfolio, motion design, web design, creative development, 3D web, full-stack"
+      content="motion design portfolio, brand animation portfolio, selected work, motion identity, kinetic typography, 3D visuals, creative development, web design portfolio, remote design studio"
     />
     <meta name="author" content="Seiko Motion Studio" />
     <meta name="robots" content="index, follow" />
@@ -45,6 +46,24 @@
     <link rel="manifest" href="/site.webmanifest" />
     <meta name="theme-color" content="#000000" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script type="speculationrules">
+      {
+        "prerender": [
+          {
+            "source": "document",
+            "where": { "href_matches": "*/project-*.html" },
+            "eagerness": "moderate"
+          }
+        ],
+        "prefetch": [
+          {
+            "source": "list",
+            "urls": ["/", "/index.html", "/projects.html", "/project-luma.html", "/faq.html", "/terms.html"],
+            "eagerness": "moderate"
+          }
+        ]
+      }
+    </script>
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -61,6 +80,7 @@
     </script>
   </head>
   <body>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
     <style>body { overflow:visible !important; }</style>
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -100,31 +120,31 @@
     </svg>
     <canvas id="starfield"></canvas>
     <canvas id="fx-canvas"></canvas>
+    <div class="page-transition" aria-hidden="true"></div>
 
     <header class="header">
       <div class="container">
         <div class="header__inner">
           <div class="header__left">
-            <a href="/index.html" class="header__logo">
+            <a href="/" class="header__logo">
               <img
                 src="src/assets/images/logo.svg"
                 alt="Seiko motion"
-                width="135"
-                height="24"
+                height="39"
                 fetchpriority="high"
               />
             </a>
 
             <nav class="header__nav" aria-label="Primary navigation">
-              <a href="/index.html#hero">Home</a>
-              <a href="/index.html#design">About</a>
-              <a href="/projects.html#projects">Projects</a>
+              <a href="#hero">Home</a>
+              <a href="#design">About</a>
+              <a href="#portfolio">Projects</a>
             </nav>
           </div>
 
           <div class="header__right">
-            <a href="/index.html#services" class="header__link">Services</a>
-            <a href="/index.html#contact-us" class="btn btn--sm">Contact us</a>
+            <a href="#services" class="header__link">Services</a>
+            <a href="#contact-us" class="btn btn--sm">Contact us</a>
 
             <button
               class="burger"
@@ -150,10 +170,10 @@
         <button class="mobile-menu__close" aria-label="Close menu"></button>
 
         <nav class="mobile-menu__nav" aria-label="Mobile navigation">
-          <a href="/index.html#hero">Home</a>
-          <a href="/index.html#design">About</a>
-          <a href="/projects.html#projects">Projects</a>
-          <a href="/index.html#services">Services</a>
+          <a href="#hero">Home</a>
+          <a href="#design">About</a>
+          <a href="#portfolio">Projects</a>
+          <a href="#services">Services</a>
         </nav>
       </div>
     </header>
@@ -173,7 +193,7 @@
 
     <div class="space-bg"></div>
 
-    <main id="main-content">
+    <main id="main-content" tabindex="-1">
       <section id="projects" class="projects section">
         <div class="container">
           <nav class="breadcrumbs" aria-label="Breadcrumb">
@@ -702,7 +722,7 @@
                       alt="location icon"
                       loading="lazy"
                     />
-                    <p>City, Country</p>
+                    <p>Worldwide, Remote</p>
                   </div>
                   <div class="footer__contacts">
                     <img
@@ -710,7 +730,7 @@
                       alt="message icon"
                       loading="lazy"
                     />
-                    <p>hello@yourstudio.com</p>
+                    <p>work@seikomotiondesign.com</p>
                   </div>
                   <div class="footer__contacts">
                     <img
@@ -807,6 +827,11 @@
             </div>
           </div>
         </div>
+        <div class="footer__legal">
+          <a href="/faq.html">FAQ</a>
+          <a href="/terms.html">Terms</a>
+          <button type="button" data-cookie-settings>Cookie Settings</button>
+        </div>
       </div>
     </footer>
 
@@ -854,6 +879,39 @@
           </label>
           <button type="submit" class="btn btn--sm">Send</button>
         </form>
+      </div>
+    </div>
+
+    <div
+      class="cookies"
+      id="cookieConsent"
+      role="region"
+      aria-label="Cookie consent"
+      hidden
+    >
+      <div class="cookies__content">
+        <p class="cookies__text">
+          We use only technically necessary storage - your cookie choice and a
+          page-transition flag. No analytics, no marketing, no third-party
+          cookies.
+          <a class="cookies__link" href="/terms.html#cookies">Cookie Policy</a>
+        </p>
+        <div class="cookies__actions">
+          <button
+            class="btn btn--sm cookies__btn cookies__btn--ghost"
+            type="button"
+            data-cookie-reject
+          >
+            Reject
+          </button>
+          <button
+            class="btn btn--sm cookies__btn"
+            type="button"
+            data-cookie-accept
+          >
+            Accept
+          </button>
+        </div>
       </div>
     </div>
 
