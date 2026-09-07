@@ -31,6 +31,8 @@
   }
 
   &__grid {
+    position: relative;
+    z-index: 1;
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 32px;
@@ -398,6 +400,8 @@
   }
 
   &__toolbar {
+    position: relative;
+    z-index: 50;
     display: flex;
     flex-wrap: wrap;
     align-items: flex-end;

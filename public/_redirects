@@ -1,0 +1,2 @@
+# Serve dist/404.html with 404 status for unknown URLs (Netlify / Cloudflare Pages)
+/*  /404.html  404

@@ -15,9 +15,10 @@ export function animateFaq() {
       duration: 0.9,
       ease: "power2.out",
       stagger: 0.08,
+      delay: 0.4,
       scrollTrigger: {
         trigger: section,
-        start: "top 82%",
+        start: "top 60%",
         toggleActions: "play none none none"
       }
     });

@@ -3,6 +3,7 @@ import { defineConfig } from "vite";
 import { ViteImageOptimizer } from "vite-plugin-image-optimizer";
 
 export default defineConfig({
+  appType: "mpa",
   plugins: [
     ViteImageOptimizer({
       includePublic: true,
