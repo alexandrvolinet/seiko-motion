@@ -9,18 +9,18 @@ export function animateFaq() {
     const faqItems = section.querySelectorAll(".faq__item");
     const faqVisual = section.querySelector(".faq__visual");
 
-    animateTextReveal(faqItems, {
-      scope: section,
-      y: 28,
-      duration: 0.9,
-      ease: "power2.out",
-      stagger: 0.08,
-      delay: 0.4,
-      scrollTrigger: {
-        trigger: section,
-        start: "top 60%",
-        toggleActions: "play none none none"
-      }
+    faqItems.forEach((item) => {
+      animateTextReveal([item], {
+        scope: section,
+        y: 28,
+        duration: 0.9,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: item,
+          start: "top 88%",
+          toggleActions: "play none none none"
+        }
+      });
     });
 
     animateTextReveal([faqVisual], {

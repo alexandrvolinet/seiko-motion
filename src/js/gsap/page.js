@@ -21,7 +21,7 @@ export function revealSections() {
       stagger: 0.2,
       scrollTrigger: {
         trigger: section,
-        start: "top 60%",
+        start: "top 80%",
         toggleActions: "play none none none",
       },
     });
