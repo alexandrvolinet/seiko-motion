@@ -61,48 +61,26 @@ export function heroCTA() {
 }
 
 export function arc() {
-  const arcTop = document.querySelector(".arcTop");
-  const arcBottom = document.querySelector(".arcBottom");
+  const arc = document.querySelector(".arc");
 
-  if (!arcTop || !arcBottom) return;
-
-  gsap.set([arcTop, arcBottom], {
-    scale: 0.5,
-    transformOrigin: "top center"
-  });
-
-  const tl = gsap.timeline({
-    delay: 0.8,
-    defaults: { ease: "power2.out" }
-  });
-
-  tl.fromTo(arcTop, 
-    {
-      scale: 0,
-      y: 50
-    },
-    {
-      scale: 1,
-      y: 0,
-      duration: 2
-    },
-    0 
-  );
-
-  tl.fromTo(arcBottom, 
-    {
-      scale: 0.5,
+  if (!arc) return;
+  const ctx = gsap.context(() => {
+    gsap.set(arc, {
+      scale: 0.6,
+      y: 80,
       opacity: 0,
-      y: 50
-    },
-    {
-      scale: 1,
-      opacity: 1,
-      y: 0,
-      duration: 2
-    },
-    0
-  );
+      transformOrigin: "50% 100%",
+    });
 
-  return tl;
+    gsap.to(arc, {
+      scale: 1,
+      y: 0,
+      opacity: 1,
+      duration: 2,
+      ease: "power2.out",
+      delay: 0.8,
+    });
+  }, arc);
+
+  return () => ctx.revert();
 }

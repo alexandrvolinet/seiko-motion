@@ -20,18 +20,15 @@ function initCosmicPlanet(containerId, THREE) {
   const width = container.clientWidth;
   const height = container.clientHeight;
 
-  // --- Scene Setup ---
   const scene = new THREE.Scene();
 
-  // --- Camera Setup ---
   const camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 100);
   camera.position.z = 16;
 
-  // --- Renderer Setup (transparent background) ---
   const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
   renderer.setSize(width, height, false);
   renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-  renderer.setClearColor(0x000000, 0); // Transparent background
+  renderer.setClearColor(0x000000, 0);
   renderer.domElement.style.position = "absolute";
   renderer.domElement.style.inset = "0";
   renderer.domElement.style.width = "100%";
@@ -39,7 +36,6 @@ function initCosmicPlanet(containerId, THREE) {
   renderer.domElement.style.display = "block";
   container.appendChild(renderer.domElement);
 
-  // --- Particles Configuration ---
   const planetCount = 2500;
   const ringCount = 1200;
   const totalParticles = planetCount + ringCount;
@@ -63,7 +59,6 @@ function initCosmicPlanet(containerId, THREE) {
     let r = 0, g = 0, b = 0;
 
     if (i < planetCount) {
-      // 1. Globe surface (Fibonacci Sphere formulation for evenly distributed particles)
       const radius = 3;
       const phi = Math.acos(-1 + (2 * i) / planetCount);
       const theta = Math.sqrt(planetCount * Math.PI) * phi;
@@ -80,7 +75,6 @@ function initCosmicPlanet(containerId, THREE) {
       b = tempColor.b;
 
     } else if (i < planetCount + ringCount) {
-      // 2. Orbital Flat Ring
       const ringIndex = i - planetCount;
       const innerRadius = 3.6;
       const outerRadius = 6;
@@ -125,7 +119,6 @@ function initCosmicPlanet(containerId, THREE) {
   geometry.setAttribute("position", new THREE.BufferAttribute(positions, 3));
   geometry.setAttribute("color", new THREE.BufferAttribute(colors, 3));
 
-  // Material with blending and soft round points
   const material = new THREE.PointsMaterial({
     size: 0.18,
     vertexColors: true,
@@ -139,7 +132,6 @@ function initCosmicPlanet(containerId, THREE) {
   const particleSystem = new THREE.Points(geometry, material);
   scene.add(particleSystem);
 
-  // Ambient core wireframe and glowing mesh
   const coreGeometry = new THREE.SphereGeometry(2.5, 32, 32);
   const coreMaterial = new THREE.MeshBasicMaterial({
     color: nebulaColors.primary,
@@ -162,7 +154,6 @@ function initCosmicPlanet(containerId, THREE) {
   const auraMesh = new THREE.Mesh(auraGeometry, auraMaterial);
   scene.add(auraMesh);
 
-  // Lights
   const ambientLight = new THREE.AmbientLight(0xffffff, 0.4);
   scene.add(ambientLight);
 
@@ -170,7 +161,6 @@ function initCosmicPlanet(containerId, THREE) {
   pointLight.position.set(5, 5, 5);
   scene.add(pointLight);
 
-  // --- Mouse interaction ---
   const mouse = new THREE.Vector2(-9999, -9999);
   const raycaster = new THREE.Raycaster();
   const plane = new THREE.Plane(new THREE.Vector3(0, 0, 1), 0);
@@ -192,7 +182,6 @@ function initCosmicPlanet(containerId, THREE) {
   renderer.domElement.addEventListener("mousemove", handleMouseMove);
   renderer.domElement.addEventListener("mouseleave", handleMouseLeave);
 
-  // --- Animation loop (paused until in view) ---
   let frameId;
   let isActive = false;
   let isInViewport = false;
@@ -232,17 +221,14 @@ function initCosmicPlanet(containerId, THREE) {
       const iy = initialPositions[i3 + 1];
       const iz = initialPositions[i3 + 2];
 
-      // Safe rotate targets
       const actualRotSpeedY = (i < planetCount) ? rotateSpeedY : (i < planetCount + ringCount) ? rotateSpeedY * 1.5 : rotateSpeedY * 0.1;
       const cosAngleY = Math.cos(actualRotSpeedY);
       const sinAngleY = Math.sin(actualRotSpeedY);
 
-      // Rotate around Y-axis
       const rotatedY_X = ix * cosAngleY - iz * sinAngleY;
       const rotatedY_Z = ix * sinAngleY + iz * cosAngleY;
       const rotatedY_Y = iy;
 
-      // Add small vertical rotation around X-axis
       const actualRotSpeedX = actualRotSpeedY * 0.15;
       const cosAngleX = Math.cos(actualRotSpeedX);
       const sinAngleX = Math.sin(actualRotSpeedX);
@@ -259,7 +245,6 @@ function initCosmicPlanet(containerId, THREE) {
       let vy = velocities[i3 + 1];
       let vz = velocities[i3 + 2];
 
-      // Displacement
       const dx = px - mouse3D.x;
       const dy = py - mouse3D.y;
       const dz = pz - mouse3D.z;
@@ -276,7 +261,6 @@ function initCosmicPlanet(containerId, THREE) {
         vz += nz * force;
       }
 
-      // Restoring force
       const rdx = rotatedTargetX - px;
       const rdy = rotatedTargetY - py;
       const rdz = rotatedTargetZ - pz;
@@ -306,7 +290,6 @@ function initCosmicPlanet(containerId, THREE) {
     renderer.render(scene, camera);
   };
 
-  // Start hidden, fade + slide up on scroll
   gsap.set(renderer.domElement, { opacity: 0, y: 50 });
 
   const startAnim = () => {
@@ -352,7 +335,6 @@ function initCosmicPlanet(containerId, THREE) {
 
   visibilityObserver.observe(section);
 
-  // If already in view on load, start immediately
   const rect = section.getBoundingClientRect();
   if (rect.top < window.innerHeight * 0.45 && rect.bottom > 0) {
     isInViewport = true;

@@ -68,8 +68,6 @@ export function animateHeader() {
   return () => ctx.revert();
 }
 
-// burger menu
-
 export function initMobileMenu() {
   const burger = document.querySelector(".burger");
   const mobileMenu = document.querySelector(".mobile-menu");
@@ -139,4 +137,3 @@ export function initMobileMenu() {
     }
   });
 }
-// burger menu end

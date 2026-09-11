@@ -29,7 +29,6 @@ export function initCursor() {
   window.addEventListener("resize", resize);
   resize();
 
-  // ---- particle engine ----
   var PURPLE_BRIGHT = [170, 60, 255];
   var PURPLE_DEEP = [120, 20, 255];
   var WHITE = [255, 255, 255];
@@ -81,7 +80,6 @@ export function initCursor() {
       particles.splice(0, particles.length - MAX_PARTICLES);
   }
 
-  // ---- explosion on click ----
   window.addEventListener("pointerdown", function (e) {
     var x = e.clientX,
       y = e.clientY;
@@ -121,9 +119,6 @@ export function initCursor() {
     }
   });
 
-  // ---- render loop ----
-  // Skips fullscreen clear/draw while idle so the loop costs ~nothing
-  // between clicks (rAF keeps running for instant response).
   var lastT = performance.now();
   function loop(now) {
     var dt = Math.min((now - lastT) / 1000, 0.05);

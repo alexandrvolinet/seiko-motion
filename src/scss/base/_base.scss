@@ -121,10 +121,6 @@ u {
   }
 }
 
-/* ================================
-   TITLES
-================================ */
-
 .title {
   font-family: var(--font-primary);
   font-weight: 400;
@@ -145,10 +141,6 @@ u {
   }
 }
 
-/* ================================
-   SUBTITLES / PARAGRAPHS
-================================ */
-
 .text-subtitle {
   font-family: var(--font-secondary);
   font-weight: 500;
@@ -166,10 +158,6 @@ u {
     line-height: 1.43;
   }
 }
-
-/* ================================
-   canvas
-================================ */
 
 canvas {
   position: fixed;

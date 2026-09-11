@@ -141,6 +141,7 @@ export function animateProcessMedia() {
 
   const ctx = gsap.context(() => {
     const media = section.querySelector(".process__media");
+    if (!media) return;
 
     gsap.set(media, {
       y: 50,
@@ -182,7 +183,6 @@ export function animateProcessTimeline() {
 
     if (!steps.length) return;
 
-    // --- Timeline line ---
     gsap.set(timelineLine, {
       scaleY: 0,
       transformOrigin: "top center",
@@ -205,7 +205,6 @@ export function animateProcessTimeline() {
       },
     });
 
-    // --- Per-step animations ---
     steps.forEach((step) => {
       const card = step.querySelector(".process__step-card");
       const node = step.querySelector(".process__step-node");

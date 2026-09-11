@@ -20,7 +20,6 @@ function writeConsent(status) {
       JSON.stringify({ status, version: CONSENT_VERSION, date: new Date().toISOString() })
     );
   } catch {
-    // private mode etc. - banner simply won't persist, which is fine
   }
 }
 
@@ -28,7 +27,6 @@ export function resetCookieConsent() {
   try {
     window.localStorage.removeItem(STORAGE_KEY);
   } catch {
-    // ignore
   }
 }
 
@@ -67,7 +65,6 @@ export function initCookieConsent() {
     show();
   };
 
-  // Respect Global Privacy Control: treat as rejection, don't nag.
   const hasChoice = Boolean(readConsent());
   const gpc =
     typeof navigator.globalPrivacyControl !== "undefined" &&

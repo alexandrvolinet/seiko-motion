@@ -2,7 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://seikomotion.com/</loc></url>
   <url><loc>https://seikomotion.com/projects.html</loc></url>
-  <url><loc>https://seikomotion.com/project-luma.html</loc></url>
+  <url><loc>https://seikomotion.com/project-luma.html</loc><lastmod>2026-09-10</lastmod></url>
+  <url><loc>https://seikomotion.com/motion-design.html</loc><lastmod>2026-09-10</lastmod></url>
+  <url><loc>https://seikomotion.com/brand-design.html</loc><lastmod>2026-09-10</lastmod></url>
+  <url><loc>https://seikomotion.com/3d-design.html</loc><lastmod>2026-09-10</lastmod></url>
+  <url><loc>https://seikomotion.com/web-development.html</loc><lastmod>2026-09-10</lastmod></url>
   <url><loc>https://seikomotion.com/faq.html</loc></url>
   <url><loc>https://seikomotion.com/terms.html</loc></url>
 </urlset>

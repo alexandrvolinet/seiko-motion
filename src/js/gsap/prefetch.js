@@ -1,6 +1,3 @@
-// Fallback page preloading for browsers without Speculation Rules
-// (Firefox, Safari): warms the HTTP cache on hover/focus so the
-// subsequent navigation skips the network wait.
 const MAX_PREFETCHES = 8;
 const prefetched = new Set();
 
@@ -17,7 +14,6 @@ function resolvePageUrl(anchor) {
   }
 
   if (url.origin !== window.location.origin) return null;
-  // Same-page anchors need no preloading.
   if (url.pathname === window.location.pathname) return null;
   if (!url.pathname.endsWith(".html") && url.pathname !== "/") return null;
 

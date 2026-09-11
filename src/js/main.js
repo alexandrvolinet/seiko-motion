@@ -127,6 +127,7 @@ function loadDeferredModules() {
     import("./gsap/projectsFilter.js"),
     import("./gsap/breadcrumbs.js"),
     import("./gsap/projectPage.js"),
+    import("./gsap/service.js"),
   ]);
 
   return deferredModulesPromise;
@@ -161,6 +162,7 @@ async function startDeferredExperience() {
     projectsFilterModule,
     breadcrumbsModule,
     projectPageModule,
+    serviceModule,
   ] = await loadDeferredModules();
 
   faqModule.initFaqAccordion();
@@ -181,11 +183,10 @@ async function startDeferredExperience() {
   projectsFilterModule.initProjectsFilter();
   breadcrumbsModule.initBreadcrumbs();
   projectPageModule.animateProjectPage();
+  serviceModule.initServiceSlider();
 
   ScrollTrigger.refresh();
 
-  // All ScrollTriggers are positioned and initial states are set -
-  // the page-transition overlay may now reveal the finished page.
   window.dispatchEvent(new CustomEvent("seiko:page-ready"));
 }
 

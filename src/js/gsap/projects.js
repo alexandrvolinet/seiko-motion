@@ -46,8 +46,6 @@ export function initProjectCards() {
 }
 
 export function animateProjectCards() {
-  // Initialize video autoplay with viewport detection
-  // (runs for project cards and standalone project pages)
   initVideoAutoplay();
 
   const grid = document.querySelector(".projects__grid");
@@ -93,7 +91,6 @@ export function animateProjectCards() {
     });
   });
 
-  // Animate "View all projects" button
   const viewAllBtn = document.querySelector(".projects__view-all");
   if (viewAllBtn) {
     createResponsiveReveal({

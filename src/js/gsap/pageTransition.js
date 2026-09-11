@@ -8,7 +8,6 @@ const FALLBACK_TIMEOUT = 1200;
 function isInternalPageUrl(url) {
   if (url.origin !== window.location.origin) return false;
 
-  // Same-page anchors are handled by smooth scroll, not a transition.
   if (url.pathname === window.location.pathname && url.hash) return false;
 
   return true;
@@ -54,8 +53,6 @@ export function initPageTransitions() {
     window.matchMedia &&
     window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  // ENTRY: arrived from another page via transition - start covered,
-  // then slide the overlay up to reveal the new page.
   let entered = false;
   try {
     entered = sessionStorage.getItem(FLAG_KEY) === "1";
@@ -82,17 +79,12 @@ export function initPageTransitions() {
       });
     };
 
-    // Reveal only after deferred animations are initialized and
-    // ScrollTriggers are refreshed - otherwise content would flash
-    // visible and then jump to hidden initial states.
     window.addEventListener("seiko:page-ready", playEnter, { once: true });
-    // Safety net: never leave the overlay stuck if deferred init fails.
     const safetyTimer = window.setTimeout(playEnter, 6000);
   } else {
     gsap.set(overlay, { autoAlpha: 0 });
   }
 
-  // EXIT: intercept clicks to project pages, cover the screen, then go.
   const onClick = (event) => {
     const anchor = event.target.closest("a[href]");
     if (!anchor || !shouldIntercept(event, anchor)) return;
@@ -103,7 +95,6 @@ export function initPageTransitions() {
     try {
       sessionStorage.setItem(FLAG_KEY, "1");
     } catch {
-      // storage unavailable - entry side will simply skip the reveal
     }
 
     let navigated = false;
@@ -131,9 +122,6 @@ export function initPageTransitions() {
 
   document.addEventListener("click", onClick);
 
-  // Back/forward navigation may restore the page from bfcache in the exact
-  // state we left it - with the overlay covering the screen (exit played,
-  // then we navigated away). Reset it so the restored page is never black.
   const onPageShow = (event) => {
     if (!event.persisted) return;
     gsap.killTweensOf(overlay);
