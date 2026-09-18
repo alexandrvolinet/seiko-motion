@@ -38,7 +38,7 @@ body {
   background: var(--color-bg);
   font-family: var(--font-secondary);
   color: var(--color-font-p);
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 html.is-loading body {

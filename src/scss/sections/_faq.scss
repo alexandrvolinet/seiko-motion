@@ -81,10 +81,10 @@
       top: 0;
       transform: translateX(-50%);
     }
+  }
 
-    .faq__item.is-open &::after {
-      transform: translateX(-50%) rotate(90deg);
-    }
+  .faq__item.is-open .faq__indicator::after {
+    transform: translateX(-50%) rotate(90deg);
   }
 
   &__answer {
@@ -97,7 +97,7 @@
     color: var(--color-font-p);
   }
 
-  &__item.is-open &__answer {
+  .faq__item.is-open .faq__answer {
     height: auto;
     margin-top: 10px;
   }
@@ -136,5 +136,13 @@
     background-repeat: no-repeat;
 
     z-index: 1;
+
+    video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
   }
 }

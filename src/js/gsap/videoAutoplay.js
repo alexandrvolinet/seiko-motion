@@ -1,6 +1,6 @@
 export function initVideoAutoplay() {
   const videos = document.querySelectorAll(
-    ".project-card__video, .project__media video"
+    ".project-card__video, .project__media video, .showcase__video, .faq__video, .contact-us__video",
   );
   if (!videos.length) return;
 

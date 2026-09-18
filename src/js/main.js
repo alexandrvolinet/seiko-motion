@@ -184,6 +184,8 @@ async function startDeferredExperience() {
   breadcrumbsModule.initBreadcrumbs();
   projectPageModule.animateProjectPage();
   serviceModule.initServiceSlider();
+  serviceModule.initWhyInteractive();
+  serviceModule.initWebDevShowcase();
 
   ScrollTrigger.refresh();
 
